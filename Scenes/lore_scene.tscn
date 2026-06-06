@@ -1,6 +1,26 @@
 [gd_scene format=3 uid="uid://ber1elbdrhcyv"]
 
-[ext_resource type="Script" uid="uid://c8g8cv2w6lfkh" path="res://Scripts/lore_scene.gd" id="1_gfagx"]
+[ext_resource type="Texture2D" uid="uid://oo1l3vuh4f5f" path="res://Sprites/Background/placeholder.png" id="1_gfagx"]
+[ext_resource type="Script" uid="uid://dhpt3bhabvukr" path="res://Scripts/Lore/lore_text_handler.gd" id="1_nufj5"]
+[ext_resource type="Texture2D" uid="uid://dv6w16bohrtun" path="res://Sprites/Background/brownplaceholder.png" id="2_ehu5x"]
 
-[node name="LoreScreen" type="Node2D" unique_id=608704352]
-script = ExtResource("1_gfagx")
+[node name="LoreScreen" type="Node2D" unique_id=608704352 node_paths=PackedStringArray("label")]
+script = ExtResource("1_nufj5")
+label = NodePath("LabelLoreText")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=2072618065]
+texture = ExtResource("1_gfagx")
+centered = false
+
+[node name="Textboxbackground" type="Sprite2D" parent="." unique_id=102969372]
+position = Vector2(944, 659.00006)
+scale = Vector2(0.67569447, 1.0271605)
+texture = ExtResource("2_ehu5x")
+
+[node name="LabelLoreText" type="Label" parent="." unique_id=1108875841]
+offset_left = 489.0
+offset_top = 295.0
+offset_right = 1393.0
+offset_bottom = 886.0
+text = "sample text"
+autowrap_mode = 3
