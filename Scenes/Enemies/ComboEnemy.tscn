@@ -4,13 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://c1comboqte123" path="res://Scenes/QTEs/CombinationQTE.tscn" id="3_combo_qte"]
 [ext_resource type="Texture2D" uid="uid://d20vg2fpqj1eb" path="res://Sprites/Roots/placeholder.png" id="4_sprite"]
 
-[node name="ComboEnemy" type="Node2D"]
+[node name="ComboEnemy" type="Node2D" unique_id=265963331]
 script = ExtResource("1_combo")
 QTE_Node = ExtResource("3_combo_qte")
 qte_marker_path = NodePath("QTEMarker")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=477069085]
 texture = ExtResource("4_sprite")
 
-[node name="QTEMarker" type="Marker2D" parent="."]
-position = Vector2(70, -70)
+[node name="QTEMarker" type="Marker2D" parent="." unique_id=1678658727]
+position = Vector2(0, -81)

@@ -140,6 +140,21 @@ func get_enemy_scene(enemy_type: int) -> PackedScene:
 func is_special_enemy_type(enemy_type: int) -> bool:
 	return enemy_type != EnemyType.BASIC and get_enemy_scene(enemy_type) != basic_qte_ai
 
+func get_enemy_qte_count(enemy_type: int) -> int:
+	var time_factor = clamp(total_time / 600.0, 0.0, 1.0)
+	var count = 2
+	if time_factor > 0.25:
+		count = 3
+	if time_factor > 0.55:
+		count = 4
+	if current_state == PacingState.PEAK and time_factor > 0.2:
+		count += 1
+
+	if enemy_type == EnemyType.QUICK_COMBO:
+		count -= 1
+
+	return maxi(1, count)
+
 func _get_weights(time_factor: float) -> Dictionary:
 	# 1. RAPID ONBOARDING (0.0 to 0.2)
 	# Quickly bleed in the mechanics so the player sees them all early.

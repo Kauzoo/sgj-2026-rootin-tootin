@@ -3,8 +3,9 @@ class_name MashQTE extends KeyQTE
 var mash_amount: int = 10
 
 func _ready():
-	# yes, im lazy :P
-	get_parent().get_parent().get_parent().add_key_qte(self)
+	add_to_group("qte")
+	register_key_qte()
+	$FailTimer.wait_time = DifficultyDirector.get_qte_time_window($FailTimer.wait_time)
 	$FailTimer.timeout.connect(_on_timeout)
 	$NumberLabel.text = str(mash_amount)
 
@@ -28,8 +29,12 @@ func check_event(event):
 			$NumberLabel.text = str(mash_amount)
 
 			if mash_amount <= 0:
-				# yes, im lazy :P
-				get_parent().get_parent().get_parent().remove_key_qte(self)
+				if is_resolved:
+					return
+
+				is_resolved = true
+				unregister_key_qte()
+				$FailTimer.stop()
 				DifficultyDirector.start_input_cooldown(0.25)
 				QTE_succeded.emit(position)
 				queue_free()

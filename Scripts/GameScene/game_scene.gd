@@ -20,31 +20,25 @@ func remove_key_qte(qte):
 func _unhandled_key_input(event: InputEvent):
 	key_event = event
 	if event is InputEventKey and event.pressed and not event.is_echo():
-			if event.key_label in [KEY_W, KEY_A, KEY_S, KEY_D]:
-				get_viewport().set_input_as_handled()
-				if key_qtes.all(check):
-					_on_do_damage()
-
-func check(qte):
-	qte.check_event(key_event)
-	return qte.key != key_event.key_label
+		if event.key_label in [KEY_W, KEY_A, KEY_S, KEY_D]:
+			for qte in key_qtes.duplicate():
+				if is_instance_valid(qte):
+					qte.check_event(key_event)
+				else:
+					remove_key_qte(qte)
 
 func _ready():
 	health_max = health
 	DifficultyDirector.reset()
 	DifficultyDirector.update_door_health(health, health_max)
 	
-	# Set up a single global timer for all cracks
+	# Set up a single global timer for all enemy spawn points.
 	global_spawn_timer = Timer.new()
 	global_spawn_timer.one_shot = true
 	global_spawn_timer.timeout.connect(_on_global_spawn_timeout)
 	add_child(global_spawn_timer)
 	global_spawn_timer.start(1.0) # Start generating events after a brief 1-second pause
-	
-	for child in get_children():
-		if child is Crack:
-			child.kill.connect(_on_enemy_kill)
-			child.damage.connect(_on_do_damage)
+
 	$HealthLabel.text = "DOOR HELTH: " + str(health)
 
 func _on_global_spawn_timeout():
@@ -57,15 +51,43 @@ func _on_global_spawn_timeout():
 
 	while count > 0 and available_cracks.size() > 0:
 		var random_crack = available_cracks.pick_random()
-		random_crack.spawn_monster()
+		_spawn_enemy_at_crack(random_crack)
 		available_cracks.erase(random_crack)
 		count -= 1
 
 	# Ask director how long until the next monster spawns
 	global_spawn_timer.start(DifficultyDirector.get_spawn_delay())
 
+func _spawn_enemy_at_crack(crack: Crack):
+	if crack.has_active_monster:
+		return
+
+	var enemy_type = DifficultyDirector.get_enemy_type()
+	var enemy_scene = DifficultyDirector.get_enemy_scene(enemy_type)
+	if enemy_scene == null:
+		return
+
+	var enemy = enemy_scene.instantiate() as EnemyBase
+	if enemy == null:
+		push_error("GameScene: DifficultyDirector returned a scene that is not an EnemyBase.")
+		return
+
+	crack.has_active_monster = true
+	enemy.enemy_type = enemy_type
+	enemy.position = crack.position
+	enemy.enemy_killed.connect(_on_enemy_kill)
+	enemy.enemy_removed.connect(_on_enemy_removed.bind(crack))
+	enemy.do_damage.connect(_on_do_damage)
+	add_child(enemy)
+
+	if DifficultyDirector.is_special_enemy_type(enemy_type):
+		DifficultyDirector.register_special_spawn(enemy)
+
 func _on_enemy_kill():
 	kills += 1
+
+func _on_enemy_removed(crack: Crack):
+	crack.has_active_monster = false
 
 	# Check if the screen is completely empty
 	var screen_empty = true
@@ -97,8 +119,3 @@ func _unhandled_input(event):
 	if DifficultyDirector.is_input_on_cooldown():
 		get_viewport().set_input_as_handled()
 		return
-
-	if event is InputEventKey and event.pressed and not event.is_echo():
-		if event.key_label in [KEY_W, KEY_A, KEY_S, KEY_D]:
-			get_viewport().set_input_as_handled()
-			_on_do_damage()
