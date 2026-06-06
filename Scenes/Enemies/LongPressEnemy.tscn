@@ -12,7 +12,6 @@ basic_qte_scene = ExtResource("2_key_qte")
 special_qte_scene = ExtResource("2_uyokb")
 
 [node name="AnimatedSprite" parent="." unique_id=1316889902 instance=ExtResource("3_jkegx")]
-scale = Vector2(2, 2)
 
 [node name="QTETimer" type="Timer" parent="." unique_id=637635198]
 wait_time = 10.0

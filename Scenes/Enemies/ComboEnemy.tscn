@@ -16,7 +16,6 @@ qte_marker_paths = Array[NodePath]([NodePath("QTEMarker1"), NodePath("QTEMarker2
 qte_count_override = 3
 
 [node name="AnimatedSprite" parent="." unique_id=1316889902 instance=ExtResource("5_hag21")]
-scale = Vector2(2, 2)
 
 [node name="QTEMarker1" type="Marker2D" parent="." unique_id=1678658727]
 position = Vector2(-70, -80)
