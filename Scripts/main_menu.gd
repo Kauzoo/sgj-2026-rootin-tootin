@@ -2,10 +2,17 @@ extends Control
 
 signal go_to_lore()
 
+# grabby grab
+@onready var my_sound_pool := $SoundPool as SoundPool
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	#pass
 	#SoundManager.play_fireball_sound()
+	if my_sound_pool:
+		my_sound_pool.play_random_sound()
+		
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
