@@ -33,15 +33,30 @@ func _on_global_spawn_timeout():
 		if child is Crack and not child.has_active_monster:
 			available_cracks.append(child)
 			
-	if available_cracks.size() > 0:
+	var count = DifficultyDirector.get_spawn_count()
+	
+	while count > 0 and available_cracks.size() > 0:
 		var random_crack = available_cracks.pick_random()
 		random_crack.spawn_monster()
+		available_cracks.erase(random_crack)
+		count -= 1
 		
 	# Ask director how long until the next monster spawns
 	global_spawn_timer.start(DifficultyDirector.get_spawn_delay())
 
 func _on_enemy_kill():
 	kills += 1
+	
+	# Check if the screen is completely empty
+	var screen_empty = true
+	for child in get_children():
+		if child is Crack and child.has_active_monster:
+			screen_empty = false
+			break
+			
+	if screen_empty:
+		# Fast-track the next spawn if the player cleared everything
+		global_spawn_timer.start(1.0)
 
 func _on_do_damage():
 	if health <= 0:
