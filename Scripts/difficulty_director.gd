@@ -3,8 +3,8 @@ extends Node
 enum PacingState { BUILD, PEAK, BREATHER }
 
 @export var difficulty_curve: Curve
-@export var min_spawn_delay: float = 2.0
-@export var max_spawn_delay: float = 8.0
+@export var min_spawn_delay: float = 1.5
+@export var max_spawn_delay: float = 5.0
 @export var critical_health_threshold_percent: float = 0.25
 
 @export var build_duration: float = 40.0
