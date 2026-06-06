@@ -7,6 +7,8 @@ var tween_text_scroll
 var lore_file_path
 var lore_file
 
+signal go_to_game()
+
 func _ready():
 	
 	lore_file_path = "res://Scripts/Lore/Lore_texts.txt"
@@ -31,7 +33,7 @@ func _input(event):
 		
 		var text = lore_file.get_line()
 		if (text == ""):
-			get_tree().change_scene_to_file("res://Scenes/GameManager.tscn")
+			go_to_game.emit()
 		else:
 			label.set_text(text)
 			nextSaying()
