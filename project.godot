@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="sgj-2026-rootin-tootin"
+run/main_scene="uid://x8ugmofprt1c"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[dotnet]
+
+project/assembly_name="sgj-2026-rootin-tootin"
 
 [physics]
 
