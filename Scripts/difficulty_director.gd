@@ -34,7 +34,7 @@ enum PacingState { BUILD, PEAK, BREATHER }
 # ramp only starts after that, so early special enemies do not also become tanky.
 @export var difficulty_curve: Curve
 @export var difficulty_ramp_duration: float = 120.0
-@export var intro_duration: float = 30.0
+@export var intro_duration: float = 40.0
 @export var opening_grace_duration: float = 10.0
 @export var min_spawn_delay: float = 0.85
 @export var max_spawn_delay: float = 2.25
