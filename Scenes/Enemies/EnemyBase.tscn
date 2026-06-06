@@ -8,7 +8,7 @@
 script = ExtResource("1_iiq2q")
 start_qte = 2
 QTE_Node = ExtResource("2_srcxp")
-spawn_locations = Array[Vector2]([Vector2(0, 50), Vector2(-50, 0), Vector2(-50, -50), Vector2(0, -50), Vector2(50, 0), Vector2(50, 50)])
+spawn_locations = Array[Vector2]([Vector2(-70, 0), Vector2(70, 0), Vector2(0, -70), Vector2(0, 70), Vector2(-70, -70), Vector2(70, 70), Vector2(-70, 70), Vector2(70, -70)])
 
 [node name="QTETimer" type="Timer" parent="." unique_id=1421120142]
 autostart = true

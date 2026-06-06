@@ -10,6 +10,14 @@ func _on_timeout():
 	QTE_failed.emit(position)
 	queue_free()
 
+func _process(_delta):
+	queue_redraw()
+
+
+func _draw():
+	var ratio: float = $FailTimer.time_left / $FailTimer.wait_time
+	draw_arc(Vector2(0, 0), 30, 0 - 0.5 * PI, ratio * 2 * PI - 0.5 * PI, 100, Color(1, ratio, ratio), 3)
+
 
 func _unhandled_input(event):
 	if event is InputEventKey:

@@ -4,6 +4,8 @@ class_name Endscreen extends Node2D
 
 var score: int
 
+signal go_to_menu()
+
 func _ready():
 	$NameMenu.set_score(score)
 	$NameMenu.name_entered.connect(_on_name_entered)
