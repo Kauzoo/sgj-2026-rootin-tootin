@@ -75,7 +75,7 @@ custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 17
-text = "Score"
+text = "Best Score"
 horizontal_alignment = 2
 vertical_alignment = 1
 
@@ -110,7 +110,7 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 20
 text = "Home"
 
-[node name="NameInput" type="Control" parent="." unique_id=2124308100 node_paths=PackedStringArray("nameLine")]
+[node name="NameInput" type="Control" parent="." unique_id=2124308100 node_paths=PackedStringArray("scoreLabel", "nameLine")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 704.0
@@ -118,10 +118,26 @@ offset_bottom = 396.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("3_hqmdi")
+scoreLabel = NodePath("ScoreLabel")
 nameLine = NodePath("LineEdit")
 metadata/_edit_use_anchors_ = true
 
-[node name="HeaderLabel" type="Label" parent="NameInput" unique_id=1359834994]
+[node name="ScoreLabel" type="Label" parent="NameInput" unique_id=1359834994]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -88.0
+offset_bottom = -53.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "Your score is 0."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HeaderLabel" type="Label" parent="NameInput" unique_id=1124656922]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5

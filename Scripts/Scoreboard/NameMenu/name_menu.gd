@@ -1,6 +1,6 @@
 class_name NameMenu extends Control
 
-#@export var header: Label
+@export var scoreLabel: Label
 @export var nameLine: LineEdit
 
 #set before added as child
@@ -13,7 +13,7 @@ func _ready():
 
 func set_score(score_set):
 	score = score_set
-	#header.text = "Your score is " + String.num_uint64(score) + ". Please enter your name here"
+	scoreLabel.text = "Your score is " + String.num_uint64(score) + "."
 
 func _on_name_submitted(submittedName: String):
 #always fails for some reason...
