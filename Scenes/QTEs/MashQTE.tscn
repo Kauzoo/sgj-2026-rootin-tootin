@@ -40,7 +40,6 @@ script = ExtResource("2_j638d")
 [node name="FailTimer" type="Timer" parent="." unique_id=165001112]
 wait_time = 15.0
 one_shot = true
-autostart = true
 script = SubResource("GDScript_a2hfp")
 
 [node name="SuccessSound" type="AudioStreamPlayer2D" parent="." unique_id=806062045]

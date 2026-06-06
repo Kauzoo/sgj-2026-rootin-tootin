@@ -10,6 +10,7 @@ func _ready():
 	register_key_qte()
 	$FailTimer.wait_time = DifficultyDirector.get_qte_time_window($FailTimer.wait_time)
 	$FailTimer.timeout.connect(_on_timeout)
+	$FailTimer.start($FailTimer.wait_time)
 	var rng = RandomNumberGenerator.new()
 	mash_amount = rng.randi_range(5, 10)
 	initial_mash_amount = mash_amount

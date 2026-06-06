@@ -17,5 +17,4 @@ script = ExtResource("2_55i0u")
 [node name="FailTimer" type="Timer" parent="." unique_id=577917659]
 wait_time = 7.0
 one_shot = true
-autostart = true
 script = SubResource("GDScript_2bpst")

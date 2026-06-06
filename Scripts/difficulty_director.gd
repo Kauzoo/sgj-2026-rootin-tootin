@@ -34,7 +34,7 @@ enum PacingState { BUILD, PEAK, BREATHER }
 # ramp only starts after that, so early special enemies do not also become tanky.
 @export var difficulty_curve: Curve
 @export var difficulty_ramp_duration: float = 120.0
-@export var intro_duration: float = 40.0
+@export var intro_duration: float = 30.0
 @export var opening_grace_duration: float = 10.0
 @export var min_spawn_delay: float = 0.85
 @export var max_spawn_delay: float = 2.25
@@ -45,8 +45,8 @@ enum PacingState { BUILD, PEAK, BREATHER }
 # Pacing cycles after the intro. BUILD is normal pressure, PEAK is a short spike,
 # and BREATHER gives the player a little recovery time.
 @export var build_duration: float = 28.0
-@export var peak_duration: float = 16.0
-@export var breather_duration: float = 8.0
+@export var peak_duration: float = 20.0
+@export var breather_duration: float = 5.0
 
 # Specials should appear often. This starts at 1 and can scale up later.
 @export var min_special_enemy_cap: int = 1
@@ -71,7 +71,7 @@ enum PacingState { BUILD, PEAK, BREATHER }
 # Enemy count is capped separately from spawn speed. This keeps the game busy
 # without allowing too many high-health enemies to pile up.
 @export var max_active_enemies_intro: int = 2
-@export var max_active_enemies_build: int = 2
+@export var max_active_enemies_build: int = 3
 @export var max_active_enemies_peak: int = 3
 @export var max_active_enemies_late_peak: int = 4
 

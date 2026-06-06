@@ -10,6 +10,7 @@ func _ready():
 	register_key_qte()
 	$FailTimer.wait_time = DifficultyDirector.get_qte_time_window($FailTimer.wait_time)
 	$FailTimer.timeout.connect(_on_timeout)
+	$FailTimer.start($FailTimer.wait_time)
 
 func _mark_input_as_handled():
 	var viewport = get_viewport()
@@ -33,7 +34,7 @@ func _process(_delta):
 
 
 func _draw():
-	var ratio: float = $FailTimer.time_left / $FailTimer.wait_time
+	var ratio: float = clampf($FailTimer.time_left / maxf($FailTimer.wait_time, 0.001), 0.0, 1.0)
 	draw_arc(Vector2(0, 0),40, 0 - 0.5 * PI, ratio * 2 * PI - 0.5 * PI, 100, Color(1, ratio, ratio), 3)
 
 
