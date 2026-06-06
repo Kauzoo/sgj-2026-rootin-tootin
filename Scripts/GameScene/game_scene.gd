@@ -21,9 +21,9 @@ func _unhandled_key_input(event: InputEvent):
 	key_event = event
 	if event is InputEventKey and event.pressed and not event.is_echo():
 			if event.key_label in [KEY_W, KEY_A, KEY_S, KEY_D]:
-				var _a = key_qtes.all(check)
 				get_viewport().set_input_as_handled()
-				_on_do_damage()
+				if key_qtes.all(check):
+					_on_do_damage()
 
 func check(qte):
 	qte.check_event(key_event)
