@@ -8,6 +8,10 @@ func _ready():
 
 
 func _unhandled_input(event):
+	if DifficultyDirector.is_input_on_cooldown():
+		get_viewport().set_input_as_handled()
+		return
+		
 	if event is InputEventKey:
 		if event.pressed and event.key_label == key:
 			# set pressed to false so it cant remove another input query for the same key
@@ -18,5 +22,6 @@ func _unhandled_input(event):
 			$NumberLabel.text = str(mash_amount)
 
 			if mash_amount <= 0:
+				DifficultyDirector.start_input_cooldown(0.25)
 				QTE_succeded.emit(position)
 				queue_free()

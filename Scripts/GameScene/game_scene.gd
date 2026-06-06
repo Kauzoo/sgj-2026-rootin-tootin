@@ -25,7 +25,7 @@ func _ready():
 		if child is Crack:
 			child.kill.connect(_on_enemy_kill)
 			child.damage.connect(_on_do_damage)
-	$HealthLabel.text = "DOOR HELTH: " + String.num_uint64(health)
+	$HealthLabel.text = "DOOR HELTH: " + str(health)
 
 func _on_global_spawn_timeout():
 	var available_cracks = []
@@ -44,18 +44,25 @@ func _on_enemy_kill():
 	kills += 1
 
 func _on_do_damage():
-	if health <= 1 :
-		doGameOver()
+	if health <= 0:
 		return
-
+		
 	health -= 1
 	DifficultyDirector.update_door_health(health, health_max)
-	$HealthLabel.text = "DOOR HELTH: " + String.num_uint64(health)
+	$HealthLabel.text = "DOOR HELTH: " + str(health)
+	
+	if health <= 0:
+		doGameOver()
+		return
 
 func doGameOver():
 	game_over.emit(kills)
 
 func _unhandled_input(event):
+	if DifficultyDirector.is_input_on_cooldown():
+		get_viewport().set_input_as_handled()
+		return
+
 	if event is InputEventKey and event.pressed and not event.is_echo():
 		if event.key_label in [KEY_W, KEY_A, KEY_S, KEY_D]:
 			get_viewport().set_input_as_handled()

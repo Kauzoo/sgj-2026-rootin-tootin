@@ -20,6 +20,12 @@ func _draw():
 
 
 func _unhandled_input(event):
+	if DifficultyDirector.is_input_on_cooldown():
+		# Do not handle the input here so it can fall through to GameScene and be handled there,
+		# or just handle it and return. Since GameScene also handles it, setting it as handled is safest.
+		get_viewport().set_input_as_handled()
+		return
+
 	if event is InputEventKey and event.pressed and not event.is_echo():
 		if event.key_label == key:
 			get_viewport().set_input_as_handled()
