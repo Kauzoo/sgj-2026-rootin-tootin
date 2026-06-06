@@ -4,6 +4,7 @@
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_853f1"]
 texture = ExtResource("1_tt5f1")
+modulate_color = Color(0.53900033, 0.53900033, 0.53900033, 1)
 
 [node name="MainMenu" type="Control" unique_id=1614584895]
 layout_mode = 3
@@ -12,6 +13,29 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="." unique_id=888788405]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_853f1")
+
+[node name="Label" type="Label" parent="." unique_id=990728292]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -155.0
+offset_top = 115.0
+offset_right = 154.0
+offset_bottom = 219.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 39
+text = "ROOTIN TOOTIN"
+vertical_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=158413206]
 layout_mode = 1
@@ -42,12 +66,3 @@ text = "Start"
 layout_mode = 2
 size_flags_vertical = 3
 text = "Start"
-
-[node name="Panel" type="Panel" parent="." unique_id=888788405]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_853f1")
