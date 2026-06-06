@@ -1,9 +1,28 @@
 extends Node2D
 
-@export var leaderboardContainer : Container
+@export var leaderboardControl : Control
+@export var leaderboardVBox : Container
 @export var scoreText: PackedScene
 
+@export var nameMenu: NameMenu
+@export var newScore: int 
+
+var highlightName: String
+
 func _ready():
+	leaderboardControl.hide()
+	nameMenu.show()
+	
+	nameMenu.set_score(newScore)
+	nameMenu.name_entered.connect(_on_name_entered)
+
+func _on_name_entered():
+	nameMenu.hide()
+	leaderboardControl.show()
+	
+	load_scores()
+
+func load_scores():
 	var file: FileAccess = FileAccess.open("user://scores.dat", FileAccess.READ)
 	if file == null:
 		print("couldnt read scores :(")
@@ -27,13 +46,13 @@ func _ready():
 	
 	for i in range(0, scores.size()):
 		var instance = scoreText.instantiate()
-		var rank = i + 1
 		
 		instance.rankText = ordinal(i + 1)
 		instance.playerNameText = scores[i][0]
+		instance.highlight = scores[i][0] == highlightName
 		instance.scorePointsText = scores[i][1]
 		
-		leaderboardContainer.add_child(instance)
+		leaderboardVBox.add_child(instance)
 
 func sort(score1, score2):
 	return score1[1].to_int() > score2[1].to_int()
@@ -49,3 +68,7 @@ func ordinal(n: int) -> String:
 		2: return str(n) + "nd"
 		3: return str(n) + "rd"
 		_: return str(n) + "th"
+
+func _on_name_submit_button_pressed() -> void:
+	highlightName = nameMenu.nameLine.text
+	nameMenu._on_name_submitted(nameMenu.nameLine.text)

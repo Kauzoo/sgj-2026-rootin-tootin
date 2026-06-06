@@ -1,4 +1,7 @@
-class_name NameMenu extends Node2D
+class_name NameMenu extends Control
+
+#@export var header: Label
+@export var nameLine: LineEdit
 
 #set before added as child
 var score: int
@@ -6,11 +9,11 @@ var score: int
 signal name_entered()
 
 func _ready():
-	$NameLine.text_submitted.connect(_on_name_submitted)
+	nameLine.text_submitted.connect(_on_name_submitted)
 
 func set_score(score_set):
 	score = score_set
-	$ScoreLabel.text = "you got a score of " + String.num_uint64(score) + " HURRAY!!!!(now give us your name)"
+	#header.text = "Your score is " + String.num_uint64(score) + ". Please enter your name here"
 
 func _on_name_submitted(submittedName: String):
 #always fails for some reason...

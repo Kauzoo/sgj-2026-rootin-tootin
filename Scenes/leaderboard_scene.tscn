@@ -2,104 +2,165 @@
 
 [ext_resource type="Script" uid="uid://dmmhm7aggww0c" path="res://Scripts/Scoreboard/Scoreboard/scoreboardUI.gd" id="1_kmdqp"]
 [ext_resource type="PackedScene" uid="uid://yt5qsgksbxio" path="res://Scenes/Scoreboard/Scoretext.tscn" id="2_2gn3s"]
+[ext_resource type="Script" uid="uid://cj8c8rwea2xv8" path="res://Scripts/Scoreboard/NameMenu/name_menu.gd" id="3_hqmdi"]
 
-[node name="LeaderboardScene" type="Node2D" unique_id=1964954266 node_paths=PackedStringArray("leaderboardContainer")]
+[node name="LeaderboardScene" type="Node2D" unique_id=1964954266 node_paths=PackedStringArray("leaderboardControl", "leaderboardVBox", "nameMenu")]
 script = ExtResource("1_kmdqp")
-leaderboardContainer = NodePath("Control/ScrollContainer/VBoxContainer")
+leaderboardControl = NodePath("LeaderboardControl")
+leaderboardVBox = NodePath("LeaderboardControl/ScrollContainer/VBoxContainer")
 scoreText = ExtResource("2_2gn3s")
+nameMenu = NodePath("NameInput")
+newScore = 40
 
-[node name="Control" type="Control" parent="." unique_id=1391122774]
-custom_minimum_size = Vector2(1920, 1080)
+[node name="LeaderboardControl" type="Control" parent="." unique_id=1391122774]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 1920.0
-offset_bottom = 1080.0
+offset_right = 704.0
+offset_bottom = 396.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HeaderLabel" type="Label" parent="Control" unique_id=1439601669]
+[node name="HeaderLabel" type="Label" parent="LeaderboardControl" unique_id=1439601669]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 100.0
+offset_bottom = 35.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 25
 text = "High Scores"
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control" unique_id=1819137363]
+[node name="HBoxContainer" type="HBoxContainer" parent="LeaderboardControl" unique_id=1819137363]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 100.0
-offset_bottom = 175.0
+offset_top = 50.0
+offset_bottom = 80.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="RankLabel" type="Label" parent="Control/HBoxContainer" unique_id=826682305]
+[node name="RankLabel" type="Label" parent="LeaderboardControl/HBoxContainer" unique_id=826682305]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 35
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 17
 text = "Rank"
-horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Space" type="Control" parent="Control/HBoxContainer" unique_id=875626406]
-custom_minimum_size = Vector2(25, 0)
+[node name="Space" type="Control" parent="LeaderboardControl/HBoxContainer" unique_id=875626406]
+custom_minimum_size = Vector2(15, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="NameLabel" type="Label" parent="Control/HBoxContainer" unique_id=752945622]
+[node name="NameLabel" type="Label" parent="LeaderboardControl/HBoxContainer" unique_id=752945622]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 35
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 17
 text = "Name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Space2" type="Control" parent="Control/HBoxContainer" unique_id=187571581]
-custom_minimum_size = Vector2(25, 0)
+[node name="Space2" type="Control" parent="LeaderboardControl/HBoxContainer" unique_id=187571581]
+custom_minimum_size = Vector2(15, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="ScoreLabel" type="Label" parent="Control/HBoxContainer" unique_id=1753715648]
+[node name="ScoreLabel" type="Label" parent="LeaderboardControl/HBoxContainer" unique_id=1753715648]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 35
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 17
 text = "Score"
-horizontal_alignment = 1
+horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Control" unique_id=1573488999]
+[node name="ScrollContainer" type="ScrollContainer" parent="LeaderboardControl" unique_id=1573488999]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 175.0
-offset_bottom = -105.0
+offset_top = 90.0
+offset_bottom = -81.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/ScrollContainer" unique_id=914406791]
+[node name="VBoxContainer" type="VBoxContainer" parent="LeaderboardControl/ScrollContainer" unique_id=914406791]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="Control" unique_id=1121021417]
+[node name="Button" type="Button" parent="LeaderboardControl" unique_id=1121021417]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -75.0
-offset_top = -100.0
-offset_right = 75.0
-offset_bottom = -25.0
+offset_left = -37.5
+offset_top = -46.0
+offset_right = 37.5
+offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 20
 text = "Home"
 
-[connection signal="pressed" from="Control/Button" to="." method="_on_home_button_pressed"]
+[node name="NameInput" type="Control" parent="." unique_id=2124308100 node_paths=PackedStringArray("nameLine")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 704.0
+offset_bottom = 396.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_hqmdi")
+nameLine = NodePath("LineEdit")
+metadata/_edit_use_anchors_ = true
+
+[node name="HeaderLabel" type="Label" parent="NameInput" unique_id=1359834994]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -55.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "Please enter your name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="NameInput" unique_id=1429691653]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -5.0
+offset_right = 100.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 20
+alignment = 1
+
+[node name="Button" type="Button" parent="NameInput" unique_id=734681177]
+layout_mode = 0
+offset_left = 314.5
+offset_top = 250.0
+offset_right = 391.5
+offset_bottom = 286.0
+theme_override_font_sizes/font_size = 20
+text = "Submit"
+
+[connection signal="pressed" from="LeaderboardControl/Button" to="." method="_on_home_button_pressed"]
+[connection signal="pressed" from="NameInput/Button" to="." method="_on_name_submit_button_pressed"]
