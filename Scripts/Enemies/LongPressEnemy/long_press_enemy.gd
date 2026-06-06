@@ -1,0 +1,1 @@
+class_name LongPressEnemy extends EnemyBase
