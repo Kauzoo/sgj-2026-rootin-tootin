@@ -1,5 +1,7 @@
 extends Node
 
+@onready var bgm_asp: AudioStreamPlayer = $BackgroundAudioStreamPlayer
+
 var _sound_queues_by_name: Dictionary = {}
 var _sound_pools_by_name: Dictionary = {}
 
@@ -31,3 +33,12 @@ func play_fireball_sound() -> void:
 func play_random_pool_sound() -> void:
 	if _sound_pools_by_name.has("MySoundPool"):
 		_sound_pools_by_name["MySoundPool"].play_random_sound()
+		
+		
+func play_bgm() -> void:
+	if bgm_asp:
+		bgm_asp.play()
+		
+func stop_bgm() -> void:
+	if bgm_asp:
+		bgm_asp.stop()
