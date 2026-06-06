@@ -18,6 +18,7 @@ config/icon="res://Sprites/icon.svg"
 [autoload]
 
 DifficultyDirector="*res://Scripts/difficulty_director.gd"
+SoundManager="*uid://cuxflus7emis8"
 
 [display]
 
