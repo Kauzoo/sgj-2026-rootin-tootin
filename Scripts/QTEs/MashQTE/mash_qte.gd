@@ -10,6 +10,8 @@ func _ready():
 	register_key_qte()
 	$FailTimer.wait_time = DifficultyDirector.get_qte_time_window($FailTimer.wait_time)
 	$FailTimer.timeout.connect(_on_timeout)
+	var rng = RandomNumberGenerator.new()
+	mash_amount = rng.randf_range(5, 10)
 	$NumberLabel.text = str(mash_amount)
 
 
