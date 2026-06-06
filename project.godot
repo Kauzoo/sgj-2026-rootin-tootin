@@ -15,19 +15,21 @@ run/main_scene="uid://x8ugmofprt1c"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://Sprites/icon.svg"
 
-[dotnet]
-
-project/assembly_name="sgj-2026-rootin-tootin"
-
 [display]
 
-window/size/viewport_width=176
-window/size/viewport_height=99
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 window/size/mode=3
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [dotnet]
 
 project/assembly_name="sgj-2026-rootin-tootin"
+
+[gui]
+
+theme/custom_font="uid://ctlsqmk6e6wbp"
 
 [physics]
 

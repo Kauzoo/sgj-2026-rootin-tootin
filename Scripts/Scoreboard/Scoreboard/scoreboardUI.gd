@@ -1,0 +1,51 @@
+extends Node2D
+
+@export var leaderboardContainer : Container
+@export var scoreText: PackedScene
+
+func _ready():
+	var file: FileAccess = FileAccess.open("user://scores.dat", FileAccess.READ)
+	if file == null:
+		print("couldnt read scores :(")
+		return
+	
+	var text: String = file.get_as_text()
+	var lines: PackedStringArray = text.split("\n")
+	if lines.size() % 2 != 1:
+		print("scores is weird, assuming empty file :(")
+		lines = [""]
+
+	var scores = []
+	for i in range(floor(lines.size() / 2.)):
+		scores.append([lines[2 * i], lines[2 * i + 1]])
+	print(scores)
+	print(scores[scores.size() - 2][1].to_int())
+	print(scores[scores.size() - 1][1].to_int())
+	scores.sort_custom(sort)
+	print("SORTED:")
+	print(scores)
+	
+	for i in range(0, scores.size()):
+		var instance = scoreText.instantiate()
+		var rank = i + 1
+		
+		instance.rankText = ordinal(i + 1)
+		instance.playerNameText = scores[i][0]
+		instance.scorePointsText = scores[i][1]
+		
+		leaderboardContainer.add_child(instance)
+
+func sort(score1, score2):
+	return score1[1].to_int() > score2[1].to_int()
+
+func _on_home_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+
+func ordinal(n: int) -> String:
+	if n == 11 or n == 12 or n == 13:
+		return str(n) + "th"  # special cases: 11th, 12th, 13th
+	match n % 10:
+		1: return str(n) + "st"
+		2: return str(n) + "nd"
+		3: return str(n) + "rd"
+		_: return str(n) + "th"

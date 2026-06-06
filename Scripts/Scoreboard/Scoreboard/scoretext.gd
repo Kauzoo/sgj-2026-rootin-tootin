@@ -1,7 +1,14 @@
-extends Node2D
+extends Container
 
-var text: String
+var rankText: String
+var playerNameText: String
+var scorePointsText: String
+
+@export var rank_label: Label
+@export var name_label: Label
+@export var score_label: Label
 
 func _ready():
-	$Label.add_theme_color_override("font_color", Color.hex(0xFF00EEFF))
-	$Label.text = text
+	rank_label.text = rankText
+	name_label.text = playerNameText
+	score_label.text = scorePointsText
