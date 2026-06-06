@@ -27,7 +27,7 @@ func _unhandled_input(event):
 func _on_timeout():
 	# yes, im lazy :P
 	get_parent().get_parent().remove_key_qte(self)
-	QTE_failed.emit(position)
+	QTE_succeded.emit(position)  # player correctly ignored it!
 	queue_free()
 
 func check_event(event):

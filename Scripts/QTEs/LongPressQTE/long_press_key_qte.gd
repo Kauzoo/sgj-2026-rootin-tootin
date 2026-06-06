@@ -9,7 +9,7 @@ func _process(delta):
 	if is_holding:
 		hold_timer += delta
 		if hold_timer >= hold_duration:
-			get_parent().get_parent().get_parent().remove_key_qte(self)
+			get_parent().get_parent().remove_key_qte(self)
 			get_viewport().set_input_as_handled()
 			QTE_succeded.emit(position)
 			queue_free()
