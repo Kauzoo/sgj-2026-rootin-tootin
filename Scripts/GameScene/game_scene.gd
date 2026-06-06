@@ -29,7 +29,7 @@ func _unhandled_key_input(event: InputEvent):
 			var handled = false
 			for qte in key_qtes.duplicate():
 				if is_instance_valid(qte):
-					if qte.check_event(key_event):
+					if await qte.check_event(key_event):
 						handled = true
 						break
 				else:
