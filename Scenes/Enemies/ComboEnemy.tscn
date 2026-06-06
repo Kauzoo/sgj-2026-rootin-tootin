@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://db875jtfwxqj5"]
+
+[ext_resource type="Script" uid="uid://bgx6tbjdskylb" path="res://Scripts/Enemies/EnemyBase/enemy_base.gd" id="1_combo"]
+[ext_resource type="PackedScene" uid="uid://bygc7jb0fwh5f" path="res://Scenes/QTEs/KeyQTE.tscn" id="2_key_qte"]
+[ext_resource type="PackedScene" uid="uid://cdrf71pap7qta" path="res://Scenes/QTEs/MashQTE.tscn" id="2_mash_qte"]
+[ext_resource type="PackedScene" uid="uid://c1comboqte123" path="res://Scenes/QTEs/CombinationQTE.tscn" id="3_combo_qte"]
+[ext_resource type="Texture2D" uid="uid://d20vg2fpqj1eb" path="res://Sprites/Roots/placeholder.png" id="4_sprite"]
+
+[node name="ComboEnemy" type="Node2D" unique_id=265963331]
+script = ExtResource("1_combo")
+QTE_Node = ExtResource("3_combo_qte")
+QTE_Nodes = Array[PackedScene]([ExtResource("2_key_qte"), ExtResource("2_mash_qte"), ExtResource("3_combo_qte")])
+qte_marker_path = NodePath("QTEMarker1")
+qte_marker_paths = Array[NodePath]([NodePath("QTEMarker1"), NodePath("QTEMarker2"), NodePath("QTEMarker3")])
+qte_count_override = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=477069085]
+texture = ExtResource("4_sprite")
+
+[node name="QTEMarker1" type="Marker2D" parent="." unique_id=1678658727]
+position = Vector2(-70, -80)
+
+[node name="QTEMarker2" type="Marker2D" parent="."]
+position = Vector2(0, -105)
+
+[node name="QTEMarker3" type="Marker2D" parent="."]
+position = Vector2(70, -80)
