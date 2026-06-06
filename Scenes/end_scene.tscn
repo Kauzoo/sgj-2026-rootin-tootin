@@ -1,6 +1,57 @@
 [gd_scene format=3 uid="uid://bfh3lwqg7qbqq"]
 
-[ext_resource type="Script" uid="uid://bj4y516lhd7kw" path="res://Scripts/end_scene.gd" id="1_5pkqa"]
+[ext_resource type="Texture2D" uid="uid://ijsoflnp7arr" path="res://Sprites/Background/EndscreenPlaceholder.png" id="1_5pkqa"]
+[ext_resource type="Script" uid="uid://c42v8ueorktm1" path="res://Sprites/Menus/end_scene_script.gd" id="1_foadp"]
+[ext_resource type="Texture2D" uid="uid://dv6w16bohrtun" path="res://Sprites/Background/brownplaceholder.png" id="2_20ln8"]
+[ext_resource type="Texture2D" uid="uid://bsnqy54ar3lvx" path="res://Sprites/Placeholder/Pokemon-Digda.png" id="3_foadp"]
+[ext_resource type="Texture2D" uid="uid://buqegytd1n3qf" path="res://Sprites/Placeholder/Pokemon-Lahmus.png" id="4_xom27"]
+[ext_resource type="Texture2D" uid="uid://coldye5mpv5hi" path="res://Sprites/Placeholder/Pokemon-Relaxo.png" id="5_kwb7v"]
+[ext_resource type="Texture2D" uid="uid://v0ufdo7j63kp" path="res://Sprites/Placeholder/Pokemon-Sleima.png" id="6_f7vrb"]
 
-[node name="EndScene" type="Node2D" unique_id=1028910194]
-script = ExtResource("1_5pkqa")
+[sub_resource type="SpriteFrames" id="SpriteFrames_b4hnb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_foadp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xom27")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_kwb7v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_f7vrb")
+}],
+"loop": true,
+"name": &"WEEEE",
+"speed": 2.0
+}]
+
+[node name="EndScene" type="Node2D" unique_id=1028910194 node_paths=PackedStringArray("animatedSprite")]
+script = ExtResource("1_foadp")
+animatedSprite = NodePath("AnimatedSprite2D")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1579356239]
+texture = ExtResource("1_5pkqa")
+centered = false
+
+[node name="OtherSpritesFolder" type="Node" parent="." unique_id=251990523]
+
+[node name="SpriteSample" type="Sprite2D" parent="OtherSpritesFolder" unique_id=1089515165]
+position = Vector2(344.75, 257.5)
+scale = Vector2(0.13229166, 0.22839506)
+texture = ExtResource("2_20ln8")
+
+[node name="SpriteSample2" type="Sprite2D" parent="OtherSpritesFolder" unique_id=1769328092]
+position = Vector2(1440, 390)
+scale = Vector2(0.13229166, 0.22839506)
+texture = ExtResource("2_20ln8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=638157910]
+texture_filter = 1
+position = Vector2(941.24994, 639.875)
+scale = Vector2(11.826388, 11.355633)
+sprite_frames = SubResource("SpriteFrames_b4hnb")
+animation = &"WEEEE"
+autoplay = "WEEEE"

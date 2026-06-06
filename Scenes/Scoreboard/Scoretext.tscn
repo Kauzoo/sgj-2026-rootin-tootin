@@ -2,9 +2,52 @@
 
 [ext_resource type="Script" uid="uid://csctw0x3ffgr4" path="res://Scripts/Scoreboard/Scoreboard/scoretext.gd" id="1_p2wdn"]
 
-[node name="Scoretext" type="Node2D" unique_id=861321840]
+[node name="Scoretext" type="HBoxContainer" unique_id=323211487 node_paths=PackedStringArray("rank_label", "name_label", "score_label")]
+custom_minimum_size = Vector2(0, 25)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
 script = ExtResource("1_p2wdn")
+rank_label = NodePath("RankLabel")
+name_label = NodePath("NameLabel")
+score_label = NodePath("ScoreLabel")
 
-[node name="Label" type="Label" parent="." unique_id=309512470]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="RankLabel" type="Label" parent="." unique_id=1157449209]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 15
+text = "Rank"
+vertical_alignment = 1
+
+[node name="Space" type="Control" parent="." unique_id=1746717947]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="NameLabel" type="Label" parent="." unique_id=1795887549]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 15
+text = "Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 1
+
+[node name="Space2" type="Control" parent="." unique_id=570031091]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=121002286]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 15
+text = "Score"
+horizontal_alignment = 2
+vertical_alignment = 1

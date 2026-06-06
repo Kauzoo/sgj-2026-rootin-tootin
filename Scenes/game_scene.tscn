@@ -8,7 +8,7 @@
 
 [node name="GameScene" type="Node2D" unique_id=1966619011]
 script = ExtResource("1_fiftr")
-health = 3
+health = 10
 
 [node name="BackgroundSprite" type="Sprite2D" parent="." unique_id=537088218]
 position = Vector2(-0.8888855, -0.5)
@@ -16,10 +16,10 @@ scale = Vector2(4.0101013, 4.0101013)
 texture = ExtResource("2_fiftr")
 
 [node name="HealthLabel" type="Label" parent="." unique_id=370877983]
-offset_left = -55.0
-offset_top = -219.0
-offset_right = 48.0
-offset_bottom = -196.0
+offset_left = -49.0
+offset_top = -170.0
+offset_right = 54.0
+offset_bottom = -147.0
 size_flags_vertical = 0
 metadata/_edit_use_anchors_ = true
 
@@ -41,5 +41,6 @@ available_monsters = Array[PackedScene]([ExtResource("4_2fmhe")])
 
 [node name="Crack4" parent="." unique_id=784784390 instance=ExtResource("3_rgj8m")]
 position = Vector2(281, 13)
+available_monsters = Array[PackedScene]([ExtResource("4_2fmhe"), ExtResource("4_1ixah")])
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1195229495]

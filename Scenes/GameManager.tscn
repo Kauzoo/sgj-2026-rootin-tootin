@@ -1,18 +1,18 @@
 [gd_scene format=3 uid="uid://cutputgvxqk6i"]
 
 [ext_resource type="Script" uid="uid://b25rjs3dq1eto" path="res://Scripts/game_manager.gd" id="1_7cxpe"]
-[ext_resource type="PackedScene" uid="uid://ve8x6ntl3ldr" path="res://Scenes/GameScene.tscn" id="2_b7dir"]
 [ext_resource type="PackedScene" uid="uid://x8ugmofprt1c" path="res://Scenes/main_menu.tscn" id="2_xqbpr"]
 [ext_resource type="PackedScene" uid="uid://ber1elbdrhcyv" path="res://Scenes/lore_scene.tscn" id="3_je8vj"]
-[ext_resource type="PackedScene" uid="uid://tmvaxjjid2kj" path="res://Scenes/StartEndScreen/Endscreen.tscn" id="3_mmuqr"]
+[ext_resource type="PackedScene" uid="uid://ve8x6ntl3ldr" path="res://Scenes/game_scene.tscn" id="4_xqbpr"]
 [ext_resource type="PackedScene" uid="uid://bfh3lwqg7qbqq" path="res://Scenes/end_scene.tscn" id="5_f5c43"]
+[ext_resource type="PackedScene" uid="uid://cfl1k7dbtwnsw" path="res://Scenes/leaderboard_scene.tscn" id="6_xqbpr"]
 
 [node name="GameManager" type="Node2D" unique_id=113370027]
 script = ExtResource("1_7cxpe")
 Main_Menu = ExtResource("2_xqbpr")
 Lore_Scene = ExtResource("3_je8vj")
-Game_Scene = ExtResource("2_b7dir")
+Game_Scene = ExtResource("4_xqbpr")
 End_Scene = ExtResource("5_f5c43")
-Leaderboard_Scene = ExtResource("3_mmuqr")
+Leaderboard_Scene = ExtResource("6_xqbpr")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1419247864]
