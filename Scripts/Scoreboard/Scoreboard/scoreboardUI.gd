@@ -5,7 +5,9 @@ extends Node2D
 @export var scoreText: PackedScene
 
 @export var nameMenu: NameMenu
+
 var score := 0
+signal go_to_menu
 
 var highlightName: String
 
@@ -58,7 +60,7 @@ func sort(score1, score2):
 	return score1[1].to_int() > score2[1].to_int()
 
 func _on_home_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+	go_to_menu.emit()
 
 func ordinal(n: int) -> String:
 	if n == 11 or n == 12 or n == 13:
