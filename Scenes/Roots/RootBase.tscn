@@ -1,9 +1,0 @@
-[gd_scene format=3 uid="uid://daou7tiiheoev"]
-
-[ext_resource type="Script" uid="uid://c1xaocy25lbmw" path="res://Scripts/Roots/RootBase/root_base.gd" id="1_k6yqf"]
-[ext_resource type="PackedScene" uid="uid://bygc7jb0fwh5f" path="res://Scenes/QTENode.tscn" id="2_t8po0"]
-
-[node name="RootBase" type="Node2D" unique_id=22795768]
-position = Vector2(581, 345)
-script = ExtResource("1_k6yqf")
-QTENode = ExtResource("2_t8po0")

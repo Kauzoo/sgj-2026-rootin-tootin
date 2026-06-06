@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://dmsnq6ymxukm0"]
+
+[ext_resource type="Script" uid="uid://cj8c8rwea2xv8" path="res://Scripts/Scoreboard/NameMenu/name_menu.gd" id="1_iff5y"]
+[ext_resource type="Texture2D" uid="uid://irbotb7petes" path="res://Sprites/Menus/EnterNamePlaceholder.png" id="2_qyftq"]
+[ext_resource type="PackedScene" uid="uid://tmvaxjjid2kj" path="res://Scenes/StartEndScreen/Endscreen.tscn" id="2_wyn65"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qyftq"]
+font_color = Color(0.5647059, 0, 1, 1)
+
+[node name="NameMenu" type="Node2D" unique_id=526868123]
+script = ExtResource("1_iff5y")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1587540573]
+texture = ExtResource("2_qyftq")
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=2146721623]
+offset_left = -155.0
+offset_top = -78.0
+offset_right = 145.0
+offset_bottom = -55.0
+label_settings = SubResource("LabelSettings_qyftq")
+
+[node name="NameLine" type="LineEdit" parent="." unique_id=725547475]
+offset_left = -198.0
+offset_top = 36.0
+offset_right = 202.0
+offset_bottom = 67.0
+placeholder_text = "say what name do you have so score score save"
