@@ -1,3 +1,6 @@
 [gd_scene format=3 uid="uid://cvwlxtpxr4pf8"]
 
+[ext_resource type="Script" uid="uid://g684aekd0rxv" path="res://Audio/SoundQueue.cs" id="1_opy7t"]
+
 [node name="SoundQueue" type="Node2D" unique_id=370286256]
+script = ExtResource("1_opy7t")

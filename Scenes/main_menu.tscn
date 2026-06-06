@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://h48vuq47kof6" path="res://Scripts/main_menu.gd" id="1_48xlc"]
 [ext_resource type="Texture2D" uid="uid://80g8ggqx4fc1" path="res://Sprites/MainMenuBackgroundDummy.png" id="2_1ehe0"]
+[ext_resource type="PackedScene" uid="uid://cvwlxtpxr4pf8" path="res://Audio/SoundQueue.tscn" id="3_1ehe0"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_853f1"]
 texture = ExtResource("2_1ehe0")
@@ -71,6 +72,8 @@ text = "Options"
 layout_mode = 2
 size_flags_vertical = 3
 text = "Exit"
+
+[node name="SoundQueue" parent="." unique_id=370286256 instance=ExtResource("3_1ehe0")]
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
