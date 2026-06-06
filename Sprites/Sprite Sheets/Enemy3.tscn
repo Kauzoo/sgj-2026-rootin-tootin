@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c7yd3x4is2is7"]
 
 [ext_resource type="Texture2D" uid="uid://b8kw06q2utpcy" path="res://Sprites/Sprite Sheets/SkullFlowerSpriteSheet33x32.png" id="1_yqlwc"]
+[ext_resource type="Script" uid="uid://3humskybq28q" path="res://Scripts/EnemyAnims/enemy3.gd" id="2_ne1dx"]
 
 [sub_resource type="Animation" id="Animation_6lus3"]
 resource_name = "Enemy3_Die"
@@ -74,12 +75,79 @@ _data = {
 &"RESET": SubResource("Animation_ne1dx")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ne1dx"]
+animation = &"Enemy3_Die"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_6lus3"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_a4mqi"]
+nodes/Animation/node = SubResource("AnimationNodeAnimation_ne1dx")
+nodes/Animation/position = Vector2(-20, 120)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_6lus3")
+nodes/TimeScale/position = Vector2(160, 120)
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7j7dt"]
+animation = &"Enemy3_Ilde"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_clphg"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ig8n1"]
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_clphg")
+nodes/TimeScale/position = Vector2(140, 120)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_7j7dt")
+nodes/Animation/position = Vector2(-40, 120)
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ota2x"]
+animation = &"Enemy3_Spawn"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_x2ilp"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_5dx5a"]
+graph_offset = Vector2(-577.85205, -14.953346)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_x2ilp")
+nodes/TimeScale/position = Vector2(80, 100)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_ota2x")
+nodes/Animation/position = Vector2(-160, 80)
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qxnit"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ulg0e"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mqqiv"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ig8n1"]
+states/Enemy3_Die/node = SubResource("AnimationNodeBlendTree_a4mqi")
+states/Enemy3_Die/position = Vector2(579, 186)
+states/Enemy3_Idle/node = SubResource("AnimationNodeBlendTree_ig8n1")
+states/Enemy3_Idle/position = Vector2(533, 92)
+states/Enemy3_Spawn/node = SubResource("AnimationNodeBlendTree_5dx5a")
+states/Enemy3_Spawn/position = Vector2(353, 65)
+states/Start/position = Vector2(178, 93)
+transitions = ["Start", "Enemy3_Spawn", SubResource("AnimationNodeStateMachineTransition_qxnit"), "Enemy3_Spawn", "Enemy3_Idle", SubResource("AnimationNodeStateMachineTransition_ulg0e"), "Enemy3_Die", "End", SubResource("AnimationNodeStateMachineTransition_mqqiv")]
+
 [node name="Enemy3" type="Sprite2D" unique_id=1686393116]
 texture_filter = 1
 texture = ExtResource("1_yqlwc")
 hframes = 5
 vframes = 2
+script = ExtResource("2_ne1dx")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1836147587]
 libraries/ = SubResource("AnimationLibrary_6lus3")
 speed_scale = 2.0
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=2136651194]
+tree_root = SubResource("AnimationNodeStateMachine_ig8n1")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Enemy3_Die/TimeScale/scale = 2.0
+parameters/Enemy3_Idle/TimeScale/scale = 2.0
+parameters/Enemy3_Spawn/TimeScale/scale = 2.0

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ct43casu88s25"]
 
 [ext_resource type="Texture2D" uid="uid://dwkokbqpqy3g8" path="res://Sprites/Sprite Sheets/Enemy-Sheet_59x66.png" id="1_bqets"]
+[ext_resource type="Script" uid="uid://bj6do5rks4tji" path="res://Scripts/EnemyAnims/enemy_1_2.gd" id="2_oc1pv"]
 
 [sub_resource type="Animation" id="Animation_oc1pv"]
 resource_name = "Enemy1 Dead"
@@ -55,7 +56,6 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_paqdd"]
 resource_name = "Enemy2_Death"
 length = 2.1333334
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -145,12 +145,156 @@ _data = {
 &"Spawn": SubResource("Animation_odd4x")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oc1pv"]
+animation = &"Enemy1 Dead"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_8ki5o"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_odd4x"]
+nodes/Animation/node = SubResource("AnimationNodeAnimation_oc1pv")
+nodes/Animation/position = Vector2(0, 100)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_8ki5o")
+nodes/TimeScale/position = Vector2(160, 120)
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_03vci"]
+animation = &"Enemy1 Idel1"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_1irtf"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_paqdd"]
+nodes/output/position = Vector2(560, 120)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_03vci")
+nodes/Animation/position = Vector2(0, 100)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_1irtf")
+nodes/TimeScale/position = Vector2(240, 80)
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_88qgw"]
+animation = &"Enemy1_Idle2"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_jowit"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_gul3a"]
+graph_offset = Vector2(-194.43344, 26.233078)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_88qgw")
+nodes/Animation/position = Vector2(-300, 180)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_jowit")
+nodes/TimeScale/position = Vector2(0, 180)
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y74pu"]
+animation = &"Enemy2_Death"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_ddwt2"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_jmoph"]
+graph_offset = Vector2(-384.40497, 74.423065)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_y74pu")
+nodes/Animation/position = Vector2(-300, 140)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_ddwt2")
+nodes/TimeScale/position = Vector2(-80, 160)
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rwna0"]
+animation = &"Enemy2_Idle"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_d6yk1"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_7gvvy"]
+graph_offset = Vector2(-231.54028, 19.974762)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_rwna0")
+nodes/Animation/position = Vector2(-300, 120)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_d6yk1")
+nodes/TimeScale/position = Vector2(80, 120)
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5lk2y"]
+animation = &"Enemy2_Spawn"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_fmnls"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_4eiri"]
+graph_offset = Vector2(-189.4464, -0.5224228)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_5lk2y")
+nodes/Animation/position = Vector2(-200, 120)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_fmnls")
+nodes/TimeScale/position = Vector2(60, 120)
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xbdxm"]
+animation = &"Spawn"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_73fva"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_anom0"]
+graph_offset = Vector2(-282.84076, -37.817093)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_xbdxm")
+nodes/Animation/position = Vector2(-420, 120)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_73fva")
+nodes/TimeScale/position = Vector2(-120, 120)
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rmlwe"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o0b6s"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qh1nh"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_njiep"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dthws"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dav87"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_rwna0"]
+"states/Enemy1 Dead/node" = SubResource("AnimationNodeBlendTree_odd4x")
+"states/Enemy1 Dead/position" = Vector2(813, 24)
+"states/Enemy1 Idel1/node" = SubResource("AnimationNodeBlendTree_paqdd")
+"states/Enemy1 Idel1/position" = Vector2(454, 39)
+states/Enemy1_Idle2/node = SubResource("AnimationNodeBlendTree_gul3a")
+states/Enemy1_Idle2/position = Vector2(632, 45)
+states/Enemy2_Death/node = SubResource("AnimationNodeBlendTree_jmoph")
+states/Enemy2_Death/position = Vector2(776, 153)
+states/Enemy2_Idle/node = SubResource("AnimationNodeBlendTree_7gvvy")
+states/Enemy2_Idle/position = Vector2(503, 132)
+states/Enemy2_Spawn/node = SubResource("AnimationNodeBlendTree_4eiri")
+states/Enemy2_Spawn/position = Vector2(331, 171)
+states/Spawn/node = SubResource("AnimationNodeBlendTree_anom0")
+states/Spawn/position = Vector2(172, 39)
+transitions = ["Enemy1 Dead", "End", SubResource("AnimationNodeStateMachineTransition_rmlwe"), "Enemy2_Death", "End", SubResource("AnimationNodeStateMachineTransition_o0b6s"), "Spawn", "Enemy1 Idel1", SubResource("AnimationNodeStateMachineTransition_qh1nh"), "Enemy1 Idel1", "Enemy1_Idle2", SubResource("AnimationNodeStateMachineTransition_njiep"), "Enemy1_Idle2", "Enemy1 Idel1", SubResource("AnimationNodeStateMachineTransition_dthws"), "Enemy2_Spawn", "Enemy2_Idle", SubResource("AnimationNodeStateMachineTransition_dav87")]
+
 [node name="Enemy1And2" type="Sprite2D" unique_id=1316889902]
 texture_filter = 1
+position = Vector2(0, -20)
 texture = ExtResource("1_bqets")
 hframes = 6
 vframes = 4
+script = ExtResource("2_oc1pv")
 
 [node name="Enemy1" type="AnimationPlayer" parent="." unique_id=1843008264]
 libraries/ = SubResource("AnimationLibrary_03vci")
 speed_scale = 2.0
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1424902347]
+tree_root = SubResource("AnimationNodeStateMachine_rwna0")
+anim_player = NodePath("../Enemy1")
+"parameters/Enemy1 Dead/TimeScale/scale" = 1.0
+"parameters/Enemy1 Idel1/TimeScale/scale" = 3.0
+parameters/Enemy1_Idle2/TimeScale/scale = 3.0
+parameters/Enemy2_Death/TimeScale/scale = 1.0
+parameters/Enemy2_Idle/TimeScale/scale = 3.0
+parameters/Enemy2_Spawn/TimeScale/scale = 3.0
+parameters/Spawn/TimeScale/scale = 3.0

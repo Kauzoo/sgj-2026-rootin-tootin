@@ -55,6 +55,7 @@ func _fail_first_active_qte():
 func _ready():
 	health_max = health
 	DifficultyDirector.reset()
+	DifficultyDirector.door_sprite = $DoorSprite
 	DifficultyDirector.update_door_health(health, health_max)
 	
 	# Set up a single global timer for all enemy spawn points.

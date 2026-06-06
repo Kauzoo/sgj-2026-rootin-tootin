@@ -75,6 +75,7 @@ enum PacingState { BUILD, PEAK, BREATHER }
 @export var max_active_enemies_peak: int = 3
 @export var max_active_enemies_late_peak: int = 4
 
+var door_sprite: Sprite2D
 var current_state: PacingState = PacingState.BUILD
 var state_timer: float = 0.0
 var total_time: float = 0.0
@@ -130,8 +131,17 @@ func _process(delta: float) -> void:
 func update_door_health(current: int, maximum: int) -> void:
 	if maximum > 0:
 		door_health_percent = float(current) / float(maximum)
+		if door_health_percent < 0.75:
+			if door_health_percent < 0.5:
+				if door_health_percent < 0.25:
+					door_sprite.texture.region.position.x = 78 * 3
+					return
+				door_sprite.texture.region.position.x = 78 * 2
+				return
+			door_sprite.texture.region.position.x = 78
 	else:
 		door_health_percent = 1.0
+		door_sprite.texture.region.position.x = 78 * 3
 
 func get_difficulty_factor() -> float:
 	# The ramp starts after intro_duration. Before that, difficulty is 0.
