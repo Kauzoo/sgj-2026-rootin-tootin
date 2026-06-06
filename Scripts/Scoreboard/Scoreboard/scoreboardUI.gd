@@ -5,7 +5,7 @@ extends Node2D
 @export var scoreText: PackedScene
 
 @export var nameMenu: NameMenu
-@export var newScore: int 
+var score: int 
 
 var highlightName: String
 
@@ -13,7 +13,7 @@ func _ready():
 	leaderboardControl.hide()
 	nameMenu.show()
 	
-	nameMenu.set_score(newScore)
+	nameMenu.set_score(score)
 	nameMenu.name_entered.connect(_on_name_entered)
 
 func _on_name_entered():

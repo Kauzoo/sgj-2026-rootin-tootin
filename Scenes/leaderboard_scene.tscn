@@ -10,7 +10,6 @@ leaderboardControl = NodePath("LeaderboardControl")
 leaderboardVBox = NodePath("LeaderboardControl/ScrollContainer/VBoxContainer")
 scoreText = ExtResource("2_2gn3s")
 nameMenu = NodePath("NameInput")
-newScore = 40
 
 [node name="LeaderboardControl" type="Control" parent="." unique_id=1391122774]
 layout_mode = 3
