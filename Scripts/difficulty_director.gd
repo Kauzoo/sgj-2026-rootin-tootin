@@ -23,7 +23,8 @@ var active_special_qtes: int = 0
 # AI configurations mapped in Inspector
 var basic_qte_ai: PackedScene = preload("res://Scenes/Enemies/EnemyBase.tscn")
 var button_mash_ai: PackedScene = preload("res://Scenes/Enemies/MashEnemy.tscn")
-@export var long_press_ai: PackedScene = null
+var long_press_ai: PackedScene = preload("res://Scenes/Enemies/LongPressEnemy.tscn")
+
 @export var quick_combo_ai: PackedScene = null
 @export var fake_buttons_ai: PackedScene = null
 
