@@ -47,7 +47,7 @@ func _on_name_submitted(submittedName: String):
 		file.close()
 		return
 
-	scores.set(submittedName, String.num_uint64(score))
+	scores.set(submittedName, str(score))
 
 	var resultString: String = ""
 	for scoreName in scores:
