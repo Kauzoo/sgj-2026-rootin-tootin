@@ -5,7 +5,7 @@ extends Node2D
 @export var scoreText: PackedScene
 
 @export var nameMenu: NameMenu
-var score: int 
+var score := 0
 
 var highlightName: String
 
