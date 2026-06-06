@@ -31,6 +31,10 @@ window/stretch/mode="viewport"
 
 project/assembly_name="sgj-2026-rootin-tootin"
 
+[gui]
+
+theme/custom_font="uid://dusrtyvp60142"
+
 [input]
 
 "LoreEnterToAdvance (can be replaced later)"={
