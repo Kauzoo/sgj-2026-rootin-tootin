@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://yt5qsgksbxio"]
+
+[ext_resource type="Script" uid="uid://csctw0x3ffgr4" path="res://Scripts/Scoreboard/Scoreboard/scoretext.gd" id="1_p2wdn"]
+
+[node name="Scoretext" type="Node2D" unique_id=861321840]
+script = ExtResource("1_p2wdn")
+
+[node name="Label" type="Label" parent="." unique_id=309512470]
+offset_right = 40.0
+offset_bottom = 23.0

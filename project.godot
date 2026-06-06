@@ -13,7 +13,17 @@ config_version=5
 config/name="sgj-2026-rootin-tootin"
 run/main_scene="uid://x8ugmofprt1c"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://Sprites/icon.svg"
+
+[dotnet]
+
+project/assembly_name="sgj-2026-rootin-tootin"
+
+[display]
+
+window/size/viewport_width=176
+window/size/viewport_height=99
+window/size/mode=3
 
 [dotnet]
 
@@ -25,4 +35,5 @@ project/assembly_name="sgj-2026-rootin-tootin"
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
