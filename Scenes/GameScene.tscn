@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://ve8x6ntl3ldr"]
+
+[ext_resource type="Texture2D" uid="uid://oo1l3vuh4f5f" path="res://Sprites/Background/placeholder.png" id="1_2wl7v"]
+[ext_resource type="Script" uid="uid://dtin0cf5kefxt" path="res://Scripts/GameScene/game_scene.gd" id="1_4bvgx"]
+[ext_resource type="PackedScene" uid="uid://gc1y8ls00lau" path="res://Scenes/Enemies/EnemyBase.tscn" id="2_3mbwn"]
+[ext_resource type="PackedScene" uid="uid://rrl2p25p4nt1" path="res://Scenes/Crack.tscn" id="3_jwv4s"]
+
+[node name="GameScene" type="Node2D" unique_id=1966619011]
+position = Vector2(0, 3)
+script = ExtResource("1_4bvgx")
+health = 3
+
+[node name="BackgroundSprite" type="Sprite2D" parent="." unique_id=537088218]
+texture = ExtResource("1_2wl7v")
+
+[node name="HelthLabel" type="Label" parent="." unique_id=370877983]
+offset_left = -158.0
+offset_top = -183.0
+offset_right = -55.0
+offset_bottom = -160.0
+
+[node name="Crack" parent="." unique_id=2102293038 instance=ExtResource("3_jwv4s")]
+position = Vector2(-374, 208)
+available_monsters = Array[PackedScene]([ExtResource("2_3mbwn")])
+
+[node name="Crack2" parent="." unique_id=725175742 instance=ExtResource("3_jwv4s")]
+position = Vector2(-60, -328)
+available_monsters = Array[PackedScene]([ExtResource("2_3mbwn")])
+
+[node name="Crack3" parent="." unique_id=1806182396 instance=ExtResource("3_jwv4s")]
+position = Vector2(222, 238)
+available_monsters = Array[PackedScene]([ExtResource("2_3mbwn")])
+
+[node name="Crack4" parent="." unique_id=784784390 instance=ExtResource("3_jwv4s")]
+position = Vector2(620, -244)
+available_monsters = Array[PackedScene]([ExtResource("2_3mbwn")])

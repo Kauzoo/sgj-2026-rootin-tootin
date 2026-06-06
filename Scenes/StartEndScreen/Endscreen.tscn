@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://tmvaxjjid2kj"]
+
+[ext_resource type="Script" uid="uid://ddaaegeeqxgls" path="res://Scripts/endscreen.gd" id="1_aif0g"]
+[ext_resource type="Texture2D" uid="uid://ijsoflnp7arr" path="res://Sprites/Background/EndscreenPlaceholder.png" id="1_etxra"]
+[ext_resource type="PackedScene" uid="uid://dmsnq6ymxukm0" path="res://Scenes/Scoreboard/NameMenu.tscn" id="2_20pv5"]
+[ext_resource type="PackedScene" uid="uid://csq0sjjcvvee6" path="res://Scenes/Scoreboard/Scoreboard.tscn" id="2_jon4k"]
+
+[node name="Endscreen" type="Node2D" unique_id=1024940009]
+script = ExtResource("1_aif0g")
+scoreboard = ExtResource("2_jon4k")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=923829544]
+texture = ExtResource("1_etxra")
+
+[node name="NameMenu" parent="." unique_id=526868123 instance=ExtResource("2_20pv5")]

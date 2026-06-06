@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cutputgvxqk6i"]
+
+[ext_resource type="Script" uid="uid://b25rjs3dq1eto" path="res://Scripts/game_manager.gd" id="1_7cxpe"]
+[ext_resource type="PackedScene" uid="uid://ve8x6ntl3ldr" path="res://Scenes/GameScene.tscn" id="2_b7dir"]
+[ext_resource type="PackedScene" uid="uid://tmvaxjjid2kj" path="res://Scenes/StartEndScreen/Endscreen.tscn" id="3_mmuqr"]
+
+[node name="GameManager" type="Node2D" unique_id=113370027]
+script = ExtResource("1_7cxpe")
+Game_Scene = ExtResource("2_b7dir")
+Game_Over_Scene = ExtResource("3_mmuqr")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1419247864]

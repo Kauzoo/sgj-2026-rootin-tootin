@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c1g6s5k2681e"]
+
+[ext_resource type="Script" uid="uid://h3whf8mhp5y3" path="res://Scripts/QTEs/QTEBase/qte_base.gd" id="1_qorxn"]
+
+[node name="QteBase" type="Node2D" unique_id=749421079]
+script = ExtResource("1_qorxn")

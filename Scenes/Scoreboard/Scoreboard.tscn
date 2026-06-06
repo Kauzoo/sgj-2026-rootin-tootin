@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://csq0sjjcvvee6"]
+
+[ext_resource type="Texture2D" uid="uid://bdt517t7db5vm" path="res://Sprites/Menus/ScoreboardPlaceholder.png" id="1_2epc5"]
+[ext_resource type="Script" uid="uid://d1ohrnwldihhb" path="res://Scripts/Scoreboard/Scoreboard/scores.gd" id="2_5v605"]
+[ext_resource type="PackedScene" uid="uid://yt5qsgksbxio" path="res://Scenes/Scoreboard/Scoretext.tscn" id="3_veccm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_veccm"]
+font_size = 77
+font_color = Color(0, 1, 0, 1)
+
+[node name="Scoreboard" type="Node2D" unique_id=1420908712]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1950187413]
+texture = ExtResource("1_2epc5")
+
+[node name="Title" type="Label" parent="." unique_id=237496526]
+offset_left = -202.0
+offset_top = -346.0
+offset_right = 207.0
+offset_bottom = -240.0
+text = "Highscores"
+label_settings = SubResource("LabelSettings_veccm")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=2109171243]
+offset_left = -171.0
+offset_top = -208.0
+offset_right = 179.0
+offset_bottom = 292.0
+
+[node name="Scores" type="Control" parent="ScrollContainer" unique_id=331886043]
+layout_mode = 2
+script = ExtResource("2_5v605")
+Scoretext = ExtResource("3_veccm")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1707013739]
