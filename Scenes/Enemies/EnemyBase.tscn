@@ -13,7 +13,6 @@ qte_marker_path = NodePath("QTEMarker")
 qte_marker_paths = Array[NodePath]([NodePath("QTEMarker")])
 
 [node name="AnimatedSprite" parent="." unique_id=1316889902 instance=ExtResource("3_srcxp")]
-scale = Vector2(2, 2)
 is_one = true
 
 [node name="QTEMarker" type="Marker2D" parent="." unique_id=1421120142]

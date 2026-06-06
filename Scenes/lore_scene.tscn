@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://ber1elbdrhcyv"]
 
-[ext_resource type="Texture2D" uid="uid://oo1l3vuh4f5f" path="res://Sprites/Background/placeholder.png" id="1_gfagx"]
 [ext_resource type="Script" uid="uid://dhpt3bhabvukr" path="res://Scripts/Lore/lore_text_handler.gd" id="1_nufj5"]
-[ext_resource type="Texture2D" uid="uid://dv6w16bohrtun" path="res://Sprites/Background/brownplaceholder.png" id="2_ehu5x"]
+[ext_resource type="Texture2D" uid="uid://c8hgbbj0vl7wp" path="res://Sprites/Background/333138.png" id="2_k0ioc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_k0ioc"]
+font_color = Color(0.8862745, 0.8862745, 0.8862745, 1)
 
 [node name="LoreScreen" type="Node2D" unique_id=608704352 node_paths=PackedStringArray("label")]
 script = ExtResource("1_nufj5")
@@ -13,18 +15,14 @@ label = NodePath("LabelLoreText")
 [node name="Background" type="Sprite2D" parent="." unique_id=2072618065]
 position = Vector2(-352.00003, -200.00002)
 scale = Vector2(0.36666667, 0.3703704)
-texture = ExtResource("1_gfagx")
+texture = ExtResource("2_k0ioc")
 centered = false
 
-[node name="Textboxbackground" type="Sprite2D" parent="." unique_id=102969372]
-position = Vector2(-9.536743e-07, 48)
-scale = Vector2(0.2855903, 0.32777783)
-texture = ExtResource("2_ehu5x")
-
 [node name="LabelLoreText" type="Label" parent="." unique_id=1108875841]
-offset_left = -184.0
-offset_top = -72.0
-offset_right = 184.0
-offset_bottom = 168.0
+offset_left = -200.0
+offset_top = -144.0
+offset_right = 200.0
+offset_bottom = 120.0
 text = "sample text"
+label_settings = SubResource("LabelSettings_k0ioc")
 autowrap_mode = 3

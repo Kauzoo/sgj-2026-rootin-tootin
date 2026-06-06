@@ -136,6 +136,7 @@ transitions = ["Start", "Enemy3_Spawn", SubResource("AnimationNodeStateMachineTr
 
 [node name="Enemy3" type="Sprite2D" unique_id=1686393116]
 texture_filter = 1
+scale = Vector2(4, 4)
 texture = ExtResource("1_yqlwc")
 hframes = 5
 vframes = 2
