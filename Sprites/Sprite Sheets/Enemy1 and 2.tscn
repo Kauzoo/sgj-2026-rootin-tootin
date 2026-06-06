@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://ct43casu88s25"]
+
+[ext_resource type="Texture2D" uid="uid://dwkokbqpqy3g8" path="res://Sprites/Sprite Sheets/Enemy-Sheet_59x66.png" id="1_bqets"]
+
+[sub_resource type="Animation" id="Animation_oc1pv"]
+resource_name = "Enemy1 Dead"
+length = 1.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.03333333, 0.2, 0.5, 0.76666665, 1.0333333, 1.3333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [5, 4, 3, 2, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_bqets"]
+resource_name = "Enemy1 Idel1"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.10000001, 0.4666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [6, 5]
+}
+
+[sub_resource type="Animation" id="Animation_8ki5o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_odd4x"]
+resource_name = "Spawn"
+length = 2.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.36666667, 0.6666667, 1, 1.3, 1.6666666),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_03vci"]
+_data = {
+&"Enemy1 Dead": SubResource("Animation_oc1pv"),
+&"Enemy1 Idel1": SubResource("Animation_bqets"),
+&"RESET": SubResource("Animation_8ki5o"),
+&"Spawn": SubResource("Animation_odd4x")
+}
+
+[node name="Enemy1And2" type="Sprite2D" unique_id=1316889902]
+texture_filter = 1
+texture = ExtResource("1_bqets")
+hframes = 6
+vframes = 4
+
+[node name="Enemy1" type="AnimationPlayer" parent="." unique_id=1843008264]
+libraries/ = SubResource("AnimationLibrary_03vci")
