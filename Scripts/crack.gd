@@ -1,7 +1,5 @@
 class_name Crack extends Node2D
 
-@export var available_monsters: Array[PackedScene]
-
 signal kill()
 signal damage()
 
@@ -14,13 +12,16 @@ func spawn_monster():
 	if has_active_monster:
 		return
 	
-	var monster_scene = DifficultyDirector.get_enemy_scene(available_monsters)
+	var enemy_type = DifficultyDirector.get_enemy_type()
+	var monster_scene = DifficultyDirector.get_enemy_scene(enemy_type)
 	if monster_scene != null:
 		has_active_monster = true
 		var instance: Node = monster_scene.instantiate()
 		instance.enemy_killed.connect(_on_monster_killed)
 		instance.do_damage.connect(_on_monster_hit)
 		add_child(instance)
+		if DifficultyDirector.is_special_enemy_type(enemy_type):
+			DifficultyDirector.register_special_spawn(instance)
 
 func _on_monster_hit():
 	damage.emit()

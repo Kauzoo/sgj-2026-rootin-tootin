@@ -1,59 +1,48 @@
 class_name EnemyBase extends Node2D
 
-@export var start_qte: int
 @export var QTE_Node: PackedScene
-@export var spawn_locations: Array[Vector2]
+@export var qte_offset: Vector2 = Vector2(0, -70)
+@export_node_path("Marker2D") var qte_marker_path: NodePath
 
-# NEW: Tells the system whether this instance counts as a special enemy
-@export var is_special_enemy: bool = false 
-
-var full_locations: Array[Vector2]
-var qtes_left_to_spawn: int = 0
+var active_qte: QTEBase
 
 signal enemy_killed()
 signal do_damage()
 
 func _ready():
-    add_to_group("enemy")
-    
-    # NEW: Automatically register with the director if this is a special enemy
-    if is_special_enemy and DifficultyDirector.has_method("register_special_spawn"):
-        DifficultyDirector.register_special_spawn(self)
-        
-    var extra_qtes = DifficultyDirector.get_qte_complexity() - 3
-    qtes_left_to_spawn = maxi(1, start_qte + extra_qtes)
-    $QTETimer.timeout.connect(spawn_qte)
-    spawn_qte()
+	add_to_group("enemy")
+	spawn_qte()
 
 func spawn_qte():
-    if spawn_locations.size() == 0 or qtes_left_to_spawn <= 0:
-        return
+	if active_qte != null or QTE_Node == null:
+		return
 
-    qtes_left_to_spawn -= 1
+	var instance = QTE_Node.instantiate() as QTEBase
+	if instance == null:
+		push_error("EnemyBase: QTE_Node must instantiate a QTEBase.")
+		return
 
-    var location_index: int = randi_range(0, spawn_locations.size() - 1)
-    var instance = QTE_Node.instantiate()
+	active_qte = instance
+	instance.position = _get_qte_position()
+	instance.QTE_failed.connect(_on_QTE_failed)
+	instance.QTE_succeded.connect(_on_QTE_succeded)
+	add_child(instance)
 
-    var location = spawn_locations[location_index]
-    instance.position = location
-    spawn_locations.erase(location)
-    full_locations.append(location)
-    instance.QTE_failed.connect(_on_QTE_failed)
-    instance.QTE_succeded.connect(_on_QTE_succeded)
-    add_child(instance)
+func _get_qte_position() -> Vector2:
+	if qte_marker_path != NodePath():
+		var marker = get_node_or_null(qte_marker_path)
+		if marker is Marker2D:
+			return marker.position
 
-func _check_enemy_death():
-    if full_locations.size() == 0 and qtes_left_to_spawn <= 0:
-        enemy_killed.emit()
-        queue_free()
+	return qte_offset
 
-func _on_QTE_succeded(pos):
-    spawn_locations.append(pos)
-    full_locations.erase(pos)
-    _check_enemy_death()
+func _on_QTE_succeded(_pos):
+	active_qte = null
+	enemy_killed.emit()
+	queue_free()
 
-func _on_QTE_failed(pos):
-    spawn_locations.append(pos)
-    full_locations.erase(pos)
-    do_damage.emit()
-    _check_enemy_death()
+func _on_QTE_failed(_pos):
+	active_qte = null
+	do_damage.emit()
+	enemy_killed.emit()
+	queue_free()

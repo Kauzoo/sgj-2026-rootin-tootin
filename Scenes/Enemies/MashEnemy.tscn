@@ -1,18 +1,16 @@
 [gd_scene format=3 uid="uid://db875jtfwxqj4"]
 
-[ext_resource type="Script" uid="uid://ul15apim40ps" path="res://Scripts/Enemies/MashEnemy/mash_enemy.gd" id="1_1jiue"]
+[ext_resource type="Script" uid="uid://bgx6tbjdskylb" path="res://Scripts/Enemies/EnemyBase/enemy_base.gd" id="1_1jiue"]
 [ext_resource type="PackedScene" uid="uid://cdrf71pap7qta" path="res://Scenes/QTEs/MashQTE.tscn" id="2_jeq21"]
 [ext_resource type="Texture2D" uid="uid://d20vg2fpqj1eb" path="res://Sprites/Roots/placeholder.png" id="3_jeq21"]
 
 [node name="MashEnemy" type="Node2D" unique_id=1532060467]
 script = ExtResource("1_1jiue")
-start_qte = 1
 QTE_Node = ExtResource("2_jeq21")
-spawn_locations = Array[Vector2]([Vector2(70, 70), Vector2(-70, -70), Vector2(-70, 70), Vector2(70, -70)])
-
-[node name="QTETimer" type="Timer" parent="." unique_id=637635198]
-wait_time = 10.0
-autostart = true
+qte_marker_path = NodePath("QTEMarker")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=252143047]
 texture = ExtResource("3_jeq21")
+
+[node name="QTEMarker" type="Marker2D" parent="." unique_id=637635198]
+position = Vector2(70, -70)

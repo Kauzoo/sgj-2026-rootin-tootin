@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://c1comboqte123"]
+
+[ext_resource type="Script" uid="uid://bf5lt1h12p35c" path="res://Scripts/QTEs/CombinationQTE/combination_qte.gd" id="1_combo"]
+[ext_resource type="Script" uid="uid://femew35nexgq" path="res://Scripts/QTEs/KeyQTE/key_sprite.gd" id="2_j638d"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_j638d"]
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="GDScript" id="GDScript_a2hfp"]
+script/source = "extends Timer
+"
+
+[node name="CombinationQte" type="Node2D" unique_id=732149149]
+script = ExtResource("1_combo")
+
+[node name="NumberLabel" type="Label" parent="." unique_id=1358571376]
+offset_left = -20.0
+offset_top = -41.0
+offset_right = 20.0
+offset_bottom = -18.0
+label_settings = SubResource("LabelSettings_j638d")
+horizontal_alignment = 1
+
+[node name="KeySprite" type="Sprite2D" parent="." unique_id=1105691960]
+scale = Vector2(2, 2)
+script = ExtResource("2_j638d")
+
+[node name="FailTimer" type="Timer" parent="." unique_id=1752667381]
+wait_time = 2.0
+one_shot = true
+autostart = true
+script = SubResource("GDScript_a2hfp")

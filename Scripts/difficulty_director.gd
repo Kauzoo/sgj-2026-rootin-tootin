@@ -1,6 +1,7 @@
 extends Node
 
 enum PacingState { BUILD, PEAK, BREATHER }
+enum EnemyType { BASIC, LONG_PRESS, BUTTON_MASH, QUICK_COMBO, FAKE_BUTTONS }
 
 @export var difficulty_curve: Curve
 @export var min_spawn_delay: float = 1.2
@@ -24,7 +25,7 @@ var active_special_qtes: int = 0
 var basic_qte_ai: PackedScene = preload("res://Scenes/Enemies/EnemyBase.tscn")
 var button_mash_ai: PackedScene = preload("res://Scenes/Enemies/MashEnemy.tscn")
 @export var long_press_ai: PackedScene = null
-@export var quick_combo_ai: PackedScene = null
+@export var quick_combo_ai: PackedScene = preload("res://Scenes/Enemies/ComboEnemy.tscn")
 @export var fake_buttons_ai: PackedScene = null
 
 func _process(delta: float) -> void:
@@ -90,10 +91,9 @@ func get_spawn_count() -> int:
 		
 	return count
 
-func get_enemy_scene(fallback_array: Array[PackedScene]) -> PackedScene:
-	# RULE: If a special QTE enemy is already active, immediately bypass choices and force a basic one
+func get_enemy_type() -> int:
 	if active_special_qtes > 0:
-		return basic_qte_ai
+		return EnemyType.BASIC
 
 	var time_factor = clamp(total_time / 600.0, 0.0, 1.0)
 	var weights = _get_weights(time_factor)
@@ -104,29 +104,41 @@ func get_enemy_scene(fallback_array: Array[PackedScene]) -> PackedScene:
 	# If a scene field is null, it gracefully falls back to the basic QTE enemy.
 	cumulative += weights.get("basic", 0.0)
 	if r < cumulative: 
-		return basic_qte_ai
+		return EnemyType.BASIC
 	
 	cumulative += weights.get("long_press", 0.0)
 	if r < cumulative: 
-		return long_press_ai if long_press_ai else basic_qte_ai
+		return EnemyType.LONG_PRESS
 	
 	cumulative += weights.get("button_mash", 0.0)
 	if r < cumulative: 
-		return button_mash_ai if button_mash_ai else basic_qte_ai
+		return EnemyType.BUTTON_MASH
 	
 	cumulative += weights.get("quick_combo", 0.0)
 	if r < cumulative: 
-		return quick_combo_ai if quick_combo_ai else basic_qte_ai
+		return EnemyType.QUICK_COMBO
 	
 	cumulative += weights.get("fake_buttons", 0.0)
 	if r < cumulative: 
-		return fake_buttons_ai if fake_buttons_ai else basic_qte_ai
+		return EnemyType.FAKE_BUTTONS
 
-	# Final backup checks
-	if fallback_array.size() > 0:
-		return fallback_array[randi_range(0, fallback_array.size() - 1)]
-		
-	return basic_qte_ai
+	return EnemyType.BASIC
+
+func get_enemy_scene(enemy_type: int) -> PackedScene:
+	match enemy_type:
+		EnemyType.LONG_PRESS:
+			return long_press_ai if long_press_ai else basic_qte_ai
+		EnemyType.BUTTON_MASH:
+			return button_mash_ai if button_mash_ai else basic_qte_ai
+		EnemyType.QUICK_COMBO:
+			return quick_combo_ai if quick_combo_ai else basic_qte_ai
+		EnemyType.FAKE_BUTTONS:
+			return fake_buttons_ai if fake_buttons_ai else basic_qte_ai
+		_:
+			return basic_qte_ai
+
+func is_special_enemy_type(enemy_type: int) -> bool:
+	return enemy_type != EnemyType.BASIC and get_enemy_scene(enemy_type) != basic_qte_ai
 
 func _get_weights(time_factor: float) -> Dictionary:
 	# 1. RAPID ONBOARDING (0.0 to 0.2)
@@ -169,16 +181,6 @@ func reset() -> void:
 	total_time = 0.0
 	door_health_percent = 1.0
 	active_special_qtes = 0
-
-# Mechanical scaling helpers
-func get_qte_complexity() -> int:
-	var time_factor = clamp(total_time / 600.0, 0.0, 1.0)
-	if time_factor < 0.2:
-		return 2 # 1 node per enemy
-	elif time_factor < 0.4:
-		return 3 # 2 nodes per enemy
-	else:
-		return 4 # 3 nodes per enemy
 
 func get_qte_time_window(base_window: float) -> float:
 	var time_factor = clamp(total_time / 600.0, 0.0, 1.0)
