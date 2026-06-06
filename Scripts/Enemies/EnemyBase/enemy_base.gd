@@ -14,46 +14,54 @@ signal enemy_killed()
 signal do_damage()
 
 func _ready():
-    add_to_group("enemy")
-    
-    # NEW: Automatically register with the director if this is a special enemy
-    if is_special_enemy and DifficultyDirector.has_method("register_special_spawn"):
-        DifficultyDirector.register_special_spawn(self)
-        
-    var extra_qtes = DifficultyDirector.get_qte_complexity() - 3
-    qtes_left_to_spawn = maxi(1, start_qte + extra_qtes)
-    $QTETimer.timeout.connect(spawn_qte)
-    spawn_qte()
+	add_to_group("enemy")
+	
+	var margin: float = 50.0  # pixels from screen edge
+	var screen_size = get_viewport_rect().size
+	spawn_locations = spawn_locations.filter(func(loc):
+		var world_pos = global_position + screen_size/2 + loc
+		return world_pos.x >= margin and world_pos.x <= screen_size.x - margin \
+		   and world_pos.y >= margin and world_pos.y <= screen_size.y - margin
+	)
+	
+	# NEW: Automatically register with the director if this is a special enemy
+	if is_special_enemy and DifficultyDirector.has_method("register_special_spawn"):
+		DifficultyDirector.register_special_spawn(self)
+		
+	var extra_qtes = DifficultyDirector.get_qte_complexity() - 3
+	qtes_left_to_spawn = maxi(1, start_qte + extra_qtes)
+	$QTETimer.timeout.connect(spawn_qte)
+	spawn_qte()
 
 func spawn_qte():
-    if spawn_locations.size() == 0 or qtes_left_to_spawn <= 0:
-        return
+	if spawn_locations.size() == 0 or qtes_left_to_spawn <= 0:
+		return
 
-    qtes_left_to_spawn -= 1
+	qtes_left_to_spawn -= 1
 
-    var location_index: int = randi_range(0, spawn_locations.size() - 1)
-    var instance = QTE_Node.instantiate()
+	var location_index: int = randi_range(0, spawn_locations.size() - 1)
+	var instance = QTE_Node.instantiate()
 
-    var location = spawn_locations[location_index]
-    instance.position = location
-    spawn_locations.erase(location)
-    full_locations.append(location)
-    instance.QTE_failed.connect(_on_QTE_failed)
-    instance.QTE_succeded.connect(_on_QTE_succeded)
-    add_child(instance)
+	var location = spawn_locations[location_index]
+	instance.position = location
+	spawn_locations.erase(location)
+	full_locations.append(location)
+	instance.QTE_failed.connect(_on_QTE_failed)
+	instance.QTE_succeded.connect(_on_QTE_succeded)
+	add_child(instance)
 
 func _check_enemy_death():
-    if full_locations.size() == 0 and qtes_left_to_spawn <= 0:
-        enemy_killed.emit()
-        queue_free()
+	if full_locations.size() == 0 and qtes_left_to_spawn <= 0:
+		enemy_killed.emit()
+		queue_free()
 
 func _on_QTE_succeded(pos):
-    spawn_locations.append(pos)
-    full_locations.erase(pos)
-    _check_enemy_death()
+	spawn_locations.append(pos)
+	full_locations.erase(pos)
+	_check_enemy_death()
 
 func _on_QTE_failed(pos):
-    spawn_locations.append(pos)
-    full_locations.erase(pos)
-    do_damage.emit()
-    _check_enemy_death()
+	spawn_locations.append(pos)
+	full_locations.erase(pos)
+	do_damage.emit()
+	_check_enemy_death()
