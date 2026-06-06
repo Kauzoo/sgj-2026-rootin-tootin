@@ -60,12 +60,12 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "Start"
 
-[node name="Start2" type="Button" parent="VBoxContainer" unique_id=644271291]
+[node name="Op" type="Button" parent="VBoxContainer" unique_id=644271291]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Start"
+text = "Options"
 
-[node name="Start3" type="Button" parent="VBoxContainer" unique_id=1133249254]
+[node name="Ex" type="Button" parent="VBoxContainer" unique_id=1133249254]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Start"
+text = "Exit"
