@@ -24,6 +24,7 @@ DifficultyDirector="*res://Scripts/difficulty_director.gd"
 window/size/viewport_width=176
 window/size/viewport_height=99
 window/size/mode=3
+window/stretch/mode="viewport"
 
 [dotnet]
 

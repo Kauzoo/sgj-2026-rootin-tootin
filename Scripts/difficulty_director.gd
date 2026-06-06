@@ -51,8 +51,8 @@ func get_spawn_delay() -> float:
 	if current_state == PacingState.BREATHER:
 		return max_spawn_delay * 2.0 # Artificial pause
 		
-	# Sample difficulty curve or linear fallback based on 7 min timescale
-	var time_factor = clamp(total_time / 420.0, 0.0, 1.0)
+	# Sample difficulty curve or linear fallback based on 4 min timescale
+	var time_factor = clamp(total_time / 240.0, 0.0, 1.0)
 	var difficulty = time_factor
 	if difficulty_curve:
 		difficulty = difficulty_curve.sample(time_factor)
@@ -70,7 +70,7 @@ func get_spawn_delay() -> float:
 	return max(0.1, delay)
 
 func get_enemy_scene(fallback_array: Array[PackedScene]) -> PackedScene:
-	var time_factor = clamp(total_time / 420.0, 0.0, 1.0)
+	var time_factor = clamp(total_time / 240.0, 0.0, 1.0)
 	var weights = _get_weights(time_factor)
 	var r = randf()
 	var chosen_scene = null
@@ -116,7 +116,7 @@ func reset():
 
 # Mechanical scaling helpers
 func get_qte_complexity() -> int:
-	var time_factor = clamp(total_time / 420.0, 0.0, 1.0)
+	var time_factor = clamp(total_time / 240.0, 0.0, 1.0)
 	if time_factor < 0.33:
 		return 1
 	elif time_factor < 0.66:
@@ -125,6 +125,6 @@ func get_qte_complexity() -> int:
 		return 5
 
 func get_qte_time_window(base_window: float) -> float:
-	var time_factor = clamp(total_time / 420.0, 0.0, 1.0)
+	var time_factor = clamp(total_time / 240.0, 0.0, 1.0)
 	var difficulty = difficulty_curve.sample(time_factor) if difficulty_curve else time_factor
 	return lerp(base_window, base_window * 0.5, difficulty)

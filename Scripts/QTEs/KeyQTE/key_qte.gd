@@ -20,11 +20,8 @@ func _draw():
 
 
 func _unhandled_input(event):
-	if event is InputEventKey:
-		if event.pressed and event.key_label == key:
-			# set pressed to false so it cant remove another input query for the same key
-			# idk if this has bad consequences but it seems to work :P
-			event.pressed = false
-
+	if event is InputEventKey and event.pressed and not event.is_echo():
+		if event.key_label == key:
+			get_viewport().set_input_as_handled()
 			QTE_succeded.emit(position)
 			queue_free()

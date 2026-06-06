@@ -1,40 +1,44 @@
 [gd_scene format=3 uid="uid://ve8x6ntl3ldr"]
 
 [ext_resource type="Script" uid="uid://dtin0cf5kefxt" path="res://Scripts/GameScene/game_scene.gd" id="1_fiftr"]
-[ext_resource type="Texture2D" uid="uid://oo1l3vuh4f5f" path="res://Sprites/Background/placeholder.png" id="2_1ixah"]
+[ext_resource type="Texture2D" uid="uid://ccniy2s751khe" path="res://Sprites/Background/BGSketch.png" id="2_fiftr"]
 [ext_resource type="PackedScene" uid="uid://rrl2p25p4nt1" path="res://Scenes/Crack.tscn" id="3_rgj8m"]
 [ext_resource type="PackedScene" uid="uid://gc1y8ls00lau" path="res://Scenes/Enemies/EnemyBase.tscn" id="4_2fmhe"]
 
 [node name="GameScene" type="Node2D" unique_id=1966619011]
-position = Vector2(0, 3)
 script = ExtResource("1_fiftr")
 health = 3
 
 [node name="BackgroundSprite" type="Sprite2D" parent="." unique_id=537088218]
-position = Vector2(958, 536)
-texture = ExtResource("2_1ixah")
+texture = ExtResource("2_fiftr")
 
-[node name="HelthLabel" type="Label" parent="." unique_id=370877983]
-offset_left = 800.0
-offset_top = 353.0
-offset_right = 903.0
-offset_bottom = 376.0
-size_flags_horizontal = 0
+[node name="HealthLabel" type="Label" parent="." unique_id=370877983]
+offset_left = -55.0
+offset_top = -219.0
+offset_right = 48.0
+offset_bottom = -196.0
 size_flags_vertical = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="Crack" parent="." unique_id=2102293038 instance=ExtResource("3_rgj8m")]
-position = Vector2(584, 744)
+position = Vector2(-55, 5)
+scale = Vector2(0.2, 0.2)
 available_monsters = Array[PackedScene]([ExtResource("4_2fmhe")])
 
 [node name="Crack2" parent="." unique_id=725175742 instance=ExtResource("3_rgj8m")]
-position = Vector2(898, 208)
+position = Vector2(-7, -29)
 available_monsters = Array[PackedScene]([ExtResource("4_2fmhe")])
 
 [node name="Crack3" parent="." unique_id=1806182396 instance=ExtResource("3_rgj8m")]
-position = Vector2(1180, 774)
+position = Vector2(-7, 29)
+available_monsters = Array[PackedScene]([ExtResource("4_2fmhe")])
+
+[node name="Crack5" parent="." unique_id=1606550351 instance=ExtResource("3_rgj8m")]
+position = Vector2(13, 2)
 available_monsters = Array[PackedScene]([ExtResource("4_2fmhe")])
 
 [node name="Crack4" parent="." unique_id=784784390 instance=ExtResource("3_rgj8m")]
-position = Vector2(1578, 292)
+position = Vector2(70, 3)
 available_monsters = Array[PackedScene]([ExtResource("4_2fmhe")])
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1195229495]
