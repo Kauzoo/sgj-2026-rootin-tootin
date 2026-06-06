@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://x6rv3nhrsmi8"]
+
+[ext_resource type="Script" uid="uid://dra8vhma0xj5" path="res://Scripts/QTEs/FakeQTE/fake_qte.gd" id="1_rkn7d"]
+[ext_resource type="Script" uid="uid://rbsaxidumqoq" path="res://Scripts/QTEs/FakeQTE/fake_sprite.gd" id="2_55i0u"]
+
+[sub_resource type="GDScript" id="GDScript_2bpst"]
+script/source = "extends Timer
+"
+
+[node name="FakeQTE" type="Node2D" unique_id=65569346]
+script = ExtResource("1_rkn7d")
+
+[node name="FakeSprite" type="Sprite2D" parent="." unique_id=1998570352]
+scale = Vector2(2, 2)
+script = ExtResource("2_55i0u")
+
+[node name="FailTimer" type="Timer" parent="." unique_id=577917659]
+wait_time = 7.0
+one_shot = true
+autostart = true
+script = SubResource("GDScript_2bpst")

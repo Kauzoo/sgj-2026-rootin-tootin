@@ -29,9 +29,9 @@ var active_special_qtes: int = 0
 # AI configurations mapped in Inspector
 var basic_qte_ai: PackedScene = preload("res://Scenes/Enemies/EnemyBase.tscn")
 var button_mash_ai: PackedScene = preload("res://Scenes/Enemies/MashEnemy.tscn")
-@export var long_press_ai: PackedScene = null
-@export var quick_combo_ai: PackedScene = preload("res://Scenes/Enemies/ComboEnemy.tscn")
-@export var fake_buttons_ai: PackedScene = null
+var long_press_ai: PackedScene = preload("res://Scenes/Enemies/LongPressEnemy.tscn")
+var quick_combo_ai: PackedScene = preload("res://Scenes/Enemies/ComboEnemy.tscn")
+var fake_buttons_ai: PackedScene = preload("res://Scenes/Enemies/FakeEnemy.tscn")
 
 func _process(delta: float) -> void:
 	total_time += delta
@@ -70,7 +70,7 @@ func get_difficulty_factor() -> float:
 func get_spawn_delay() -> float:
 	var difficulty = get_difficulty_factor()
 	var delay = lerp(max_spawn_delay, min_spawn_delay, difficulty)
-	
+
 	if current_state == PacingState.PEAK:
 		delay *= 0.78
 	elif current_state == PacingState.BREATHER:
@@ -205,7 +205,7 @@ func _normalize_weights(weights: Dictionary) -> Dictionary:
 func register_special_spawn(enemy_node: Node) -> void:
 	active_special_qtes += 1
 	last_special_spawn_time = total_time
-	
+
 	# Automatically listens for the enemy's deletion/death to clear up the slot
 	enemy_node.tree_exiting.connect(func():
 		active_special_qtes = max(0, active_special_qtes - 1)

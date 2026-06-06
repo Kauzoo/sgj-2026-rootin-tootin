@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://cj8c8rwea2xv8" path="res://Scripts/Scoreboard/NameMenu/name_menu.gd" id="3_hqmdi"]
 
 [node name="LeaderboardScene" type="Node2D" unique_id=1964954266 node_paths=PackedStringArray("leaderboardControl", "leaderboardVBox", "nameMenu")]
+position = Vector2(-352, -198)
 script = ExtResource("1_kmdqp")
 leaderboardControl = NodePath("LeaderboardControl")
 leaderboardVBox = NodePath("LeaderboardControl/ScrollContainer/VBoxContainer")

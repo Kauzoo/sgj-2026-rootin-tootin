@@ -19,6 +19,7 @@ func _ready():
 	nameMenu.name_entered.connect(_on_name_entered)
 
 func _on_name_entered():
+	highlightName = nameMenu.nameLine.text
 	nameMenu.hide()
 	leaderboardControl.show()
 	
@@ -72,5 +73,4 @@ func ordinal(n: int) -> String:
 		_: return str(n) + "th"
 
 func _on_name_submit_button_pressed() -> void:
-	highlightName = nameMenu.nameLine.text
 	nameMenu._on_name_submitted(nameMenu.nameLine.text)
