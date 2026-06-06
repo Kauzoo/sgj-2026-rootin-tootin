@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://c7yd3x4is2is7"]
+
+[ext_resource type="Texture2D" uid="uid://b8kw06q2utpcy" path="res://Sprites/Sprite Sheets/SkullFlowerSpriteSheet33x32.png" id="1_yqlwc"]
+
+[sub_resource type="Animation" id="Animation_6lus3"]
+resource_name = "Enemy3_Die"
+length = 1.8333334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.03333333, 0.53333336, 0.8666667, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 3, 2, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_a4mqi"]
+resource_name = "Enemy3_Ilde"
+length = 2.4333334
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2333333, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [5, 6, 7, 8, 9]
+}
+
+[sub_resource type="Animation" id="Animation_yqlwc"]
+resource_name = "Enemy3_Spawn"
+length = 1.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.96666664, 1.3666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_ne1dx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6lus3"]
+_data = {
+&"Enemy3_Die": SubResource("Animation_6lus3"),
+&"Enemy3_Ilde": SubResource("Animation_a4mqi"),
+&"Enemy3_Spawn": SubResource("Animation_yqlwc"),
+&"RESET": SubResource("Animation_ne1dx")
+}
+
+[node name="Enemy3" type="Sprite2D" unique_id=1686393116]
+texture_filter = 1
+texture = ExtResource("1_yqlwc")
+hframes = 5
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1836147587]
+libraries/ = SubResource("AnimationLibrary_6lus3")
+speed_scale = 2.0
