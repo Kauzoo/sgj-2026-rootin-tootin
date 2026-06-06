@@ -4,4 +4,3 @@ signal go_to_lb()
 
 func _ready():
 	go_to_lb.emit()
-
