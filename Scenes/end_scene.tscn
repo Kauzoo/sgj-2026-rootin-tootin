@@ -32,26 +32,30 @@ animations = [{
 script = ExtResource("1_foadp")
 animatedSprite = NodePath("AnimatedSprite2D")
 
+[node name="Camera2D" type="Camera2D" parent="." unique_id=791149419]
+
 [node name="Background" type="Sprite2D" parent="." unique_id=1579356239]
+position = Vector2(-352, -199.99998)
+scale = Vector2(0.36666667, 0.3703704)
 texture = ExtResource("1_5pkqa")
 centered = false
 
 [node name="OtherSpritesFolder" type="Node" parent="." unique_id=251990523]
 
 [node name="SpriteSample" type="Sprite2D" parent="OtherSpritesFolder" unique_id=1089515165]
-position = Vector2(344.75, 257.5)
-scale = Vector2(0.13229166, 0.22839506)
+position = Vector2(-224, -88)
+scale = Vector2(0.07118056, 0.112345666)
 texture = ExtResource("2_20ln8")
 
 [node name="SpriteSample2" type="Sprite2D" parent="OtherSpritesFolder" unique_id=1769328092]
-position = Vector2(1440, 390)
-scale = Vector2(0.13229166, 0.22839506)
+position = Vector2(224, -47.999996)
+scale = Vector2(0.08836805, 0.16358024)
 texture = ExtResource("2_20ln8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=638157910]
 texture_filter = 1
-position = Vector2(941.24994, 639.875)
-scale = Vector2(11.826388, 11.355633)
+position = Vector2(8, 40.00003)
+scale = Vector2(2.8819435, 2.5563405)
 sprite_frames = SubResource("SpriteFrames_b4hnb")
 animation = &"WEEEE"
 autoplay = "WEEEE"

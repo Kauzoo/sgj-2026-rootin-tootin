@@ -31,12 +31,12 @@ func _unhandled_input(event):
 		return
 
 	if event is InputEventKey and event.pressed and not event.is_echo():
-    		if event.key_label == key:
-    			# yes, im lazy :P
-    			get_parent().get_parent().get_parent().remove_key_qte(self)
-    			get_viewport().set_input_as_handled()
-    			QTE_succeded.emit(position)
-    			queue_free()
+		if event.key_label == key:
+				# yes, im lazy :P
+			get_parent().get_parent().get_parent().remove_key_qte(self)
+			get_viewport().set_input_as_handled()
+			QTE_succeded.emit(position)
+			queue_free()
 
 func check_event(event):
 	if event is InputEventKey and event.pressed and not event.is_echo():
