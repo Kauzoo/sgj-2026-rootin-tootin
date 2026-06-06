@@ -1,17 +1,26 @@
 [gd_scene format=3 uid="uid://ve8x6ntl3ldr"]
 
 [ext_resource type="Script" uid="uid://dtin0cf5kefxt" path="res://Scripts/GameScene/game_scene.gd" id="1_fiftr"]
-[ext_resource type="Texture2D" uid="uid://ccniy2s751khe" path="res://Sprites/Background/BGSketch.png" id="2_fiftr"]
+[ext_resource type="Texture2D" uid="uid://cddixdm23vggc" path="res://2DArt/PlayingScreen/Room.png" id="2_rgj8m"]
+[ext_resource type="Texture2D" uid="uid://bkfeon3rxybm6" path="res://2DArt/PlayingScreen/DoorSpritesheet.png" id="3_2fmhe"]
 [ext_resource type="PackedScene" uid="uid://rrl2p25p4nt1" path="res://Scenes/Crack.tscn" id="3_rgj8m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7iton"]
+atlas = ExtResource("3_2fmhe")
+region = Rect2(0, 0, 78, 0)
 
 [node name="GameScene" type="Node2D" unique_id=1966619011]
 script = ExtResource("1_fiftr")
 health = 10
 
 [node name="BackgroundSprite" type="Sprite2D" parent="." unique_id=537088218]
-position = Vector2(-0.8888855, -0.5)
-scale = Vector2(4.0101013, 4.0101013)
-texture = ExtResource("2_fiftr")
+scale = Vector2(4, 4)
+texture = ExtResource("2_rgj8m")
+
+[node name="DoorSprite" type="Sprite2D" parent="." unique_id=2085391720]
+position = Vector2(-4, 6)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_7iton")
 
 [node name="HealthLabel" type="Label" parent="." unique_id=370877983]
 offset_left = -49.0
@@ -34,6 +43,6 @@ position = Vector2(-34, 117)
 position = Vector2(50, 11)
 
 [node name="Crack4" parent="." unique_id=784784390 instance=ExtResource("3_rgj8m")]
-position = Vector2(281, 13)
+position = Vector2(252, 38)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1195229495]

@@ -32,7 +32,7 @@ func _ready():
 	add_to_group("enemy")
 	_setup_qte_sequence()
 	_setup_progress_bar()
-	_spawn_next_qte_wave()
+	$AnimatedSprite.spawned.connect(_spawn_next_qte_wave)
 
 func _setup_qte_sequence():
 	if qte_count_override > 0:
@@ -175,7 +175,8 @@ func _on_QTE_succeded(_pos, qte: QTEBase):
 		_clear_active_qtes()
 		enemy_killed.emit()
 		enemy_removed.emit()
-		queue_free()
+		$AnimatedSprite.die()
+		$AnimatedSprite.done_animation.connect(queue_free)
 	elif active_qtes.size() == 0:
 		_spawn_next_qte_wave()
 
@@ -187,7 +188,8 @@ func _on_QTE_failed(_pos, _qte: QTEBase):
 	_clear_active_qtes()
 	do_damage.emit()
 	enemy_removed.emit()
-	queue_free()
+	$AnimatedSprite.die()
+	$AnimatedSprite.done_animation.connect(queue_free)
 
 func _clear_active_qtes():
 	for qte in active_qtes:

@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://ptf3sevckxwb"]
 
 [ext_resource type="Script" uid="uid://b5kir56dantps" path="res://Scripts/Enemies/FakeEnemy/fake_enemy.gd" id="1_sqhju"]
-[ext_resource type="PackedScene" uid="uid://bygc7jb0fwh5f" path="res://Scenes/QTEs/KeyQTE.tscn" id="2_key_qte"]
 [ext_resource type="PackedScene" uid="uid://x6rv3nhrsmi8" path="res://Scenes/QTEs/FakeQTE.tscn" id="2_cpbt8"]
-[ext_resource type="Texture2D" uid="uid://d20vg2fpqj1eb" path="res://Sprites/Roots/placeholder.png" id="3_e2nkf"]
+[ext_resource type="PackedScene" uid="uid://bygc7jb0fwh5f" path="res://Scenes/QTEs/KeyQTE.tscn" id="2_key_qte"]
+[ext_resource type="PackedScene" uid="uid://c7yd3x4is2is7" path="res://Sprites/Sprite Sheets/Enemy3.tscn" id="4_8x3xo"]
 
 [node name="FakeEnemy" type="Node2D" unique_id=1532060467]
 script = ExtResource("1_sqhju")
@@ -11,9 +11,10 @@ QTE_Node = ExtResource("2_cpbt8")
 basic_qte_scene = ExtResource("2_key_qte")
 special_qte_scene = ExtResource("2_cpbt8")
 
+[node name="AnimatedSprite" parent="." unique_id=1686393116 instance=ExtResource("4_8x3xo")]
+position = Vector2(-0.99999994, 0)
+scale = Vector2(2, 2)
+
 [node name="QTETimer" type="Timer" parent="." unique_id=637635198]
 wait_time = 10.0
 autostart = true
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=252143047]
-texture = ExtResource("3_e2nkf")
