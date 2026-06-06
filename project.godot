@@ -15,9 +15,9 @@ run/main_scene="uid://x8ugmofprt1c"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://Sprites/icon.svg"
 
-[dotnet]
+[autoload]
 
-project/assembly_name="sgj-2026-rootin-tootin"
+DifficultyDirector="*res://Scripts/difficulty_director.gd"
 
 [display]
 

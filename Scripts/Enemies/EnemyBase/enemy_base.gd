@@ -11,8 +11,10 @@ signal enemy_killed()
 signal do_damage()
 
 func _ready():
+	var extra_qtes = DifficultyDirector.get_qte_complexity() - 3
+	var actual_qte_count = maxi(1, start_qte + extra_qtes)
 	$QTETimer.timeout.connect(spawn_qte)
-	for i in range(start_qte):
+	for i in range(actual_qte_count):
 		spawn_qte()
 
 func spawn_qte():
