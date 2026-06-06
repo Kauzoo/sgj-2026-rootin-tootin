@@ -11,6 +11,8 @@ class_name EnemyBase extends Node2D
 @export var simultaneous_qte_count_override: int = 0
 @export var progress_bar_offset: Vector2 = Vector2(-32, -105)
 @export var progress_bar_size: Vector2 = Vector2(64, 8)
+@export var qte_position_jitter: Vector2 = Vector2(28, 18)
+@export var qte_screen_margin: Vector2 = Vector2(56, 56)
 
 var active_qtes: Array[QTEBase] = []
 var enemy_type: int = 0
@@ -62,9 +64,9 @@ func _spawn_next_qte_wave():
 	var qtes_left = qtes_required - qtes_completed
 	var wave_size = mini(simultaneous_qte_count, qtes_left)
 	for index in range(wave_size):
-		_spawn_qte(index, qtes_completed + index)
+		_spawn_qte(qtes_completed + index)
 
-func _spawn_qte(marker_index: int, qte_index: int):
+func _spawn_qte(qte_index: int):
 	var qte_scene = _get_qte_scene(qte_index)
 	if qte_scene == null:
 		push_error("EnemyBase: No QTE scene configured.")
@@ -76,7 +78,7 @@ func _spawn_qte(marker_index: int, qte_index: int):
 		return
 
 	active_qtes.append(instance)
-	instance.position = _get_qte_position(marker_index)
+	instance.position = _get_qte_position(qte_index)
 	instance.QTE_failed.connect(_on_QTE_failed.bind(instance))
 	instance.QTE_succeded.connect(_on_QTE_succeded.bind(instance))
 	add_child(instance)
@@ -100,9 +102,19 @@ func _update_progress_bar():
 func _get_remaining_health() -> int:
 	return maxi(0, qtes_required - qtes_completed)
 
-func _get_qte_position(marker_index: int) -> Vector2:
-	if marker_index < qte_marker_paths.size():
-		var marker = get_node_or_null(qte_marker_paths[marker_index])
+func _get_qte_position(qte_index: int) -> Vector2:
+	var position = _get_base_qte_position(qte_index)
+	position += Vector2(
+		randf_range(-qte_position_jitter.x, qte_position_jitter.x),
+		randf_range(-qte_position_jitter.y, qte_position_jitter.y)
+	)
+
+	return _clamp_qte_position_to_screen(position)
+
+func _get_base_qte_position(qte_index: int) -> Vector2:
+	if qte_marker_paths.size() > 0:
+		var marker_path = qte_marker_paths[qte_index % qte_marker_paths.size()]
+		var marker = get_node_or_null(marker_path)
 		if marker is Marker2D:
 			return marker.position
 
@@ -112,6 +124,22 @@ func _get_qte_position(marker_index: int) -> Vector2:
 			return marker.position
 
 	return qte_offset
+
+func _clamp_qte_position_to_screen(local_position: Vector2) -> Vector2:
+	var viewport = get_viewport()
+	if viewport == null:
+		return local_position
+
+	var canvas_transform = viewport.get_canvas_transform()
+	var screen_position = canvas_transform * to_global(local_position)
+	var viewport_size = viewport.get_visible_rect().size
+	var min_position = qte_screen_margin
+	var max_position = viewport_size - qte_screen_margin
+
+	screen_position.x = clamp(screen_position.x, min_position.x, max_position.x)
+	screen_position.y = clamp(screen_position.y, min_position.y, max_position.y)
+
+	return to_local(canvas_transform.affine_inverse() * screen_position)
 
 func _on_QTE_succeded(_pos, qte: QTEBase):
 	if is_resolved:

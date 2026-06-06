@@ -13,7 +13,6 @@ QTE_Nodes = Array[PackedScene]([ExtResource("2_key_qte"), ExtResource("2_mash_qt
 qte_marker_path = NodePath("QTEMarker1")
 qte_marker_paths = Array[NodePath]([NodePath("QTEMarker1"), NodePath("QTEMarker2"), NodePath("QTEMarker3")])
 qte_count_override = 3
-simultaneous_qte_count_override = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=477069085]
 texture = ExtResource("4_sprite")

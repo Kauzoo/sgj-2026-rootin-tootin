@@ -17,6 +17,11 @@ func add_key_qte(qte):
 func remove_key_qte(qte):
 	key_qtes.erase(qte)
 
+func _mark_input_as_handled():
+	var viewport = get_viewport()
+	if viewport:
+		viewport.set_input_as_handled()
+
 func _unhandled_key_input(event: InputEvent):
 	key_event = event
 	if event is InputEventKey and event.pressed and not event.is_echo():
@@ -36,8 +41,8 @@ func _unhandled_key_input(event: InputEvent):
 func _fail_first_active_qte():
 	for qte in key_qtes.duplicate():
 		if is_instance_valid(qte):
+			_mark_input_as_handled()
 			qte.force_fail()
-			get_viewport().set_input_as_handled()
 			return
 		remove_key_qte(qte)
 
@@ -131,5 +136,5 @@ func doGameOver():
 
 func _unhandled_input(event):
 	if DifficultyDirector.is_input_on_cooldown():
-		get_viewport().set_input_as_handled()
+		_mark_input_as_handled()
 		return

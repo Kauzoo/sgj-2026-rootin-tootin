@@ -9,6 +9,11 @@ func _ready():
 	$FailTimer.wait_time = DifficultyDirector.get_qte_time_window($FailTimer.wait_time)
 	$FailTimer.timeout.connect(_on_timeout)
 
+func _mark_input_as_handled():
+	var viewport = get_viewport()
+	if viewport:
+		viewport.set_input_as_handled()
+
 func _on_timeout():
 	if is_resolved:
 		return
@@ -34,7 +39,7 @@ func _unhandled_input(event):
 	if DifficultyDirector.is_input_on_cooldown():
 		# Do not handle the input here so it can fall through to GameScene and be handled there,
 		# or just handle it and return. Since GameScene also handles it, setting it as handled is safest.
-		get_viewport().set_input_as_handled()
+		_mark_input_as_handled()
 		return
 
 	if event is InputEventKey and event.pressed and not event.is_echo():
@@ -44,7 +49,7 @@ func _unhandled_input(event):
 
 			is_resolved = true
 			unregister_key_qte()
-			get_viewport().set_input_as_handled()
+			_mark_input_as_handled()
 			QTE_succeded.emit(position)
 			queue_free()
 
@@ -56,7 +61,7 @@ func check_event(event):
 
 			is_resolved = true
 			unregister_key_qte()
-			get_viewport().set_input_as_handled()
+			_mark_input_as_handled()
 			QTE_succeded.emit(position)
 			queue_free()
 			return true

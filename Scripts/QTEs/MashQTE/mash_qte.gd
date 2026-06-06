@@ -12,18 +12,13 @@ func _ready():
 
 func _unhandled_input(event):
 	if DifficultyDirector.is_input_on_cooldown():
-		get_viewport().set_input_as_handled()
+		_mark_input_as_handled()
 		return
 
-	if event is InputEventKey:
-		if event.pressed and event.key_label == key:
-			# set pressed to false so it cant remove another input query for the same key
-			# idk if this has bad consequences but it seems to work :P
-			event.pressed = false
 func check_event(event):
 	if event is InputEventKey and event.pressed and not event.is_echo():
 		if event.key_label == key:
-			get_viewport().set_input_as_handled()
+			_mark_input_as_handled()
 
 			mash_amount -= 1
 			$NumberLabel.text = str(mash_amount)
