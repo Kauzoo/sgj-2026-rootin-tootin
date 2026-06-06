@@ -45,17 +45,17 @@ func _on_name_submitted(submittedName: String):
 
 	if scores.has(submittedName) && scores[submittedName].to_int() > score:
 		file.close()
-		return
+	else:
+		scores.set(submittedName, str(score))
 
-	scores.set(submittedName, str(score))
+		var resultString: String = ""
+		for scoreName in scores:
+			resultString += scoreName + "\n" + scores[scoreName] + "\n"
 
-	var resultString: String = ""
-	for scoreName in scores:
-		resultString += scoreName + "\n" + scores[scoreName] + "\n"
-
-	file.close()
-	file = FileAccess.open("user://scores.dat", FileAccess.WRITE)
-	file.store_string(resultString)
-	file.close()
+		file.close()
+		
+		file = FileAccess.open("user://scores.dat", FileAccess.WRITE)
+		file.store_string(resultString)
+		file.close()
 
 	name_entered.emit()
