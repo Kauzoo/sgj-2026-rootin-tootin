@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d47dfjdrkfiu"
+path="res://.godot/imported/Ignacio spawn.wav-fd08bd2c9f54e7e391ba7d27705c8a7a.sample"
+
+[deps]
+
+source_file="res://Audio/monsters/spawn/Ignacio spawn.wav"
+dest_files=["res://.godot/imported/Ignacio spawn.wav-fd08bd2c9f54e7e391ba7d27705c8a7a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
