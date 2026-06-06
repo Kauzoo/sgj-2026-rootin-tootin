@@ -3,8 +3,6 @@ extends Node
 # Difficulty Director overview:
 # - The game starts in an intro phase. During intro, difficulty stays at 0 and the
 #   director guarantees each special enemy type gets introduced once.
-# - Intro special unlock times are percentages of intro_duration, so shortening
-#   intro_duration still introduces Mash, Combo, LongPress, and Fake enemies.
 # - After a special type has been introduced, intro can repeat that special often,
 #   but only if the current special cap and cooldown allow it.
 # - After intro, difficulty begins ramping from 0 to 1 over difficulty_ramp_duration.
@@ -19,6 +17,8 @@ extends Node
 # - Enemy scene selection is scene-based. EnemyBase is basic; MashEnemy,
 #   LongPressEnemy, ComboEnemy, and FakeEnemy each define one special QTE, while
 #   all other attacks on that enemy use basic QTEs.
+# - Post-intro enemy selection uses raw exported weights. The director normalizes
+#   those weights before rolling, so values are relative to each other.
 # - Enemy QTE count rises over time, but is reduced when the screen is crowded.
 #   This avoids impossible situations like several enemies all having high health.
 # - QTE timer windows shrink with difficulty, but shrink less aggressively when
@@ -45,8 +45,8 @@ enum PacingState { BUILD, PEAK, BREATHER }
 # Pacing cycles after the intro. BUILD is normal pressure, PEAK is a short spike,
 # and BREATHER gives the player a little recovery time.
 @export var build_duration: float = 28.0
-@export var peak_duration: float = 20.0
-@export var breather_duration: float = 5.0
+@export var peak_duration: float = 16.0
+@export var breather_duration: float = 8.0
 
 # Specials should appear often. This starts at 1 and can scale up later.
 @export var min_special_enemy_cap: int = 1
@@ -55,10 +55,23 @@ enum PacingState { BUILD, PEAK, BREATHER }
 @export var special_enemy_cooldown: float = 4.0
 @export var intro_special_chance: float = 0.7
 
+# Post-intro enemy selection weights. These are raw weights and get normalized
+# before selection. Start values are used at difficulty 0, end values at difficulty 1.
+@export var basic_weight_start: float = 0.55
+@export var basic_weight_end: float = 0.35
+@export var mash_weight_start: float = 0.24
+@export var mash_weight_end: float = 0.18
+@export var combo_weight_start: float = 0.16
+@export var combo_weight_end: float = 0.16
+@export var long_press_weight_start: float = 0.14
+@export var long_press_weight_end: float = 0.15
+@export var fake_weight_start: float = 0.1
+@export var fake_weight_end: float = 0.14
+
 # Enemy count is capped separately from spawn speed. This keeps the game busy
 # without allowing too many high-health enemies to pile up.
 @export var max_active_enemies_intro: int = 2
-@export var max_active_enemies_build: int = 3
+@export var max_active_enemies_build: int = 2
 @export var max_active_enemies_peak: int = 3
 @export var max_active_enemies_late_peak: int = 4
 
@@ -272,7 +285,7 @@ func _get_weights() -> Dictionary:
 	# These weights are normalized later. Basic gets less likely over time, while
 	# special enemies stay common whenever the special cap allows one.
 	var weights = {
-		"basic": lerp(0.55, 0.35, difficulty),
+		"basic": lerp(basic_weight_start, basic_weight_end, difficulty),
 		"long_press": 0.0,
 		"button_mash": 0.0,
 		"quick_combo": 0.0,
@@ -280,12 +293,12 @@ func _get_weights() -> Dictionary:
 	}
 
 	if total_time >= intro_duration:
-		weights["button_mash"] = lerp(0.24, 0.18, difficulty)
-		weights["quick_combo"] = lerp(0.16, 0.16, difficulty)
+		weights["button_mash"] = lerp(mash_weight_start, mash_weight_end, difficulty)
+		weights["quick_combo"] = lerp(combo_weight_start, combo_weight_end, difficulty)
 		if long_press_ai:
-			weights["long_press"] = lerp(0.14, 0.15, difficulty)
+			weights["long_press"] = lerp(long_press_weight_start, long_press_weight_end, difficulty)
 		if fake_buttons_ai:
-			weights["fake_buttons"] = lerp(0.1, 0.14, difficulty)
+			weights["fake_buttons"] = lerp(fake_weight_start, fake_weight_end, difficulty)
 
 	if current_state == PacingState.BREATHER:
 		weights["basic"] += 0.25
