@@ -4,7 +4,3 @@
 
 [node name="Crack" type="Node2D" unique_id=2102293038]
 script = ExtResource("1_y6sq1")
-
-[node name="SpawnTimer" type="Timer" parent="." unique_id=1826702084]
-one_shot = true
-autostart = true

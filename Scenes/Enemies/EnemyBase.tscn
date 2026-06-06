@@ -6,13 +6,15 @@
 
 [node name="EnemyBase" type="Node2D" unique_id=710950401]
 script = ExtResource("1_iiq2q")
-start_qte = 2
 QTE_Node = ExtResource("2_srcxp")
-spawn_locations = Array[Vector2]([Vector2(-70, 0), Vector2(70, 0), Vector2(0, -70), Vector2(0, 70), Vector2(-70, -70), Vector2(70, 70), Vector2(-70, 70), Vector2(70, -70)])
-
-[node name="QTETimer" type="Timer" parent="." unique_id=1421120142]
-autostart = true
+QTE_Nodes = Array[PackedScene]([ExtResource("2_srcxp")])
+QTE_Sequence = Array[PackedScene]([ExtResource("2_srcxp")])
+qte_marker_path = NodePath("QTEMarker")
+qte_marker_paths = Array[NodePath]([NodePath("QTEMarker")])
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=912470458]
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_p6c21")
+
+[node name="QTEMarker" type="Marker2D" parent="." unique_id=1421120142]
+position = Vector2(0, -70)
