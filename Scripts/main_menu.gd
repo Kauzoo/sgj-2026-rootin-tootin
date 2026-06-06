@@ -22,6 +22,10 @@ func _on_start_pressed() -> void:
 	print("start pressed")
 	go_to_lore.emit()
 
+func _input(event) -> void:
+	if event.is_action_pressed("LoreEnterToAdvance (can be replaced later)"):
+		print("start pressed")
+		go_to_lore.emit()
 
 func _on_options_pressed() -> void:
 	print("options pressed")

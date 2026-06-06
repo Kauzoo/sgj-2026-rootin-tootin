@@ -1,17 +1,19 @@
 class_name CombinationQTE extends KeyQTE
 
 @export var key_sequence: Array[Key] = [KEY_A, KEY_D, KEY_A, KEY_D]
+@export var first_step_wait_time: float = 7.0
+@export var follow_up_step_wait_time: float = 2.0
 var current_step: int = 0
 
 func _ready():
 	add_to_group("qte")
-	$FailTimer.wait_time = DifficultyDirector.get_qte_time_window($FailTimer.wait_time)
 	$FailTimer.timeout.connect(_on_timeout)
 		
 	if key_sequence.size() > 0:
 		key = key_sequence[current_step]
 		
 	register_key_qte()
+	_start_step_timer()
 	update_ui()
 
 func _unhandled_input(event):
@@ -43,7 +45,7 @@ func advance_sequence():
 		queue_free()
 	else:
 		key = key_sequence[current_step]
-		$FailTimer.start() 
+		_start_step_timer()
 		update_ui()
 
 func _on_timeout():
@@ -56,8 +58,10 @@ func _on_timeout():
 	queue_free()
 
 func update_ui():
-	if has_node("NumberLabel"):
-		$NumberLabel.text = str(key_sequence.size() - current_step)
-	
 	if has_node("KeySprite") and $KeySprite.has_method("update_sprite"):
 		$KeySprite.update_sprite()
+
+func _start_step_timer():
+	var base_window = first_step_wait_time if current_step == 0 else follow_up_step_wait_time
+	var adjusted_window = DifficultyDirector.get_qte_time_window(base_window)
+	$FailTimer.start(adjusted_window)
