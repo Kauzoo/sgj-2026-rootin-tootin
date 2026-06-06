@@ -10,6 +10,7 @@ signal game_over(score)
 
 var health_max: int
 var global_spawn_timer: Timer
+var game_is_over: bool = false
 
 func add_key_qte(qte):
 	key_qtes.append(qte)
@@ -63,13 +64,16 @@ func _ready():
 	global_spawn_timer.one_shot = true
 	global_spawn_timer.timeout.connect(_on_global_spawn_timeout)
 	add_child(global_spawn_timer)
-	global_spawn_timer.start(1.0) # Start generating events after a brief 1-second pause
+	_start_global_spawn_timer(1.0) # Start generating events after a brief 1-second pause
 
 	$HealthLabel.text = "DOOR HELTH: " + str(health)
 
 func _on_global_spawn_timeout():
+	if game_is_over:
+		return
+
 	if not DifficultyDirector.can_spawn_enemy():
-		global_spawn_timer.start(DifficultyDirector.get_spawn_delay())
+		_start_global_spawn_timer(DifficultyDirector.get_spawn_delay())
 		return
 
 	var available_cracks = []
@@ -87,9 +91,12 @@ func _on_global_spawn_timeout():
 		count -= 1
 
 	# Ask director how long until the next monster spawns
-	global_spawn_timer.start(DifficultyDirector.get_spawn_delay())
+	_start_global_spawn_timer(DifficultyDirector.get_spawn_delay())
 
 func _spawn_enemy_at_crack(crack: Crack):
+	if game_is_over:
+		return
+
 	if crack.has_active_monster:
 		return
 
@@ -119,6 +126,9 @@ func _on_enemy_kill():
 func _on_enemy_removed(crack: Crack):
 	crack.has_active_monster = false
 
+	if game_is_over or not is_inside_tree():
+		return
+
 	# Check if the screen is completely empty
 	var screen_empty = true
 	for child in get_children():
@@ -128,7 +138,7 @@ func _on_enemy_removed(crack: Crack):
 
 	if screen_empty:
 		# Fast-track the next spawn if the player cleared everything
-		global_spawn_timer.start(DifficultyDirector.get_clear_screen_spawn_delay())
+		_start_global_spawn_timer(DifficultyDirector.get_clear_screen_spawn_delay())
 
 func _on_do_damage():
 	if health <= 0:
@@ -143,7 +153,22 @@ func _on_do_damage():
 		return
 
 func doGameOver():
+	if game_is_over:
+		return
+
+	game_is_over = true
+	if global_spawn_timer and global_spawn_timer.is_inside_tree():
+		global_spawn_timer.stop()
+
 	game_over.emit(kills)
+
+func _start_global_spawn_timer(delay: float):
+	if game_is_over:
+		return
+	if global_spawn_timer == null or not global_spawn_timer.is_inside_tree():
+		return
+
+	global_spawn_timer.start(delay)
 
 func _unhandled_input(event):
 	if DifficultyDirector.is_input_on_cooldown():

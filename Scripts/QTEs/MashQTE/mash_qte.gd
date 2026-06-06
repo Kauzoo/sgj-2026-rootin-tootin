@@ -11,7 +11,8 @@ func _ready():
 	$FailTimer.wait_time = DifficultyDirector.get_qte_time_window($FailTimer.wait_time)
 	$FailTimer.timeout.connect(_on_timeout)
 	var rng = RandomNumberGenerator.new()
-	mash_amount = rng.randf_range(5, 10)
+	mash_amount = rng.randi_range(5, 10)
+	initial_mash_amount = mash_amount
 	$NumberLabel.text = str(mash_amount)
 
 
@@ -43,16 +44,16 @@ func check_event(event):
 				active_tween.kill()
 				
 			active_tween = create_tween()
-			$KeySprite.scale = Vector2(2.0, 2.0) 
+			$KeySprite.scale = Vector2(2.0, 2.0)
 			active_tween.tween_property($KeySprite, "scale", Vector2(1.7, 1.7), 0.15).set_trans(Tween.TRANS_SPRING)
 			
 			if mash_amount > 0:
 				# Calculate progress from 0.0 to 1.0
-				var progress = 1.0 - (float(mash_amount) / float(initial_mash_amount))
-				
+				var progress = 1.0 - (float(mash_amount) / float(maxi(initial_mash_amount, 1)))
+					
 				# Increase pitch from 1.0 up to 2.0 as they get closer to 0
-				
-				$SuccessSound.pitch_scale = lerp(1.0, 2.0, progress)
+					
+				$SuccessSound.pitch_scale = maxf(0.01, lerp(1.0, 2.0, clampf(progress, 0.0, 1.0)))
 				$SuccessSound.stream = click_sound
 				$SuccessSound.play()
 			else:
@@ -63,7 +64,7 @@ func check_event(event):
 				unregister_key_qte()
 				$FailTimer.stop()
 				# --- FINISHED ---
-				$SuccessSound.pitch_scale = 1.0 
+				$SuccessSound.pitch_scale = 1.0
 				$SuccessSound.stream = success_sounds.pick_random()
 				$SuccessSound.play()
 				var tween = create_tween()
