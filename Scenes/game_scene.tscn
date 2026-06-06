@@ -1,3 +1,45 @@
-[gd_scene format=3 uid="uid://b3478qrparf0l"]
+[gd_scene format=3 uid="uid://ve8x6ntl3ldr"]
 
-[node name="GameScene" type="Node2D" unique_id=1449395633]
+[ext_resource type="Script" uid="uid://dtin0cf5kefxt" path="res://Scripts/GameScene/game_scene.gd" id="1_fiftr"]
+[ext_resource type="Texture2D" uid="uid://ccniy2s751khe" path="res://Sprites/Background/BGSketch.png" id="2_fiftr"]
+[ext_resource type="PackedScene" uid="uid://rrl2p25p4nt1" path="res://Scenes/Crack.tscn" id="3_rgj8m"]
+[ext_resource type="PackedScene" uid="uid://db875jtfwxqj4" path="res://Scenes/Enemies/MashEnemy.tscn" id="4_1ixah"]
+[ext_resource type="PackedScene" uid="uid://gc1y8ls00lau" path="res://Scenes/Enemies/EnemyBase.tscn" id="4_2fmhe"]
+
+[node name="GameScene" type="Node2D" unique_id=1966619011]
+script = ExtResource("1_fiftr")
+health = 3
+
+[node name="BackgroundSprite" type="Sprite2D" parent="." unique_id=537088218]
+position = Vector2(-0.8888855, -0.5)
+scale = Vector2(4.0101013, 4.0101013)
+texture = ExtResource("2_fiftr")
+
+[node name="HealthLabel" type="Label" parent="." unique_id=370877983]
+offset_left = -55.0
+offset_top = -219.0
+offset_right = 48.0
+offset_bottom = -196.0
+size_flags_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Crack" parent="." unique_id=2102293038 instance=ExtResource("3_rgj8m")]
+position = Vector2(-228, 19)
+available_monsters = Array[PackedScene]([ExtResource("4_1ixah")])
+
+[node name="Crack2" parent="." unique_id=725175742 instance=ExtResource("3_rgj8m")]
+position = Vector2(-33, -114)
+available_monsters = Array[PackedScene]([ExtResource("4_2fmhe")])
+
+[node name="Crack3" parent="." unique_id=1806182396 instance=ExtResource("3_rgj8m")]
+position = Vector2(-34, 117)
+available_monsters = Array[PackedScene]([ExtResource("4_2fmhe")])
+
+[node name="Crack5" parent="." unique_id=1606550351 instance=ExtResource("3_rgj8m")]
+position = Vector2(50, 11)
+available_monsters = Array[PackedScene]([ExtResource("4_2fmhe")])
+
+[node name="Crack4" parent="." unique_id=784784390 instance=ExtResource("3_rgj8m")]
+position = Vector2(281, 13)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1195229495]

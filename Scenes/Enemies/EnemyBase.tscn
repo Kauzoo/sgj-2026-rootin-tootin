@@ -14,4 +14,5 @@ spawn_locations = Array[Vector2]([Vector2(-70, 0), Vector2(70, 0), Vector2(0, -7
 autostart = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=912470458]
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_p6c21")
