@@ -1,11 +1,16 @@
 extends Node
 
+static var instance: SoundManager
 
-# Called when the node enters the scene tree for the first time.
+var _sound_queues_by_name: Dictionary = {}
+var _sound_pools_by_name: Dictionary = {}
+
 func _ready() -> void:
-	pass # Replace with function body.
+	instance = self
+	_sound_queues_by_name["FireballSoundQueue"] = get_node("FireballSoundQueue") as SoundQueue
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+	
+func play_fireball_sound() -> void:
+	_sound_queues_by_name["FireballSoundQueue"].play_sound()
