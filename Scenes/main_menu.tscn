@@ -2,11 +2,6 @@
 
 [ext_resource type="Script" uid="uid://h48vuq47kof6" path="res://Scripts/main_menu.gd" id="1_48xlc"]
 [ext_resource type="Texture2D" uid="uid://80g8ggqx4fc1" path="res://Sprites/MainMenuBackgroundDummy.png" id="2_1ehe0"]
-[ext_resource type="PackedScene" uid="uid://g30maaswpnct" path="res://Audio/SoundPool.tscn" id="3_ce3w2"]
-[ext_resource type="PackedScene" uid="uid://cvwlxtpxr4pf8" path="res://Audio/SoundQueue.tscn" id="4_n45e2"]
-[ext_resource type="AudioStream" uid="uid://c334ekq7bvohc" path="res://Audio/fail/fail.wav" id="5_cp0ys"]
-[ext_resource type="AudioStream" uid="uid://de6cqflsar44m" path="res://Audio/monsters/attack/actor3_attack.wav" id="6_yhxw7"]
-[ext_resource type="AudioStream" uid="uid://wgyt6oamk15h" path="res://Audio/monsters/crunch/crunch.wav" id="7_trj04"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_853f1"]
 texture = ExtResource("2_1ehe0")
@@ -76,23 +71,6 @@ text = "Options"
 layout_mode = 2
 size_flags_vertical = 3
 text = "Exit"
-
-[node name="SoundPool" parent="." unique_id=885304415 instance=ExtResource("3_ce3w2")]
-
-[node name="SoundQueue" parent="SoundPool" unique_id=1670010076 instance=ExtResource("4_n45e2")]
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="SoundPool/SoundQueue" unique_id=1760644711]
-stream = ExtResource("5_cp0ys")
-
-[node name="SoundQueue2" parent="SoundPool" unique_id=2080092772 instance=ExtResource("4_n45e2")]
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="SoundPool/SoundQueue2" unique_id=871697475]
-stream = ExtResource("6_yhxw7")
-
-[node name="SoundQueue3" parent="SoundPool" unique_id=303249199 instance=ExtResource("4_n45e2")]
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="SoundPool/SoundQueue3" unique_id=931889766]
-stream = ExtResource("7_trj04")
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]

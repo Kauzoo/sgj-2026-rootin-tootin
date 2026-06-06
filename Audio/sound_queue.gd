@@ -1,6 +1,6 @@
 @tool
 extends Node2D
-class_name SoundQueue # Added class_name so you can search it in the node tree
+class_name SoundQueue
 
 @export var count: int = 1
 
@@ -16,7 +16,6 @@ func _ready() -> void:
 	if child is AudioStreamPlayer2D:
 		_audio_stream_players.append(child)
 		
-		# 'for i in count' is the GDScript equivalent of 'for (int i = 0; i < count; i++)'
 		for i in count:
 			var duplicate := child.duplicate() as AudioStreamPlayer2D
 			add_child(duplicate)
@@ -33,7 +32,6 @@ func _get_configuration_warnings() -> PackedStringArray:
 	return warnings
 
 func play_sound() -> void:
-	# Safety check to prevent crashing if the node was not set up correctly
 	if _audio_stream_players.is_empty():
 		return
 		

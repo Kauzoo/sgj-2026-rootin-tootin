@@ -28,12 +28,11 @@ func play_random_sound() -> void:
 	if _sounds.is_empty():
 		return
 		
-	# Safety check: Prevent infinite loop if there's only 1 sound
 	if _sounds.size() == 1:
 		_sounds[0].play_sound()
 		return
 
-	# GDScript does not have a do-while loop, so we emulate it with a while loop
+
 	var index: int = _random.randi_range(0, _sounds.size() - 1)
 	while index == _last_index:
 		index = _random.randi_range(0, _sounds.size() - 1)

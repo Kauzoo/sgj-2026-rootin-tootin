@@ -3,7 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://cvwlxtpxr4pf8" path="res://Audio/SoundQueue.tscn" id="1_7aofj"]
 [ext_resource type="Script" uid="uid://dp8nm3xtaffba" path="res://Audio/sound_manager.gd" id="1_wywao"]
 [ext_resource type="AudioStream" uid="uid://c334ekq7bvohc" path="res://Audio/fail/fail.wav" id="3_7aofj"]
-[ext_resource type="AudioStream" uid="uid://dcgmlkppfphc5" path="res://Audio/BackgroundFill3.wav" id="4_r1diy"]
+[ext_resource type="PackedScene" uid="uid://g30maaswpnct" path="res://Audio/SoundPool.tscn" id="4_dwvko"]
+[ext_resource type="AudioStream" uid="uid://wgyt6oamk15h" path="res://Audio/monsters/crunch/crunch.wav" id="5_r1diy"]
+[ext_resource type="AudioStream" uid="uid://de6cqflsar44m" path="res://Audio/monsters/attack/actor3_attack.wav" id="6_ptgko"]
 
 [node name="SoundManager" type="Node" unique_id=1700541977]
 script = ExtResource("1_wywao")
@@ -14,4 +16,20 @@ script = ExtResource("1_wywao")
 stream = ExtResource("3_7aofj")
 
 [node name="BackgroundAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=432969019]
-stream = ExtResource("4_r1diy")
+
+[node name="MySoundPool" parent="." unique_id=885304415 instance=ExtResource("4_dwvko")]
+
+[node name="SoundQueue" parent="MySoundPool" unique_id=2014337646 instance=ExtResource("1_7aofj")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MySoundPool/SoundQueue" unique_id=246519534]
+stream = ExtResource("5_r1diy")
+
+[node name="SoundQueue2" parent="MySoundPool" unique_id=2130196375 instance=ExtResource("1_7aofj")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MySoundPool/SoundQueue2" unique_id=21277653]
+stream = ExtResource("6_ptgko")
+
+[node name="SoundQueue3" parent="MySoundPool" unique_id=156684491 instance=ExtResource("1_7aofj")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MySoundPool/SoundQueue3" unique_id=1851667896]
+stream = ExtResource("3_7aofj")
