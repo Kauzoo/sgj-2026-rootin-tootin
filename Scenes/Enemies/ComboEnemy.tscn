@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://db875jtfwxqj5"]
 
-[ext_resource type="Script" uid="uid://bgx6tbjdskylb" path="res://Scripts/Enemies/EnemyBase/enemy_base.gd" id="1_combo"]
+[ext_resource type="Script" uid="uid://dp06hvvx2uprv" path="res://Scripts/Enemies/ComboEnemy/combo_enemy.gd" id="1_combo"]
 [ext_resource type="PackedScene" uid="uid://bygc7jb0fwh5f" path="res://Scenes/QTEs/KeyQTE.tscn" id="2_key_qte"]
 [ext_resource type="PackedScene" uid="uid://cdrf71pap7qta" path="res://Scenes/QTEs/MashQTE.tscn" id="2_mash_qte"]
 [ext_resource type="PackedScene" uid="uid://c1comboqte123" path="res://Scenes/QTEs/CombinationQTE.tscn" id="3_combo_qte"]
@@ -9,7 +9,10 @@
 [node name="ComboEnemy" type="Node2D" unique_id=265963331]
 script = ExtResource("1_combo")
 QTE_Node = ExtResource("3_combo_qte")
+basic_qte_scene = ExtResource("2_key_qte")
+special_qte_scene = ExtResource("3_combo_qte")
 QTE_Nodes = Array[PackedScene]([ExtResource("2_key_qte"), ExtResource("2_mash_qte"), ExtResource("3_combo_qte")])
+QTE_Sequence = Array[PackedScene]([ExtResource("2_key_qte"), ExtResource("2_key_qte"), ExtResource("3_combo_qte")])
 qte_marker_path = NodePath("QTEMarker1")
 qte_marker_paths = Array[NodePath]([NodePath("QTEMarker1"), NodePath("QTEMarker2"), NodePath("QTEMarker3")])
 qte_count_override = 3

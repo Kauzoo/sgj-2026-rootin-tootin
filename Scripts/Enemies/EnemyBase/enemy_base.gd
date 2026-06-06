@@ -1,6 +1,9 @@
 class_name EnemyBase extends Node2D
 
 @export var QTE_Node: PackedScene
+@export var basic_qte_scene: PackedScene
+@export var special_qte_scene: PackedScene
+@export var special_qte_index: int = 0
 @export var QTE_Nodes: Array[PackedScene] = []
 @export var QTE_Sequence: Array[PackedScene] = []
 @export var repeat_qte_sequence: bool = true
@@ -15,7 +18,6 @@ class_name EnemyBase extends Node2D
 @export var qte_screen_margin: Vector2 = Vector2(56, 56)
 
 var active_qtes: Array[QTEBase] = []
-var enemy_type: int = 0
 var qtes_required: int = 1
 var qtes_completed: int = 0
 var simultaneous_qte_count: int = 1
@@ -36,14 +38,14 @@ func _setup_qte_sequence():
 	if qte_count_override > 0:
 		qtes_required = qte_count_override
 	else:
-		qtes_required = DifficultyDirector.get_enemy_qte_count(enemy_type)
+		qtes_required = DifficultyDirector.get_enemy_qte_count(self)
 
 	qtes_required = maxi(1, qtes_required)
 
 	if simultaneous_qte_count_override > 0:
 		simultaneous_qte_count = simultaneous_qte_count_override
 	else:
-		simultaneous_qte_count = DifficultyDirector.get_enemy_simultaneous_qte_count(enemy_type)
+		simultaneous_qte_count = DifficultyDirector.get_enemy_simultaneous_qte_count(self)
 
 	simultaneous_qte_count = maxi(1, simultaneous_qte_count)
 
@@ -84,6 +86,17 @@ func _spawn_qte(qte_index: int):
 	add_child(instance)
 
 func _get_qte_scene(qte_index: int) -> PackedScene:
+	if has_special_attack():
+		var clamped_special_index = clampi(special_qte_index, 0, qtes_required - 1)
+		if qte_index == clamped_special_index:
+			return special_qte_scene
+
+		if basic_qte_scene:
+			return basic_qte_scene
+
+	if basic_qte_scene:
+		return basic_qte_scene
+
 	if qte_index < QTE_Sequence.size():
 		return QTE_Sequence[qte_index]
 
@@ -94,6 +107,12 @@ func _get_qte_scene(qte_index: int) -> PackedScene:
 		return QTE_Nodes.pick_random()
 
 	return QTE_Node
+
+func has_special_attack() -> bool:
+	return special_qte_scene != null
+
+func get_min_qte_count() -> int:
+	return 1
 
 func _update_progress_bar():
 	if progress_bar:

@@ -26,7 +26,7 @@ func _unhandled_input(event):
 
 func _on_timeout():
 	# yes, im lazy :P
-	get_parent().get_parent().get_parent().remove_key_qte(self)
+	get_parent().get_parent().remove_key_qte(self)
 	QTE_failed.emit(position)
 	queue_free()
 

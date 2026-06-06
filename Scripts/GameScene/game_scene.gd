@@ -61,12 +61,17 @@ func _ready():
 	$HealthLabel.text = "DOOR HELTH: " + str(health)
 
 func _on_global_spawn_timeout():
+	if not DifficultyDirector.can_spawn_enemy():
+		global_spawn_timer.start(DifficultyDirector.get_spawn_delay())
+		return
+
 	var available_cracks = []
 	for child in get_children():
 		if child is Crack and not child.has_active_monster:
 			available_cracks.append(child)
 			
-	var count = DifficultyDirector.get_spawn_count()
+	var open_enemy_slots = DifficultyDirector.get_max_active_enemies() - DifficultyDirector.get_active_enemy_count()
+	var count = mini(DifficultyDirector.get_spawn_count(), open_enemy_slots)
 
 	while count > 0 and available_cracks.size() > 0:
 		var random_crack = available_cracks.pick_random()
@@ -81,8 +86,7 @@ func _spawn_enemy_at_crack(crack: Crack):
 	if crack.has_active_monster:
 		return
 
-	var enemy_type = DifficultyDirector.get_enemy_type()
-	var enemy_scene = DifficultyDirector.get_enemy_scene(enemy_type)
+	var enemy_scene = DifficultyDirector.get_enemy_scene()
 	if enemy_scene == null:
 		return
 
@@ -92,14 +96,14 @@ func _spawn_enemy_at_crack(crack: Crack):
 		return
 
 	crack.has_active_monster = true
-	enemy.enemy_type = enemy_type
 	enemy.position = crack.position
 	enemy.enemy_killed.connect(_on_enemy_kill)
 	enemy.enemy_removed.connect(_on_enemy_removed.bind(crack))
 	enemy.do_damage.connect(_on_do_damage)
+	DifficultyDirector.register_enemy_spawn(enemy)
 	add_child(enemy)
 
-	if DifficultyDirector.is_special_enemy_type(enemy_type):
+	if enemy.has_special_attack():
 		DifficultyDirector.register_special_spawn(enemy)
 
 func _on_enemy_kill():
@@ -117,7 +121,7 @@ func _on_enemy_removed(crack: Crack):
 
 	if screen_empty:
 		# Fast-track the next spawn if the player cleared everything
-		global_spawn_timer.start(1.0)
+		global_spawn_timer.start(DifficultyDirector.get_clear_screen_spawn_delay())
 
 func _on_do_damage():
 	if health <= 0:
