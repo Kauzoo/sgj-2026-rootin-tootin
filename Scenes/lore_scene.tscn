@@ -1,3 +1,6 @@
 [gd_scene format=3 uid="uid://ber1elbdrhcyv"]
 
+[ext_resource type="Script" uid="uid://c8g8cv2w6lfkh" path="res://Scripts/lore_scene.gd" id="1_gfagx"]
+
 [node name="LoreScreen" type="Node2D" unique_id=608704352]
+script = ExtResource("1_gfagx")
