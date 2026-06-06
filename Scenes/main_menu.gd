@@ -9,3 +9,17 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+
+func _on_start_pressed() -> void:
+	print("start pressed")
+	#get_tree().change_scene_to_file()
+
+
+func _on_options_pressed() -> void:
+	print("options pressed")
+	#get_tree().change_scene_to_file()
+
+func _on_exit_pressed() -> void:
+	print("exit pressed")
+	get_tree().quit()

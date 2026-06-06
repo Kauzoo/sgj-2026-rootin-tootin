@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://x8ugmofprt1c"]
 
+[ext_resource type="Script" uid="uid://h48vuq47kof6" path="res://Scenes/main_menu.gd" id="1_853f1"]
 [ext_resource type="Texture2D" uid="uid://80g8ggqx4fc1" path="res://Scripts/MainMenuBackgroundDummy.png" id="1_tt5f1"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_853f1"]
@@ -13,6 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_853f1")
 
 [node name="Panel" type="Panel" parent="." unique_id=888788405]
 layout_mode = 1
@@ -60,12 +62,16 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "Start"
 
-[node name="Op" type="Button" parent="VBoxContainer" unique_id=644271291]
+[node name="Options" type="Button" parent="VBoxContainer" unique_id=644271291]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Options"
 
-[node name="Ex" type="Button" parent="VBoxContainer" unique_id=1133249254]
+[node name="Exit" type="Button" parent="VBoxContainer" unique_id=1133249254]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Exit"
+
+[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]
