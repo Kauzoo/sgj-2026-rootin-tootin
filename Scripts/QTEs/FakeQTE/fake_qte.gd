@@ -6,7 +6,7 @@ func _process(_delta):
 
 func _draw():
 	var ratio: float = $FailTimer.time_left / $FailTimer.wait_time
-	draw_arc(Vector2(0, 0),40, 0 - 0.5 * PI, (1 - ratio) * 2 * PI - 0.5 * PI, 100, Color(1, 1 - ratio, 1 - ratio), 3)
+	draw_arc(Vector2(0, 0),40, 0 - 0.5 * PI, ratio * 2 * PI - 0.5 * PI, 100, Color(1, ratio, ratio), 3)
 
 
 func _unhandled_input(event):
@@ -18,8 +18,8 @@ func _unhandled_input(event):
 
 	if event is InputEventKey and event.pressed and not event.is_echo():
 		if event.key_label == key:
-				# yes, im lazy :P
-			get_parent().get_parent().get_parent().remove_key_qte(self)
+			# yes, im lazy :P
+			get_parent().get_parent().remove_key_qte(self)
 			get_viewport().set_input_as_handled()
 			QTE_failed.emit(position)
 			queue_free()
@@ -34,7 +34,7 @@ func check_event(event):
 	if event is InputEventKey and event.pressed and not event.is_echo():
 		if event.key_label == key:
 			# yes, im lazy :P
-			get_parent().get_parent().get_parent().remove_key_qte(self)
+			get_parent().get_parent().remove_key_qte(self)
 			get_viewport().set_input_as_handled()
 			QTE_failed.emit(position)
 			queue_free()
