@@ -2,21 +2,16 @@
 
 [ext_resource type="PackedScene" uid="uid://cvwlxtpxr4pf8" path="res://Audio/SoundQueue.tscn" id="1_7aofj"]
 [ext_resource type="Script" uid="uid://dp8nm3xtaffba" path="res://Audio/sound_manager.gd" id="1_wywao"]
-[ext_resource type="AudioStream" uid="uid://cti4onlfo4lli" path="res://Audio/BackgroundFill1.wav" id="2_wywao"]
-[ext_resource type="AudioStream" uid="uid://bfudj1ryiev27" path="res://Audio/BackgroundFill2.wav" id="3_dwvko"]
+[ext_resource type="AudioStream" uid="uid://c334ekq7bvohc" path="res://Audio/fail/fail.wav" id="3_7aofj"]
 [ext_resource type="AudioStream" uid="uid://dcgmlkppfphc5" path="res://Audio/BackgroundFill3.wav" id="4_r1diy"]
 
 [node name="SoundManager" type="Node" unique_id=1700541977]
 script = ExtResource("1_wywao")
 
 [node name="FireballSoundQueue" parent="." unique_id=1670010076 instance=ExtResource("1_7aofj")]
-count = 3
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="FireballSoundQueue" unique_id=430270403]
-stream = ExtResource("2_wywao")
+stream = ExtResource("3_7aofj")
 
-[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="FireballSoundQueue" unique_id=1856514466]
-stream = ExtResource("3_dwvko")
-
-[node name="AudioStreamPlayer2D3" type="AudioStreamPlayer2D" parent="FireballSoundQueue" unique_id=1729574156]
+[node name="BackgroundAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=432969019]
 stream = ExtResource("4_r1diy")
