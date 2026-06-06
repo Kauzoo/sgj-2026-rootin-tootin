@@ -27,14 +27,20 @@ func _unhandled_key_input(event: InputEvent):
 	if event is InputEventKey and event.pressed and not event.is_echo():
 		if event.key_label in [KEY_W, KEY_A, KEY_S, KEY_D]:
 			var handled = false
-			for qte in key_qtes.duplicate():
+			
+			# sort: real QTEs first, fake QTEs last
+			var sorted_qtes = key_qtes.duplicate()
+			sorted_qtes.sort_custom(func(a, b):
+				return not (a is FakeQTE) and (b is FakeQTE)
+			)
+			
+			for qte in sorted_qtes:
 				if is_instance_valid(qte):
 					if await qte.check_event(key_event):
 						handled = true
 						break
 				else:
 					remove_key_qte(qte)
-
 			if not handled:
 				_fail_first_active_qte()
 
