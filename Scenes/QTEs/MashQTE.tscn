@@ -1,7 +1,16 @@
 [gd_scene format=3 uid="uid://cdrf71pap7qta"]
 
 [ext_resource type="Script" uid="uid://dmco4uamr1r7s" path="res://Scripts/QTEs/MashQTE/mash_qte.gd" id="1_pej63"]
+[ext_resource type="AudioStream" uid="uid://n4rtxymlxyx1" path="res://Audio/clicks/click_sound.mp3" id="2_35tjj"]
+[ext_resource type="AudioStream" uid="uid://6yl67no8be5c" path="res://Audio/squish/impactsplat01.mp3" id="2_exfd6"]
 [ext_resource type="Script" uid="uid://femew35nexgq" path="res://Scripts/QTEs/KeyQTE/key_sprite.gd" id="2_j638d"]
+[ext_resource type="AudioStream" uid="uid://dpwqn6vnklpd5" path="res://Audio/squish/impactsplat02.mp3" id="3_35tjj"]
+[ext_resource type="AudioStream" uid="uid://dv2ve84yi7fns" path="res://Audio/squish/impactsplat03.mp3" id="4_yvcdv"]
+[ext_resource type="AudioStream" uid="uid://se30tmrv58vm" path="res://Audio/squish/impactsplat04.mp3" id="5_w5rvr"]
+[ext_resource type="AudioStream" uid="uid://clb40wv51inqu" path="res://Audio/squish/impactsplat05.mp3" id="6_x8477"]
+[ext_resource type="AudioStream" uid="uid://l6pncfkx130u" path="res://Audio/squish/impactsplat06.mp3" id="7_uv2lb"]
+[ext_resource type="AudioStream" uid="uid://b3s0scjqi1hg5" path="res://Audio/squish/impactsplat07.mp3" id="8_p7ucl"]
+[ext_resource type="AudioStream" uid="uid://bsbbj0p471237" path="res://Audio/squish/impactsplat08.mp3" id="9_fgtow"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_j638d"]
 outline_size = 2
@@ -13,6 +22,8 @@ script/source = "extends Timer
 
 [node name="MashQte" type="Node2D" unique_id=623888431]
 script = ExtResource("1_pej63")
+click_sound = ExtResource("2_35tjj")
+success_sounds = Array[AudioStream]([ExtResource("2_exfd6"), ExtResource("3_35tjj"), ExtResource("4_yvcdv"), ExtResource("5_w5rvr"), ExtResource("6_x8477"), ExtResource("7_uv2lb"), ExtResource("8_p7ucl"), ExtResource("9_fgtow")])
 
 [node name="NumberLabel" type="Label" parent="." unique_id=1144780888]
 offset_left = -20.0
@@ -31,3 +42,5 @@ wait_time = 15.0
 one_shot = true
 autostart = true
 script = SubResource("GDScript_a2hfp")
+
+[node name="SuccessSound" type="AudioStreamPlayer2D" parent="." unique_id=806062045]
