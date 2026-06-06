@@ -2,12 +2,32 @@ class_name GameScene extends Node2D
 
 @export var health: int
 
+var key_event: InputEvent
+var key_qtes: Array[QTEBase] = []
 var kills: int = 0
 
 signal game_over(score)
 
 var health_max: int
 var global_spawn_timer: Timer
+
+func add_key_qte(qte):
+	key_qtes.append(qte)
+
+func remove_key_qte(qte):
+	key_qtes.erase(qte)
+
+func _unhandled_key_input(event: InputEvent):
+	key_event = event
+	if event is InputEventKey and event.pressed and not event.is_echo():
+			if event.key_label in [KEY_W, KEY_A, KEY_S, KEY_D]:
+				var _a = key_qtes.all(check)
+				get_viewport().set_input_as_handled()
+				_on_do_damage()
+
+func check(qte):
+	qte.check_event(key_event)
+	return qte.key != key_event.key_label
 
 func _ready():
 	health_max = health
@@ -54,9 +74,3 @@ func _on_do_damage():
 
 func doGameOver():
 	game_over.emit(kills)
-
-func _unhandled_input(event):
-	if event is InputEventKey and event.pressed and not event.is_echo():
-		if event.key_label in [KEY_W, KEY_A, KEY_S, KEY_D]:
-			get_viewport().set_input_as_handled()
-			_on_do_damage()
