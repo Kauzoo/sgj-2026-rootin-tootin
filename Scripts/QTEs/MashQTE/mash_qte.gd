@@ -1,6 +1,9 @@
 class_name MashQTE extends KeyQTE
 
 var mash_amount: int = 10
+var initial_mash_amount: int = mash_amount
+var active_tween: Tween
+@export var click_sound: AudioStream
 
 func _ready():
 	add_to_group("qte")
@@ -20,16 +23,42 @@ func check_event(event):
 		if event.key_label == key:
 			_mark_input_as_handled()
 
+			if is_resolved:
+				return true
+
 			mash_amount -= 1
 			$NumberLabel.text = str(mash_amount)
 
-			if mash_amount <= 0:
-				if is_resolved:
-					return true
+			if active_tween and active_tween.is_valid():
+				active_tween.kill()
 
+			active_tween = create_tween()
+			$KeySprite.scale = Vector2(2.0, 2.0)
+			active_tween.tween_property($KeySprite, "scale", Vector2(1.7, 1.7), 0.15).set_trans(Tween.TRANS_SPRING)
+
+			if mash_amount > 0:
+				var progress = 1.0 - (float(mash_amount) / max(float(initial_mash_amount), 1.0))
+
+				$SuccessSound.pitch_scale = lerp(1.0, 2.0, progress)
+				if click_sound:
+					$SuccessSound.stream = click_sound
+					$SuccessSound.play()
+			else:
 				is_resolved = true
 				unregister_key_qte()
 				$FailTimer.stop()
+
+				$SuccessSound.pitch_scale = 1.0
+				if not success_sounds.is_empty():
+					$SuccessSound.stream = success_sounds.pick_random()
+					$SuccessSound.play()
+
+				var tween = create_tween()
+				tween.set_trans(Tween.TRANS_SINE)
+				tween.tween_property($KeySprite, "position:y", $KeySprite.position.y + 5, 0.1)
+
+				await get_tree().create_timer(0.5).timeout
+
 				DifficultyDirector.start_input_cooldown(0.25)
 				QTE_succeded.emit(position)
 				queue_free()

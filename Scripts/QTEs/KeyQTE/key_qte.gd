@@ -1,6 +1,7 @@
 class_name KeyQTE extends QTEBase
 
 var key: int = [KEY_W, KEY_A, KEY_S, KEY_D].pick_random()
+@export var success_sounds: Array[AudioStream]
 var is_resolved: bool = false
 
 func _ready():
@@ -62,6 +63,17 @@ func check_event(event):
 			is_resolved = true
 			unregister_key_qte()
 			_mark_input_as_handled()
+			$FailTimer.stop()
+
+			if not success_sounds.is_empty():
+				$SuccessSound.stream = success_sounds.pick_random()
+				$SuccessSound.play()
+
+			var tween = create_tween()
+			tween.set_trans(Tween.TRANS_SINE)
+			tween.tween_property($KeySprite, "position:y", $KeySprite.position.y + 5, 0.1)
+
+			await get_tree().create_timer(0.5).timeout
 			QTE_succeded.emit(position)
 			queue_free()
 			return true
