@@ -15,6 +15,10 @@ run/main_scene="uid://x8ugmofprt1c"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://Sprites/icon.svg"
 
+[autoload]
+
+SoundManager="*uid://cuxflus7emis8"
+
 [display]
 
 window/size/viewport_width=176
