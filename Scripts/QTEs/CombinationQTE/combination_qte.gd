@@ -24,10 +24,13 @@ func _unhandled_input(event):
 			event.pressed = false
 
 func check_event(event):
-		if event is InputEventKey and event.pressed and not event.is_echo():
-			if event.key_label == key:
-				get_viewport().set_input_as_handled()
-				advance_sequence()
+	if event is InputEventKey and event.pressed and not event.is_echo():
+		if event.key_label == key:
+			get_viewport().set_input_as_handled()
+			advance_sequence()
+			return true
+
+	return false
 
 func advance_sequence():
 	if is_resolved:

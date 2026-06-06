@@ -3,11 +3,15 @@
 [ext_resource type="Script" uid="uid://bgx6tbjdskylb" path="res://Scripts/Enemies/EnemyBase/enemy_base.gd" id="1_iiq2q"]
 [ext_resource type="Texture2D" uid="uid://d20vg2fpqj1eb" path="res://Sprites/Roots/placeholder.png" id="2_p6c21"]
 [ext_resource type="PackedScene" uid="uid://bygc7jb0fwh5f" path="res://Scenes/QTEs/KeyQTE.tscn" id="2_srcxp"]
+[ext_resource type="PackedScene" uid="uid://cdrf71pap7qta" path="res://Scenes/QTEs/MashQTE.tscn" id="3_mash_qte"]
 
 [node name="EnemyBase" type="Node2D" unique_id=710950401]
 script = ExtResource("1_iiq2q")
 QTE_Node = ExtResource("2_srcxp")
+QTE_Nodes = Array[PackedScene]([ExtResource("2_srcxp"), ExtResource("3_mash_qte")])
+QTE_Sequence = Array[PackedScene]([ExtResource("2_srcxp"), ExtResource("3_mash_qte")])
 qte_marker_path = NodePath("QTEMarker")
+qte_marker_paths = Array[NodePath]([NodePath("QTEMarker")])
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=912470458]
 scale = Vector2(0.2, 0.2)

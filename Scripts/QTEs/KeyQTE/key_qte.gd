@@ -18,6 +18,9 @@ func _on_timeout():
 	QTE_failed.emit(position)
 	queue_free()
 
+func force_fail():
+	_on_timeout()
+
 func _process(_delta):
 	queue_redraw()
 
@@ -49,10 +52,13 @@ func check_event(event):
 	if event is InputEventKey and event.pressed and not event.is_echo():
 		if event.key_label == key:
 			if is_resolved:
-				return
+				return true
 
 			is_resolved = true
 			unregister_key_qte()
 			get_viewport().set_input_as_handled()
 			QTE_succeded.emit(position)
 			queue_free()
+			return true
+
+	return false

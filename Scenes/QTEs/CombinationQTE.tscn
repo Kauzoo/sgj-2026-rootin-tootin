@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c1comboqte123"]
 
-[ext_resource type="Script" uid="uid://bf5lt1h12p35c" path="res://Scripts/QTEs/CombinationQTE/combination_qte.gd" id="1_combo"]
+[ext_resource type="Script" uid="uid://boq1fv0jjn7vi" path="res://Scripts/QTEs/CombinationQTE/combination_qte.gd" id="1_combo"]
 [ext_resource type="Script" uid="uid://femew35nexgq" path="res://Scripts/QTEs/KeyQTE/key_sprite.gd" id="2_j638d"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_j638d"]

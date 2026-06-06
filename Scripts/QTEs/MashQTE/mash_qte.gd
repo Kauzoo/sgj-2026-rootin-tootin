@@ -30,7 +30,7 @@ func check_event(event):
 
 			if mash_amount <= 0:
 				if is_resolved:
-					return
+					return true
 
 				is_resolved = true
 				unregister_key_qte()
@@ -38,3 +38,6 @@ func check_event(event):
 				DifficultyDirector.start_input_cooldown(0.25)
 				QTE_succeded.emit(position)
 				queue_free()
+			return true
+
+	return false

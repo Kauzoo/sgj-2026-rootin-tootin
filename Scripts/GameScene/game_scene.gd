@@ -21,11 +21,25 @@ func _unhandled_key_input(event: InputEvent):
 	key_event = event
 	if event is InputEventKey and event.pressed and not event.is_echo():
 		if event.key_label in [KEY_W, KEY_A, KEY_S, KEY_D]:
+			var handled = false
 			for qte in key_qtes.duplicate():
 				if is_instance_valid(qte):
-					qte.check_event(key_event)
+					if qte.check_event(key_event):
+						handled = true
+						break
 				else:
 					remove_key_qte(qte)
+
+			if not handled:
+				_fail_first_active_qte()
+
+func _fail_first_active_qte():
+	for qte in key_qtes.duplicate():
+		if is_instance_valid(qte):
+			qte.force_fail()
+			get_viewport().set_input_as_handled()
+			return
+		remove_key_qte(qte)
 
 func _ready():
 	health_max = health

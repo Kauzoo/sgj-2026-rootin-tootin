@@ -151,9 +151,15 @@ func get_enemy_qte_count(enemy_type: int) -> int:
 		count += 1
 
 	if enemy_type == EnemyType.QUICK_COMBO:
-		count -= 1
+		count = maxi(3, count)
 
 	return maxi(1, count)
+
+func get_enemy_simultaneous_qte_count(enemy_type: int) -> int:
+	if enemy_type == EnemyType.QUICK_COMBO:
+		return 3
+
+	return 1
 
 func _get_weights(time_factor: float) -> Dictionary:
 	# 1. RAPID ONBOARDING (0.0 to 0.2)

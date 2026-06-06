@@ -27,4 +27,7 @@ func unregister_key_qte():
 		manager.remove_key_qte(self)
 
 func check_event(event):
+	return false
+
+func force_fail():
 	pass
