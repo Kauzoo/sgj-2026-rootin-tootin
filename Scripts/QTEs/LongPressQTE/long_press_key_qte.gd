@@ -34,10 +34,14 @@ func _unhandled_input(event):
 			hold_timer = 0.0
 		$FailTimer.paused = is_holding
 
-func check_event(event):
+func check_event(event) -> bool:
 	if event is InputEventKey and event.key_label == key:
 		if event.pressed and not event.is_echo():
 			is_holding = true
+			$FailTimer.paused = true
 		elif not event.pressed:
 			is_holding = false
 			hold_timer = 0.0
+			$FailTimer.paused = false
+		return true
+	return false
