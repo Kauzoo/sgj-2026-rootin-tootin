@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://x6v4fn460e2m"]
+
+[ext_resource type="Texture2D" uid="uid://whsh33txgwc0" path="res://Sprites/Sprite Sheets/SensingAppleSpritesheet37x38.png" id="1_35aug"]
+
+[sub_resource type="Animation" id="Animation_23u3k"]
+resource_name = "Enemy4_Death"
+length = 3.5333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.041666746, 0.54166675, 1.0416667, 1.5416667, 2.0333333, 2.5333333, 3.0333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 5, 4, 3, 2, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_6kx4g"]
+resource_name = "Enemy4_Idle"
+length = 1.5666667
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.03333333, 0.53333336, 1.0333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_u7lwr"]
+resource_name = "Enemy4_Spawn"
+length = 4.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.4666667, 1.9666667, 2.4333334, 2.9333334, 3.4333334, 3.9333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+}
+
+[sub_resource type="Animation" id="Animation_emkg4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ddwcc"]
+_data = {
+&"Enemy4_Death": SubResource("Animation_23u3k"),
+&"Enemy4_Idle": SubResource("Animation_6kx4g"),
+&"Enemy4_Spawn": SubResource("Animation_u7lwr"),
+&"RESET": SubResource("Animation_emkg4")
+}
+
+[node name="Enemy4" type="Sprite2D" unique_id=557700121]
+texture_filter = 1
+texture = ExtResource("1_35aug")
+hframes = 9
+vframes = 2
+
+[node name="Enemy4Animation" type="AnimationPlayer" parent="." unique_id=1829585823]
+libraries/ = SubResource("AnimationLibrary_ddwcc")
+speed_scale = 2.0
