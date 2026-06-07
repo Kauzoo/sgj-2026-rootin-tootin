@@ -2,6 +2,14 @@ extends Control
 
 signal go_to_lore()
 
+@export var StartHoverImage : Sprite2D
+@export var OptionsHoverImage : Sprite2D
+@export var ExitHoverImage : Sprite2D
+
+@export var startButton : Button
+@export var optionsButton : Button
+@export var exitButton : Button
+
 # grabby grab, not to grab here!
 #@onready var my_sound_pool := $SoundPool as SoundPool
 
@@ -17,6 +25,23 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+func _on_start_hovered() -> void:
+	StartHoverImage.visible = true
+	
+func _on_start_not_hovered() -> void:
+	StartHoverImage.visible = false
+	
+func _on_options_hovered() -> void:
+	OptionsHoverImage.visible = true
+	
+func _on_options_not_hovered() -> void:
+	OptionsHoverImage.visible = false
+	
+func _on_exit_hovered() -> void:
+	ExitHoverImage.visible = true
+	
+func _on_exit_not_hovered() -> void:
+	ExitHoverImage.visible = false
 
 func _on_start_pressed() -> void:
 	print("start pressed")
