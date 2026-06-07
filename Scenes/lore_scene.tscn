@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ber1elbdrhcyv"]
 
 [ext_resource type="Script" uid="uid://dhpt3bhabvukr" path="res://Scripts/Lore/lore_text_handler.gd" id="1_nufj5"]
+[ext_resource type="Texture2D" uid="uid://trobqm086b6e" path="res://2DArt/LeaderBoard/RecordScreen.png" id="2_ehu5x"]
 [ext_resource type="Texture2D" uid="uid://c8hgbbj0vl7wp" path="res://Sprites/Background/333138.png" id="2_k0ioc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_k0ioc"]
@@ -10,10 +11,16 @@ font_color = Color(0.8862745, 0.8862745, 0.8862745, 1)
 script = ExtResource("1_nufj5")
 label = NodePath("LabelLoreText")
 
+[node name="RecordScreen" type="Sprite2D" parent="." unique_id=1999348147]
+position = Vector2(-2, -1)
+scale = Vector2(4, 4)
+texture = ExtResource("2_ehu5x")
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1466778943]
 
 [node name="Background" type="Sprite2D" parent="." unique_id=2072618065]
-position = Vector2(-352.00003, -200.00002)
+visible = false
+position = Vector2(-352, -200)
 scale = Vector2(0.36666667, 0.3703704)
 texture = ExtResource("2_k0ioc")
 centered = false

@@ -14,6 +14,7 @@ func _ready():
 	instance.go_to_lore.connect(_on_lore)
 	current_scene = instance
 	add_child(instance)
+	SoundManager.play_bgm()
 
 func _on_lore():
 	remove_child(current_scene)
@@ -46,6 +47,8 @@ func _on_game_over(achieved_score):
 	current_scene = instance
 	instance.go_to_lb.connect(_on_lb)
 	add_child(instance)
+	
+	#SoundManager.play_fireball_sound()
 
 func _on_lb():
 	remove_child(current_scene)
@@ -61,7 +64,7 @@ func _on_lb():
 func _on_menu():
 	remove_child(current_scene)
 	current_scene.queue_free()
-
+	
 	var instance: Node = Main_Menu.instantiate()
 	instance.go_to_lore.connect(_on_lore)
 	current_scene = instance

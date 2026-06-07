@@ -2,11 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://cvwlxtpxr4pf8" path="res://Scenes/Sound/SoundQueue.tscn" id="1_7aofj"]
 [ext_resource type="Script" uid="uid://dp8nm3xtaffba" path="res://Scripts/Sound/sound_manager.gd" id="1_wywao"]
-[ext_resource type="AudioStream" uid="uid://0ap50m4fkmff" path="res://Audio/sountrack/GameOver.wav" id="3_2j71b"]
+[ext_resource type="AudioStream" uid="uid://cesr61nvboq1o" path="res://Audio/sountrack/GameOver.wav" id="3_2j71b"]
 [ext_resource type="AudioStream" uid="uid://c334ekq7bvohc" path="res://Audio/fail/fail.wav" id="3_7aofj"]
-[ext_resource type="AudioStream" uid="uid://crgekiabpwxxd" path="res://Audio/sountrack/MainLoopPart1.wav" id="4_0a8f6"]
 [ext_resource type="PackedScene" uid="uid://g30maaswpnct" path="res://Scenes/Sound/SoundPool.tscn" id="4_oenb2"]
 [ext_resource type="AudioStream" uid="uid://de6cqflsar44m" path="res://Audio/monsters/attack/actor3_attack.wav" id="5_0a8f6"]
+[ext_resource type="AudioStream" uid="uid://ckghrxlnsnphr" path="res://Audio/birds_before_invasion.wav" id="5_jhpbo"]
 [ext_resource type="AudioStream" uid="uid://wgyt6oamk15h" path="res://Audio/monsters/crunch/crunch.wav" id="6_2j71b"]
 
 [node name="SoundManager" type="Node" unique_id=1700541977]
@@ -16,14 +16,23 @@ script = ExtResource("1_wywao")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="FireballSoundQueue" unique_id=430270403]
 stream = ExtResource("3_2j71b")
+volume_db = 24.0
 
 [node name="FailedSoundQueue" parent="." unique_id=1877156113 instance=ExtResource("1_7aofj")]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="FailedSoundQueue" unique_id=2087980150]
 stream = ExtResource("3_7aofj")
+volume_db = 13.053
+
+[node name="BirdsSoundQueue" parent="." unique_id=795630833 instance=ExtResource("1_7aofj")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="BirdsSoundQueue" unique_id=1848774072]
+stream = ExtResource("5_jhpbo")
+volume_db = 13.053
 
 [node name="BackgroundAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=432969019]
-stream = ExtResource("4_0a8f6")
+stream = ExtResource("5_jhpbo")
+volume_db = 24.0
 
 [node name="MySoundPool" parent="." unique_id=885304415 instance=ExtResource("4_oenb2")]
 
