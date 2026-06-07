@@ -1,6 +1,7 @@
 extends Control
 
 signal go_to_lore()
+signal go_to_leaderboard()
 
 @export var StartHoverImage : Sprite2D
 @export var OptionsHoverImage : Sprite2D
@@ -54,7 +55,7 @@ func _input(event) -> void:
 
 func _on_options_pressed() -> void:
 	print("options pressed")
-	#get_tree().change_scene_to_file()
+	go_to_leaderboard.emit()
 
 func _on_exit_pressed() -> void:
 	print("exit pressed")

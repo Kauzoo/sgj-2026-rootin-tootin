@@ -6,17 +6,23 @@ extends Node2D
 
 @export var nameMenu: NameMenu
 
+var is_name_required := true
 var score := 0
 signal go_to_menu
 
 var highlightName: String
 
 func _ready():
-	leaderboardControl.hide()
-	nameMenu.show()
-	
-	nameMenu.set_score(score)
-	nameMenu.name_entered.connect(_on_name_entered)
+	if is_name_required:
+		leaderboardControl.hide()
+		nameMenu.show()
+		nameMenu.set_score(score)
+		nameMenu.name_entered.connect(_on_name_entered)
+	else:
+		leaderboardControl.show()
+		nameMenu.hide()
+		
+		load_scores()
 
 func _on_name_entered():
 	highlightName = nameMenu.nameLine.text

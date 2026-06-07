@@ -12,6 +12,8 @@ var score: int = 0
 func _ready():
 	var instance: Node = Main_Menu.instantiate()
 	instance.go_to_lore.connect(_on_lore)
+	instance.go_to_leaderboard.connect(_on_lb_from_home)
+	
 	current_scene = instance
 	add_child(instance)
 	SoundManager.play_bgm()
@@ -57,9 +59,22 @@ func _on_lb():
 	var instance: Node = Leaderboard_Scene.instantiate()
 	current_scene = instance
 	instance.score = score
+	
 	instance.go_to_menu.connect(_on_menu)
+	instance.is_name_required = true
 	add_child(instance)
 	SoundManager.play_fireball_sound()
+
+func _on_lb_from_home():
+	remove_child(current_scene)
+	current_scene.queue_free()
+	
+	var instance: Node = Leaderboard_Scene.instantiate()
+	current_scene = instance
+	
+	instance.go_to_menu.connect(_on_menu)
+	instance.is_name_required = false
+	add_child(instance)
 
 func _on_menu():
 	remove_child(current_scene)
@@ -67,5 +82,6 @@ func _on_menu():
 	
 	var instance: Node = Main_Menu.instantiate()
 	instance.go_to_lore.connect(_on_lore)
+	instance.go_to_leaderboard.connect(_on_lb_from_home)
 	current_scene = instance
 	add_child(instance)

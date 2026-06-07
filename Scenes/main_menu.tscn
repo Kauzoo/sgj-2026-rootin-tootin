@@ -2,14 +2,22 @@
 
 [ext_resource type="Script" uid="uid://h48vuq47kof6" path="res://Scripts/main_menu.gd" id="1_48xlc"]
 [ext_resource type="Texture2D" uid="uid://80g8ggqx4fc1" path="res://Sprites/MainMenuBackgroundDummy.png" id="2_1ehe0"]
-[ext_resource type="Texture2D" uid="uid://dn0jqt5ehqhpl" path="res://2DArt/MainMenu/MainMenuReference.png" id="3_1ehe0"]
+[ext_resource type="Texture2D" uid="uid://cjf3t7j55p54r" path="res://2DArt/MainMenu/MainMenuBG.png" id="2_trj04"]
 [ext_resource type="Texture2D" uid="uid://hnsbjq33x2o5" path="res://2DArt/MainMenu/ExitButtonHover.png" id="4_opfnp"]
 [ext_resource type="Texture2D" uid="uid://donociiffmcj0" path="res://2DArt/MainMenu/StartButtonHover.png" id="5_cp0ys"]
 [ext_resource type="Texture2D" uid="uid://dqlnavsux4v8u" path="res://2DArt/MainMenu/SttingsButtonHover.png" id="6_yhxw7"]
+[ext_resource type="Texture2D" uid="uid://c53a0iroiydt6" path="res://2DArt/MainMenu/StartButton.png" id="7_16hvj"]
+[ext_resource type="Texture2D" uid="uid://b2uhp06g8eml7" path="res://2DArt/MainMenu/SttingsButton.png" id="8_vr1f0"]
+[ext_resource type="Texture2D" uid="uid://dtq8tbegwflju" path="res://2DArt/MainMenu/ExitButton.png" id="9_t1dhk"]
+[ext_resource type="FontFile" uid="uid://dusrtyvp60142" path="res://Fonts/jupiter-crash-brk/jupiterc.ttf" id="10_16hvj"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_853f1"]
 texture = ExtResource("2_1ehe0")
 modulate_color = Color(0.53900033, 0.53900033, 0.53900033, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_16hvj"]
+base_font = ExtResource("10_16hvj")
+spacing_glyph = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n45e2"]
 content_margin_left = 4.0
@@ -46,6 +54,11 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
+
+[sub_resource type="FontVariation" id="FontVariation_vr1f0"]
+base_font = ExtResource("10_16hvj")
+spacing_glyph = 5
+spacing_bottom = 45
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_opfnp"]
 content_margin_left = 4.0
@@ -131,13 +144,13 @@ StartHoverImage = NodePath("StartButtonHover")
 OptionsHoverImage = NodePath("SttingsButtonHover")
 ExitHoverImage = NodePath("ExitButtonHover")
 startButton = NodePath("Start")
-optionsButton = NodePath("Options")
+optionsButton = NodePath("Leaderboard")
 exitButton = NodePath("Exit")
 
 [node name="MainMenuReference" type="Sprite2D" parent="." unique_id=134494991]
 position = Vector2(0, -9.536743e-07)
 scale = Vector2(3.9999998, 4.0404043)
-texture = ExtResource("3_1ehe0")
+texture = ExtResource("2_trj04")
 
 [node name="Panel" type="Panel" parent="." unique_id=888788405]
 visible = false
@@ -183,6 +196,21 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 16
 
+[node name="StartButton" type="Sprite2D" parent="." unique_id=72235078]
+position = Vector2(1.2874603e-05, 1.5412843e-07)
+scale = Vector2(4, 4.0404043)
+texture = ExtResource("7_16hvj")
+
+[node name="SttingsButton" type="Sprite2D" parent="." unique_id=1542083234]
+position = Vector2(2.2888187e-05, -8.583069e-06)
+scale = Vector2(4.0000005, 4.0404034)
+texture = ExtResource("8_vr1f0")
+
+[node name="ExitButton" type="Sprite2D" parent="." unique_id=1658352139]
+position = Vector2(0, 1.3589859e-05)
+scale = Vector2(4, 4.040404)
+texture = ExtResource("9_t1dhk")
+
 [node name="StartButtonHover" type="Sprite2D" parent="." unique_id=1559600511]
 visible = false
 modulate = Color(1, 1, 1, 0.50980395)
@@ -206,47 +234,59 @@ texture = ExtResource("4_opfnp")
 
 [node name="Start" type="Button" parent="." unique_id=1147333525]
 layout_mode = 0
-offset_left = -1.5034294
-offset_top = -199.18253
-offset_right = 244.91042
-offset_bottom = -157.2972
+offset_left = 0.9999962
+offset_top = -202.00002
+offset_right = 247.41385
+offset_bottom = -154.00002
 rotation = 0.21118484
 size_flags_vertical = 3
 focus_mode = 0
+theme_override_colors/font_color = Color(0.05882353, 0.21960784, 0.05882353, 1)
+theme_override_fonts/font = SubResource("FontVariation_16hvj")
+theme_override_font_sizes/font_size = 37
 theme_override_styles/normal = SubResource("StyleBoxFlat_n45e2")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_1ehe0")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ce3w2")
+text = "START"
 
-[node name="Options" type="Button" parent="." unique_id=644271291]
+[node name="Leaderboard" type="Button" parent="." unique_id=644271291]
 layout_mode = 0
 offset_left = -368.0
 offset_top = -96.000015
 offset_right = -147.1546
 offset_bottom = -37.499924
-rotation = -0.3700098
+rotation = -0.2984513
 size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.2, 0.19215687, 0.21960784, 1)
+theme_override_fonts/font = SubResource("FontVariation_vr1f0")
+theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxFlat_opfnp")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_yhxw7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_trj04")
+text = "LEADERBOARD"
 
 [node name="Exit" type="Button" parent="." unique_id=1133249254]
 layout_mode = 0
-offset_left = 64.0
-offset_top = 200.00002
-offset_right = 274.91272
-offset_bottom = 325.0
+offset_left = 76.57246
+offset_top = 198.59738
+offset_right = 275.80057
+offset_bottom = 301.70047
 rotation = -0.50440013
 size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.2, 0.19215687, 0.21960784, 1)
+theme_override_fonts/font = SubResource("FontVariation_vr1f0")
+theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxFlat_cp0ys")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_16hvj")
 theme_override_styles/hover = SubResource("StyleBoxFlat_vr1f0")
+text = "  EXIT"
 
 [connection signal="mouse_entered" from="Start" to="." method="_on_start_hovered"]
 [connection signal="mouse_exited" from="Start" to="." method="_on_start_not_hovered"]
 [connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
-[connection signal="mouse_entered" from="Options" to="." method="_on_options_hovered"]
-[connection signal="mouse_exited" from="Options" to="." method="_on_options_not_hovered"]
-[connection signal="pressed" from="Options" to="." method="_on_options_pressed"]
+[connection signal="mouse_entered" from="Leaderboard" to="." method="_on_options_hovered"]
+[connection signal="mouse_exited" from="Leaderboard" to="." method="_on_options_not_hovered"]
+[connection signal="pressed" from="Leaderboard" to="." method="_on_options_pressed"]
 [connection signal="mouse_entered" from="Exit" to="." method="_on_exit_hovered"]
 [connection signal="mouse_exited" from="Exit" to="." method="_on_exit_not_hovered"]
 [connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
