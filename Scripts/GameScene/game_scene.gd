@@ -145,10 +145,17 @@ func _on_do_damage():
 
 	health -= 1
 	DifficultyDirector.update_door_health(health, health_max)
+	
+	_flash_damage()
 
 	if health <= 0:
 		doGameOver()
 		return
+
+func _flash_damage():
+	var tween = create_tween()
+	$DamageFlash.color.a = 0.4          # start visible
+	tween.tween_property($DamageFlash, "color:a", 0.0, 0.4)
 
 func doGameOver():
 	if game_is_over:

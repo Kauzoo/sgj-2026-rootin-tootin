@@ -46,3 +46,10 @@ position = Vector2(50, 11)
 position = Vector2(252, 38)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1195229495]
+
+[node name="DamageFlash" type="ColorRect" parent="." unique_id=1776392104]
+offset_left = -352.0
+offset_top = -198.0
+offset_right = 352.0
+offset_bottom = 198.0
+color = Color(0.7921569, 0, 0.12941177, 0)
