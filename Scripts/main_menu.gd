@@ -39,6 +39,7 @@ func _on_start_pressed() -> void:
 	SoundManager.play_click5_sound()
 	go_to_lore.emit()
 
+# why
 func _input(event) -> void:
 	if event.is_action_pressed("LoreEnterToAdvance (can be replaced later)"):
 		print("start pressed")
