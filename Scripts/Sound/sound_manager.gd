@@ -26,6 +26,12 @@ func _ready() -> void:
 		_sound_queues_by_name["FailedSoundQueue"] = failed_queue
 	else:
 		push_error("FailedSoundQueue node not found!")
+		
+	var bird_queue := $BirdsSoundQueue as SoundQueue
+	if bird_queue:
+		_sound_queues_by_name["BirdsSoundQueue"] = bird_queue
+	else:
+		push_error("BirdsSoundQueue node not found!")	
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -43,7 +49,10 @@ func play_random_pool_sound() -> void:
 func play_failed_sound() -> void:
 	if _sound_queues_by_name.has("FailedSoundQueue"):
 		_sound_queues_by_name["FailedSoundQueue"].play_sound()
-		
+
+func play_bird_sound() -> void:
+	if _sound_queues_by_name.has("BirdSoundQueue"):
+		_sound_queues_by_name["BirdSoundQueue"].play_sound()
 		
 func play_bgm() -> void:
 	if bgm_asp:
