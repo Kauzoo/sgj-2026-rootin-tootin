@@ -1,7 +1,16 @@
 [gd_scene format=3 uid="uid://caenaoqr0ksvp"]
 
 [ext_resource type="Script" uid="uid://drt0tdfakn2k8" path="res://Scripts/QTEs/LongPressQTE/long_press_key_qte.gd" id="1_l2y4t"]
+[ext_resource type="AudioStream" uid="uid://6yl67no8be5c" path="res://Audio/squish/impactsplat01.mp3" id="2_7pkfr"]
 [ext_resource type="Script" uid="uid://femew35nexgq" path="res://Scripts/QTEs/KeyQTE/key_sprite.gd" id="2_o33dc"]
+[ext_resource type="AudioStream" uid="uid://dpwqn6vnklpd5" path="res://Audio/squish/impactsplat02.mp3" id="3_4ftpw"]
+[ext_resource type="AudioStream" uid="uid://tkvgn4uk52ci" path="res://Audio/engine-loop/engine-loop-1-normalized.wav" id="3_o33dc"]
+[ext_resource type="AudioStream" uid="uid://dv2ve84yi7fns" path="res://Audio/squish/impactsplat03.mp3" id="4_so8xa"]
+[ext_resource type="AudioStream" uid="uid://se30tmrv58vm" path="res://Audio/squish/impactsplat04.mp3" id="5_wp5cl"]
+[ext_resource type="AudioStream" uid="uid://clb40wv51inqu" path="res://Audio/squish/impactsplat05.mp3" id="6_4ncls"]
+[ext_resource type="AudioStream" uid="uid://l6pncfkx130u" path="res://Audio/squish/impactsplat06.mp3" id="7_fd86m"]
+[ext_resource type="AudioStream" uid="uid://b3s0scjqi1hg5" path="res://Audio/squish/impactsplat07.mp3" id="8_gx6ve"]
+[ext_resource type="AudioStream" uid="uid://bsbbj0p471237" path="res://Audio/squish/impactsplat08.mp3" id="9_01f8b"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_l2y4t"]
 outline_size = 2
@@ -13,6 +22,7 @@ script/source = "extends Timer
 
 [node name="LongPressQTE" type="Node2D" unique_id=65569346]
 script = ExtResource("1_l2y4t")
+success_sounds = Array[AudioStream]([ExtResource("2_7pkfr"), ExtResource("3_4ftpw"), ExtResource("4_so8xa"), ExtResource("5_wp5cl"), ExtResource("6_4ncls"), ExtResource("7_fd86m"), ExtResource("8_gx6ve"), ExtResource("9_01f8b")])
 
 [node name="NumberLabel" type="Label" parent="." unique_id=943014253]
 offset_left = -20.0
@@ -32,3 +42,6 @@ script = ExtResource("2_o33dc")
 wait_time = 7.0
 one_shot = true
 script = SubResource("GDScript_2bpst")
+
+[node name="SuccessSound" type="AudioStreamPlayer2D" parent="." unique_id=1441476953]
+stream = ExtResource("3_o33dc")
