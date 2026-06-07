@@ -14,6 +14,12 @@ var game_is_over: bool = false
 
 @export var healthBar: ProgressBar
 @export var defaultFill: Color
+@export var damage_shake_strength: float = 8.0
+@export var damage_shake_duration: float = 0.25
+
+var damage_shake_tween: Tween
+var damage_shake_camera: Camera2D
+var damage_shake_base_offset: Vector2
 
 func add_key_qte(qte):
 	key_qtes.append(qte)
@@ -162,6 +168,7 @@ func _on_do_damage():
 	DifficultyDirector.update_door_health(health, health_max)
 	
 	_flash_damage()
+	_shake_camera()
 
 	if health <= 0:
 		doGameOver()
@@ -171,6 +178,43 @@ func _flash_damage():
 	var tween = create_tween()
 	$DamageFlash.color.a = 0.4          # start visible
 	tween.tween_property($DamageFlash, "color:a", 0.0, 0.4)
+
+func _shake_camera():
+	var camera = get_viewport().get_camera_2d()
+	if camera == null:
+		camera = $Camera2D
+	if camera == null:
+		return
+
+	if damage_shake_tween:
+		damage_shake_tween.kill()
+		_finish_camera_shake()
+
+	damage_shake_camera = camera
+	damage_shake_base_offset = camera.offset
+	damage_shake_tween = create_tween()
+	damage_shake_tween.tween_method(
+		Callable(self, "_apply_camera_shake"),
+		damage_shake_strength,
+		0.0,
+		damage_shake_duration
+	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	damage_shake_tween.finished.connect(_finish_camera_shake)
+
+func _apply_camera_shake(strength: float):
+	if not is_instance_valid(damage_shake_camera):
+		return
+
+	damage_shake_camera.offset = damage_shake_base_offset + Vector2(
+		randf_range(-strength, strength),
+		randf_range(-strength, strength)
+	)
+
+func _finish_camera_shake():
+	if is_instance_valid(damage_shake_camera):
+		damage_shake_camera.offset = damage_shake_base_offset
+	damage_shake_camera = null
+	damage_shake_tween = null
 
 func doGameOver():
 	if game_is_over:
