@@ -24,7 +24,10 @@ func _on_lore():
 	instance.go_to_game.connect(_on_game)
 	add_child(instance)
 
+
 func _on_game():
+	$AudioStreamPlayer2D.play()
+
 	remove_child(current_scene)
 	current_scene.queue_free()
 
