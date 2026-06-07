@@ -2,7 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://cvwlxtpxr4pf8" path="res://Scenes/Sound/SoundQueue.tscn" id="1_7aofj"]
 [ext_resource type="Script" uid="uid://dp8nm3xtaffba" path="res://Scripts/Sound/sound_manager.gd" id="1_wywao"]
+[ext_resource type="AudioStream" uid="uid://cwqg1b7suhx0n" path="res://Audio/sountrack/GameOver.wav" id="3_2j71b"]
 [ext_resource type="AudioStream" uid="uid://c334ekq7bvohc" path="res://Audio/fail/fail.wav" id="3_7aofj"]
+[ext_resource type="AudioStream" uid="uid://crgekiabpwxxd" path="res://Audio/sountrack/MainLoopPart1.wav" id="4_0a8f6"]
 [ext_resource type="PackedScene" uid="uid://g30maaswpnct" path="res://Scenes/Sound/SoundPool.tscn" id="4_oenb2"]
 [ext_resource type="AudioStream" uid="uid://de6cqflsar44m" path="res://Audio/monsters/attack/actor3_attack.wav" id="5_0a8f6"]
 [ext_resource type="AudioStream" uid="uid://wgyt6oamk15h" path="res://Audio/monsters/crunch/crunch.wav" id="6_2j71b"]
@@ -13,9 +15,10 @@ script = ExtResource("1_wywao")
 [node name="FireballSoundQueue" parent="." unique_id=1670010076 instance=ExtResource("1_7aofj")]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="FireballSoundQueue" unique_id=430270403]
-stream = ExtResource("3_7aofj")
+stream = ExtResource("3_2j71b")
 
 [node name="BackgroundAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=432969019]
+stream = ExtResource("4_0a8f6")
 
 [node name="MySoundPool" parent="." unique_id=885304415 instance=ExtResource("4_oenb2")]
 

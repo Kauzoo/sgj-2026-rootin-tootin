@@ -50,12 +50,13 @@ func _on_game_over(achieved_score):
 func _on_lb():
 	remove_child(current_scene)
 	current_scene.queue_free()
-
+	
 	var instance: Node = Leaderboard_Scene.instantiate()
 	current_scene = instance
 	instance.score = score
 	instance.go_to_menu.connect(_on_menu)
 	add_child(instance)
+	SoundManager.play_fireball_sound()
 
 func _on_menu():
 	remove_child(current_scene)
