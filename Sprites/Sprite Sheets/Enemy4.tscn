@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://x6v4fn460e2m"]
 
 [ext_resource type="Texture2D" uid="uid://whsh33txgwc0" path="res://Sprites/Sprite Sheets/SensingAppleSpritesheet37x38.png" id="1_35aug"]
+[ext_resource type="Script" uid="uid://d1mxwbic5ni3x" path="res://Scripts/EnemyAnims/enemy4.gd" id="2_23u3k"]
 
 [sub_resource type="Animation" id="Animation_23u3k"]
 resource_name = "Enemy4_Death"
@@ -74,12 +75,81 @@ _data = {
 &"RESET": SubResource("Animation_emkg4")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6kx4g"]
+animation = &"Enemy4_Death"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_u7lwr"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_emkg4"]
+graph_offset = Vector2(-464.19458, 37.366287)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_6kx4g")
+nodes/Animation/position = Vector2(-140, 120)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_u7lwr")
+nodes/TimeScale/position = Vector2(100, 100)
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ddwcc"]
+animation = &"Enemy4_Idle"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_gwm32"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_s3c5y"]
+graph_offset = Vector2(-417.57935, 36.39125)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_ddwcc")
+nodes/Animation/position = Vector2(-400, 120)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_gwm32")
+nodes/TimeScale/position = Vector2(-100, 140)
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_naejk"]
+animation = &"Enemy4_Spawn"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_11sim"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_1nsx3"]
+graph_offset = Vector2(-243.02359, -1.3065786)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_naejk")
+nodes/Animation/position = Vector2(-300, 140)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_11sim")
+nodes/TimeScale/position = Vector2(-20, 140)
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iy652"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n4whw"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n0qec"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_feas7"]
+states/Enemy4_Death/node = SubResource("AnimationNodeBlendTree_emkg4")
+states/Enemy4_Death/position = Vector2(743, 99)
+states/Enemy4_Idle/node = SubResource("AnimationNodeBlendTree_s3c5y")
+states/Enemy4_Idle/position = Vector2(485, 125)
+states/Enemy4_Spawn/node = SubResource("AnimationNodeBlendTree_1nsx3")
+states/Enemy4_Spawn/position = Vector2(330, 176)
+transitions = ["Start", "Enemy4_Spawn", SubResource("AnimationNodeStateMachineTransition_iy652"), "Enemy4_Spawn", "Enemy4_Idle", SubResource("AnimationNodeStateMachineTransition_n4whw"), "Enemy4_Death", "End", SubResource("AnimationNodeStateMachineTransition_n0qec")]
+
 [node name="Enemy4" type="Sprite2D" unique_id=557700121]
 texture_filter = 1
+scale = Vector2(4, 4)
 texture = ExtResource("1_35aug")
 hframes = 9
 vframes = 2
+script = ExtResource("2_23u3k")
 
 [node name="Enemy4Animation" type="AnimationPlayer" parent="." unique_id=1829585823]
 libraries/ = SubResource("AnimationLibrary_ddwcc")
 speed_scale = 2.0
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=128667507]
+tree_root = SubResource("AnimationNodeStateMachine_feas7")
+anim_player = NodePath("../Enemy4Animation")
+parameters/Enemy4_Death/TimeScale/scale = 3.0
+parameters/Enemy4_Idle/TimeScale/scale = 3.0
+parameters/Enemy4_Spawn/TimeScale/scale = 3.0
