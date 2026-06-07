@@ -17,6 +17,7 @@ func _ready():
 	SoundManager.play_bgm()
 
 func _on_lore():
+	SoundManager.stop_bgm()
 	remove_child(current_scene)
 	current_scene.queue_free()
 
