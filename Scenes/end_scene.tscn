@@ -2,60 +2,88 @@
 
 [ext_resource type="Texture2D" uid="uid://ijsoflnp7arr" path="res://Sprites/Background/EndscreenPlaceholder.png" id="1_5pkqa"]
 [ext_resource type="Script" uid="uid://c42v8ueorktm1" path="res://Sprites/Menus/end_scene_script.gd" id="1_foadp"]
-[ext_resource type="Texture2D" uid="uid://dv6w16bohrtun" path="res://Sprites/Background/brownplaceholder.png" id="2_20ln8"]
-[ext_resource type="Texture2D" uid="uid://bsnqy54ar3lvx" path="res://Sprites/Placeholder/Pokemon-Digda.png" id="3_foadp"]
-[ext_resource type="Texture2D" uid="uid://buqegytd1n3qf" path="res://Sprites/Placeholder/Pokemon-Lahmus.png" id="4_xom27"]
-[ext_resource type="Texture2D" uid="uid://coldye5mpv5hi" path="res://Sprites/Placeholder/Pokemon-Relaxo.png" id="5_kwb7v"]
-[ext_resource type="Texture2D" uid="uid://v0ufdo7j63kp" path="res://Sprites/Placeholder/Pokemon-Sleima.png" id="6_f7vrb"]
+[ext_resource type="Texture2D" uid="uid://m06wh13iru21" path="res://2DArt/DeathSceneSpritesheet.png" id="3_fgb5u"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_b4hnb"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_foadp")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_xom27")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_kwb7v")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_f7vrb")
-}],
-"loop": true,
-"name": &"WEEEE",
-"speed": 2.0
-}]
+[sub_resource type="Animation" id="Animation_8jdvl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_8p78e"]
+resource_name = "TOD"
+length = 19.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8666667, 1.8666667, 2.8666666, 3.8666666, 4.866667, 5.866667, 6.866667, 7.866667, 8.866667, 9.866667, 10.866667, 11.9, 15.9, 16.9, 17.900002, 18.900002),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_20ln8"]
+_data = {
+&"RESET": SubResource("Animation_8jdvl"),
+&"TOD": SubResource("Animation_8p78e")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fgb5u"]
+animation = &"TOD"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_8jdvl"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_8p78e"]
+graph_offset = Vector2(-125.49164, 201.60147)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_fgb5u")
+nodes/Animation/position = Vector2(-60, 160)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_8jdvl")
+nodes/TimeScale/position = Vector2(140, 160)
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_20ln8"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_foadp"]
+"states/slow Tod/node" = SubResource("AnimationNodeBlendTree_8p78e")
+"states/slow Tod/position" = Vector2(341, 106)
+transitions = ["Start", "slow Tod", SubResource("AnimationNodeStateMachineTransition_20ln8")]
 
 [node name="EndScene" type="Node2D" unique_id=1028910194 node_paths=PackedStringArray("animatedSprite")]
 script = ExtResource("1_foadp")
-animatedSprite = NodePath("AnimatedSprite2D")
+animatedSprite = NodePath("")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=791149419]
 
-[node name="Background" type="Sprite2D" parent="." unique_id=1579356239]
+[node name="Background3" type="Sprite2D" parent="." unique_id=1579356239]
 position = Vector2(-352, -199.99998)
 scale = Vector2(0.36666667, 0.3703704)
 texture = ExtResource("1_5pkqa")
 centered = false
 
-[node name="OtherSpritesFolder" type="Node" parent="." unique_id=251990523]
+[node name="Background" type="Sprite2D" parent="." unique_id=573922887]
+scale = Vector2(4, 4)
+texture = ExtResource("3_fgb5u")
+hframes = 17
 
-[node name="SpriteSample" type="Sprite2D" parent="OtherSpritesFolder" unique_id=1089515165]
-position = Vector2(-224, -88)
-scale = Vector2(0.07118056, 0.112345666)
-texture = ExtResource("2_20ln8")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Background" unique_id=2063560086]
+libraries/ = SubResource("AnimationLibrary_20ln8")
+speed_scale = 20.0
 
-[node name="SpriteSample2" type="Sprite2D" parent="OtherSpritesFolder" unique_id=1769328092]
-position = Vector2(224, -47.999996)
-scale = Vector2(0.08836805, 0.16358024)
-texture = ExtResource("2_20ln8")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=638157910]
-texture_filter = 1
-position = Vector2(8, 40.00003)
-scale = Vector2(2.8819435, 2.5563405)
-sprite_frames = SubResource("SpriteFrames_b4hnb")
-animation = &"WEEEE"
-autoplay = "WEEEE"
+[node name="AnimationTree" type="AnimationTree" parent="Background" unique_id=114101557]
+tree_root = SubResource("AnimationNodeStateMachine_foadp")
+anim_player = NodePath("../AnimationPlayer")
+"parameters/slow Tod/TimeScale/scale" = 10.0
