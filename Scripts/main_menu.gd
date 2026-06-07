@@ -11,6 +11,8 @@ signal go_to_leaderboard()
 @export var optionsButton : Button
 @export var exitButton : Button
 
+var _is_starting := false
+
 # grabby grab, not to grab here!
 #@onready var my_sound_pool := $SoundPool as SoundPool
 
@@ -45,13 +47,11 @@ func _on_exit_not_hovered() -> void:
 	ExitHoverImage.visible = false
 
 func _on_start_pressed() -> void:
-	print("start pressed")
-	go_to_lore.emit()
+	_start_game()
 
 func _input(event) -> void:
 	if event.is_action_pressed("LoreEnterToAdvance (can be replaced later)"):
-		print("start pressed")
-		go_to_lore.emit()
+		_start_game()
 
 func _on_options_pressed() -> void:
 	print("options pressed")
@@ -60,3 +60,12 @@ func _on_options_pressed() -> void:
 func _on_exit_pressed() -> void:
 	print("exit pressed")
 	get_tree().quit()
+
+func _start_game() -> void:
+	if _is_starting:
+		return
+
+	_is_starting = true
+	startButton.disabled = true
+	print("start pressed")
+	go_to_lore.emit()

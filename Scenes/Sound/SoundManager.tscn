@@ -32,11 +32,10 @@ volume_db = 13.053
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="BirdsSoundQueue" unique_id=1848774072]
 stream = ExtResource("5_jhpbo")
-volume_db = 13.053
 
 [node name="BackgroundAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=432969019]
 stream = ExtResource("5_jhpbo")
-volume_db = 24.0
+volume_db = -1.0
 
 [node name="MySoundPool" parent="." unique_id=885304415 instance=ExtResource("4_oenb2")]
 

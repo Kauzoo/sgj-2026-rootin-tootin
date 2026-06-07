@@ -19,7 +19,6 @@ func _ready():
 	SoundManager.play_bgm()
 
 func _on_lore():
-	SoundManager.stop_bgm()
 	remove_child(current_scene)
 	current_scene.queue_free()
 
@@ -27,6 +26,7 @@ func _on_lore():
 	current_scene = instance
 	instance.go_to_game.connect(_on_game)
 	add_child(instance)
+	SoundManager.fade_out_bgm()
 
 
 func _on_game():
