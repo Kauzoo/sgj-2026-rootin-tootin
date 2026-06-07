@@ -12,8 +12,6 @@ class_name EnemyBase extends Node2D
 @export var qte_marker_paths: Array[NodePath] = []
 @export var qte_count_override: int = 0
 @export var simultaneous_qte_count_override: int = 0
-@export var progress_bar_offset: Vector2 = Vector2(-32, -105)
-@export var progress_bar_size: Vector2 = Vector2(64, 8)
 @export var qte_position_jitter: Vector2 = Vector2(28, 18)
 @export var qte_screen_margin: Vector2 = Vector2(56, 56)
 
@@ -35,7 +33,6 @@ var active_qtes: Array[QTEBase] = []
 var qtes_required: int = 1
 var qtes_completed: int = 0
 var simultaneous_qte_count: int = 1
-var progress_bar: ProgressBar
 var is_resolved: bool = false
 
 signal enemy_killed()
@@ -45,7 +42,6 @@ signal do_damage()
 func _ready():
 	add_to_group("enemy")
 	_setup_qte_sequence()
-	_setup_progress_bar()
 	$AnimatedSprite.spawned.connect(_spawn_next_qte_wave)
 
 	var audio_player = AudioStreamPlayer2D.new()
@@ -68,16 +64,6 @@ func _setup_qte_sequence():
 		simultaneous_qte_count = DifficultyDirector.get_enemy_simultaneous_qte_count(self)
 
 	simultaneous_qte_count = maxi(1, simultaneous_qte_count)
-
-func _setup_progress_bar():
-	progress_bar = ProgressBar.new()
-	progress_bar.position = progress_bar_offset
-	progress_bar.size = progress_bar_size
-	progress_bar.min_value = 0
-	progress_bar.max_value = qtes_required
-	progress_bar.show_percentage = false
-	add_child(progress_bar)
-	_update_progress_bar()
 
 func _spawn_next_qte_wave():
 	if active_qtes.size() > 0 or is_resolved:
@@ -134,10 +120,6 @@ func has_special_attack() -> bool:
 func get_min_qte_count() -> int:
 	return 1
 
-func _update_progress_bar():
-	if progress_bar:
-		progress_bar.value = _get_remaining_health()
-
 func _get_remaining_health() -> int:
 	return maxi(0, qtes_required - qtes_completed)
 
@@ -188,7 +170,6 @@ func _on_QTE_succeded(_pos, qte: QTEBase):
 		active_qtes.erase(qte)
 
 	qtes_completed += 1
-	_update_progress_bar()
 
 	if qtes_completed >= qtes_required:
 		is_resolved = true
