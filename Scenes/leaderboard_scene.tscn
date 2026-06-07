@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dmmhm7aggww0c" path="res://Scripts/Scoreboard/Scoreboard/scoreboardUI.gd" id="1_kmdqp"]
 [ext_resource type="PackedScene" uid="uid://yt5qsgksbxio" path="res://Scenes/Scoreboard/Scoretext.tscn" id="2_2gn3s"]
 [ext_resource type="Script" uid="uid://cj8c8rwea2xv8" path="res://Scripts/Scoreboard/NameMenu/name_menu.gd" id="3_hqmdi"]
+[ext_resource type="Texture2D" uid="uid://trobqm086b6e" path="res://2DArt/LeaderBoard/RecordScreen.png" id="4_f74iy"]
 
 [node name="LeaderboardScene" type="Node2D" unique_id=1964954266 node_paths=PackedStringArray("leaderboardControl", "leaderboardVBox", "nameMenu")]
 position = Vector2(-352, -198)
@@ -11,6 +12,11 @@ leaderboardControl = NodePath("LeaderboardControl")
 leaderboardVBox = NodePath("LeaderboardControl/ScrollContainer/VBoxContainer")
 scoreText = ExtResource("2_2gn3s")
 nameMenu = NodePath("NameInput")
+
+[node name="RecordScreen" type="Sprite2D" parent="." unique_id=2100006820]
+position = Vector2(352, 198)
+scale = Vector2(4, 4)
+texture = ExtResource("4_f74iy")
 
 [node name="LeaderboardControl" type="Control" parent="." unique_id=1391122774]
 layout_mode = 3
