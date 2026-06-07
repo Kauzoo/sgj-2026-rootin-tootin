@@ -57,6 +57,7 @@ func _ready():
 	health_max = health
 	DifficultyDirector.reset()
 	DifficultyDirector.door_sprite = $DoorSprite
+	$DoorSprite.texture.region.position.x = 0
 	DifficultyDirector.update_door_health(health, health_max)
 	
 	# Set up a single global timer for all enemy spawn points.
