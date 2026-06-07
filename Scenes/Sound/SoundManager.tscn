@@ -5,9 +5,13 @@
 [ext_resource type="AudioStream" uid="uid://cesr61nvboq1o" path="res://Audio/sountrack/GameOver.wav" id="3_2j71b"]
 [ext_resource type="AudioStream" uid="uid://c334ekq7bvohc" path="res://Audio/fail/fail.wav" id="3_7aofj"]
 [ext_resource type="PackedScene" uid="uid://g30maaswpnct" path="res://Scenes/Sound/SoundPool.tscn" id="4_oenb2"]
-[ext_resource type="AudioStream" uid="uid://de6cqflsar44m" path="res://Audio/monsters/attack/actor3_attack.wav" id="5_0a8f6"]
 [ext_resource type="AudioStream" uid="uid://ckghrxlnsnphr" path="res://Audio/birds_before_invasion.wav" id="5_jhpbo"]
-[ext_resource type="AudioStream" uid="uid://wgyt6oamk15h" path="res://Audio/monsters/crunch/crunch.wav" id="6_2j71b"]
+[ext_resource type="AudioStream" uid="uid://n4rtxymlxyx1" path="res://Audio/clicks/click_sound.mp3" id="7_btkf6"]
+[ext_resource type="AudioStream" uid="uid://e8cf12rnaap8" path="res://Audio/clicks/click_sound_1.mp3" id="8_q5q1t"]
+[ext_resource type="AudioStream" uid="uid://g6yx3kmv88cv" path="res://Audio/clicks/click_sound_2.mp3" id="9_yoag4"]
+[ext_resource type="AudioStream" uid="uid://8pbwu6omlgdd" path="res://Audio/clicks/click_sound_4.mp3" id="10_frgsq"]
+[ext_resource type="AudioStream" uid="uid://bvoko2g506fpy" path="res://Audio/clicks/click_sound_5.mp3" id="11_ygu6f"]
+[ext_resource type="AudioStream" uid="uid://ihdymhpj66uo" path="res://Audio/clicks/click_sound_6.mp3" id="12_02tyh"]
 
 [node name="SoundManager" type="Node" unique_id=1700541977]
 script = ExtResource("1_wywao")
@@ -39,14 +43,29 @@ volume_db = 24.0
 [node name="SoundQueue" parent="MySoundPool" unique_id=1326788399 instance=ExtResource("1_7aofj")]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MySoundPool/SoundQueue" unique_id=1653302088]
-stream = ExtResource("3_7aofj")
+stream = ExtResource("7_btkf6")
 
 [node name="SoundQueue2" parent="MySoundPool" unique_id=89563656 instance=ExtResource("1_7aofj")]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MySoundPool/SoundQueue2" unique_id=1053911823]
-stream = ExtResource("5_0a8f6")
+stream = ExtResource("8_q5q1t")
 
 [node name="SoundQueue3" parent="MySoundPool" unique_id=741485178 instance=ExtResource("1_7aofj")]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MySoundPool/SoundQueue3" unique_id=2139208491]
-stream = ExtResource("6_2j71b")
+stream = ExtResource("9_yoag4")
+
+[node name="SoundQueue4" parent="MySoundPool" unique_id=1169053631 instance=ExtResource("1_7aofj")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MySoundPool/SoundQueue4" unique_id=1417514770]
+stream = ExtResource("10_frgsq")
+
+[node name="SoundQueue5" parent="MySoundPool" unique_id=194045569 instance=ExtResource("1_7aofj")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MySoundPool/SoundQueue5" unique_id=492119459]
+stream = ExtResource("11_ygu6f")
+
+[node name="SoundQueue6" parent="MySoundPool" unique_id=1081415880 instance=ExtResource("1_7aofj")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MySoundPool/SoundQueue6" unique_id=846377722]
+stream = ExtResource("12_02tyh")
