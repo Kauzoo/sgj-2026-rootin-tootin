@@ -180,7 +180,7 @@ func doGameOver():
 	if global_spawn_timer and global_spawn_timer.is_inside_tree():
 		global_spawn_timer.stop()
 
-	game_over.emit(kills)
+	game_over.emit(kills * 10)
 
 func _start_global_spawn_timer(delay: float):
 	if game_is_over:
