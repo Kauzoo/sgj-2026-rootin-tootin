@@ -55,12 +55,22 @@ func _unhandled_key_input(event: InputEvent):
 				_fail_first_active_qte()
 
 func _fail_first_active_qte():
+	var has_active_qte = false
+
 	for qte in key_qtes.duplicate():
 		if is_instance_valid(qte):
+			has_active_qte = true
+
+			if qte is FakeQTE:
+				continue
+
 			_mark_input_as_handled()
 			qte.force_fail()
 			return
 		remove_key_qte(qte)
+
+	if has_active_qte:
+		_mark_input_as_handled()
 
 func _ready():
 	health_max = health

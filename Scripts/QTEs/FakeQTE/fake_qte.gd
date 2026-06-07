@@ -17,23 +17,32 @@ func _unhandled_input(event):
 		return
 
 	if event is InputEventKey and event.pressed and not event.is_echo():
-			if event.key_label in [KEY_W, KEY_A, KEY_S, KEY_D]:  # only care about game keys
-				get_parent().get_parent().remove_key_qte(self)
-				get_viewport().set_input_as_handled()
-				QTE_failed.emit(position)
-				queue_free()
+		if event.key_label == key:
+			_fail_fake_qte()
 
 func _on_timeout():
-	# yes, im lazy :P
-	get_parent().get_parent().remove_key_qte(self)
+	if is_resolved:
+		return
+
+	is_resolved = true
+	unregister_key_qte()
 	QTE_succeded.emit(position)  # player correctly ignored it!
 	queue_free()
 
 func check_event(event):
 	if event is InputEventKey and event.pressed and not event.is_echo():
 		if event.key_label == key:
-			# yes, im lazy :P
-			get_parent().get_parent().remove_key_qte(self)
-			get_viewport().set_input_as_handled()
-			QTE_failed.emit(position)
-			queue_free()
+			_fail_fake_qte()
+			return true
+
+	return false
+
+func _fail_fake_qte():
+	if is_resolved:
+		return
+
+	is_resolved = true
+	unregister_key_qte()
+	_mark_input_as_handled()
+	QTE_failed.emit(position)
+	queue_free()
