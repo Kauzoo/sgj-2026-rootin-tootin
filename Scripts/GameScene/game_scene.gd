@@ -67,8 +67,6 @@ func _ready():
 	add_child(global_spawn_timer)
 	_start_global_spawn_timer(1.0) # Start generating events after a brief 1-second pause
 
-	$HealthLabel.text = "DOOR HELTH: " + str(health)
-
 func _on_global_spawn_timeout():
 	if game_is_over:
 		return
@@ -147,7 +145,6 @@ func _on_do_damage():
 
 	health -= 1
 	DifficultyDirector.update_door_health(health, health_max)
-	$HealthLabel.text = "DOOR HELTH: " + str(health)
 
 	if health <= 0:
 		doGameOver()

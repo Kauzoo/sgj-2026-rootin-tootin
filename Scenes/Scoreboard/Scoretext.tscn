@@ -2,6 +2,18 @@
 
 [ext_resource type="Script" uid="uid://csctw0x3ffgr4" path="res://Scripts/Scoreboard/Scoreboard/scoretext.gd" id="1_p2wdn"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_p2wdn"]
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mfc5j"]
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0tldl"]
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
+
 [node name="Scoretext" type="HBoxContainer" unique_id=323211487 node_paths=PackedStringArray("rank_label", "name_label", "score_label")]
 custom_minimum_size = Vector2(0, 25)
 anchors_preset = 15
@@ -21,6 +33,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 15
 text = "Rank"
+label_settings = SubResource("LabelSettings_p2wdn")
 vertical_alignment = 1
 
 [node name="Space" type="Control" parent="." unique_id=1746717947]
@@ -34,6 +47,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 15
 text = "Name"
+label_settings = SubResource("LabelSettings_mfc5j")
 horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 1
@@ -49,5 +63,6 @@ layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 15
 text = "Score"
+label_settings = SubResource("LabelSettings_0tldl")
 horizontal_alignment = 2
 vertical_alignment = 1
