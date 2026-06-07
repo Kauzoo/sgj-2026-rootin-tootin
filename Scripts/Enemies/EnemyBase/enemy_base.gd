@@ -40,6 +40,13 @@ signal enemy_removed()
 signal do_damage()
 
 func _ready():
+	if position.x > 0:
+		scale.x *= -1
+		position.x += $CrackAnchor.position.x
+		position.y -= $CrackAnchor.position.y
+	else:
+		position -= $CrackAnchor.position
+
 	add_to_group("enemy")
 	_setup_qte_sequence()
 	$AnimatedSprite.spawned.connect(_spawn_next_qte_wave)
@@ -86,6 +93,8 @@ func _spawn_qte(qte_index: int):
 		return
 
 	active_qtes.append(instance)
+	if(scale.x < 0):
+		instance.scale.x *= -1
 	instance.position = _get_qte_position(qte_index)
 	instance.QTE_failed.connect(_on_QTE_failed.bind(instance))
 	instance.QTE_succeded.connect(_on_QTE_succeded.bind(instance))

@@ -34,7 +34,7 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(-228, 19)
 
 [node name="Crack2" parent="." unique_id=725175742 instance=ExtResource("3_rgj8m")]
-position = Vector2(-33, -114)
+position = Vector2(-34, -109)
 
 [node name="Crack3" parent="." unique_id=1806182396 instance=ExtResource("3_rgj8m")]
 position = Vector2(-34, 117)

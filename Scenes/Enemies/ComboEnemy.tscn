@@ -25,3 +25,7 @@ position = Vector2(0, -105)
 
 [node name="QTEMarker3" type="Marker2D" parent="." unique_id=638076800]
 position = Vector2(70, -80)
+
+[node name="CrackAnchor" type="Marker2D" parent="." unique_id=1156075777]
+position = Vector2(-26, 49)
+scale = Vector2(4, 4)

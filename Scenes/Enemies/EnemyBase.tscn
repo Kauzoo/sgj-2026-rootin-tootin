@@ -18,3 +18,6 @@ is_one = true
 
 [node name="QTEMarker" type="Marker2D" parent="." unique_id=1421120142]
 position = Vector2(0, -70)
+
+[node name="CrackAnchor" type="Marker2D" parent="." unique_id=281377793]
+position = Vector2(7, 42)
