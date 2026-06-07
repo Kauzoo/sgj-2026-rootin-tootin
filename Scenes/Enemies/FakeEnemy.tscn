@@ -16,3 +16,5 @@ special_qte_scene = ExtResource("2_cpbt8")
 [node name="QTETimer" type="Timer" parent="." unique_id=637635198]
 wait_time = 10.0
 autostart = true
+
+[node name="CrackAnchor" type="Marker2D" parent="." unique_id=1478438698]

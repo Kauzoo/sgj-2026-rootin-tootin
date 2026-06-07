@@ -19,3 +19,6 @@ qte_marker_paths = Array[NodePath]([NodePath("QTEMarker")])
 
 [node name="QTEMarker" type="Marker2D" parent="." unique_id=637635198]
 position = Vector2(70, -70)
+
+[node name="CrackAnchor" type="Marker2D" parent="." unique_id=776244349]
+position = Vector2(18, 9)
