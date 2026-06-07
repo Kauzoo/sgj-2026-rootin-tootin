@@ -11,10 +11,12 @@
 [ext_resource type="AudioStream" uid="uid://l6pncfkx130u" path="res://Audio/squish/impactsplat06.mp3" id="7_uv2lb"]
 [ext_resource type="AudioStream" uid="uid://b3s0scjqi1hg5" path="res://Audio/squish/impactsplat07.mp3" id="8_p7ucl"]
 [ext_resource type="AudioStream" uid="uid://bsbbj0p471237" path="res://Audio/squish/impactsplat08.mp3" id="9_fgtow"]
+[ext_resource type="Texture2D" path="res://2DArt/TastenButtons/W.png" id="10_wpreview"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_j638d"]
 outline_size = 2
-outline_color = Color(0, 0, 0, 1)
+font_color = Color(0.8862745, 0.8862745, 0.8862745, 1)
+outline_color = Color(0.2, 0.19215687, 0.21960784, 1)
 
 [sub_resource type="GDScript" id="GDScript_a2hfp"]
 script/source = "extends Timer
@@ -27,14 +29,17 @@ success_sounds = Array[AudioStream]([ExtResource("2_exfd6"), ExtResource("3_35tj
 
 [node name="NumberLabel" type="Label" parent="." unique_id=1144780888]
 offset_left = -20.0
-offset_top = -41.0
+offset_top = -39.0
 offset_right = 20.0
-offset_bottom = -18.0
+offset_bottom = -16.0
+text = "1 0"
 label_settings = SubResource("LabelSettings_j638d")
 horizontal_alignment = 1
 
 [node name="KeySprite" type="Sprite2D" parent="." unique_id=1656824007]
 scale = Vector2(2, 2)
+z_index = 10
+texture = ExtResource("10_wpreview")
 script = ExtResource("2_j638d")
 
 [node name="FailTimer" type="Timer" parent="." unique_id=165001112]

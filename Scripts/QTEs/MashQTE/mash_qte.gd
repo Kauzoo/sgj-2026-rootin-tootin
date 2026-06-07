@@ -3,18 +3,20 @@ class_name MashQTE extends KeyQTE
 var mash_amount: int = 10
 var initial_mash_amount: int
 var active_tween: Tween
+var original_sprite_scale: Vector2
 @export var click_sound : AudioStream
 
 func _ready():
 	add_to_group("qte")
 	register_key_qte()
+	original_sprite_scale = $KeySprite.scale
 	$FailTimer.wait_time = DifficultyDirector.get_qte_time_window($FailTimer.wait_time)
 	$FailTimer.timeout.connect(_on_timeout)
 	$FailTimer.start($FailTimer.wait_time)
 	var rng = RandomNumberGenerator.new()
 	mash_amount = rng.randi_range(5, 10)
 	initial_mash_amount = mash_amount
-	$NumberLabel.text = str(mash_amount)
+	_update_number_label()
 
 
 func _unhandled_input(event):
@@ -39,14 +41,14 @@ func check_event(event):
 			
 			if not is_resolved:
 				mash_amount -= 1
-				$NumberLabel.text = str(mash_amount)
+				_update_number_label()
 				
 			if active_tween and active_tween.is_valid():
 				active_tween.kill()
 				
 			active_tween = create_tween()
-			$KeySprite.scale = Vector2(2.0, 2.0)
-			active_tween.tween_property($KeySprite, "scale", Vector2(1.7, 1.7), 0.15).set_trans(Tween.TRANS_SPRING)
+			$KeySprite.scale = original_sprite_scale
+			active_tween.tween_property($KeySprite, "scale", original_sprite_scale * 0.85, 0.15).set_trans(Tween.TRANS_SPRING)
 			
 			if mash_amount > 0:
 				# Calculate progress from 0.0 to 1.0
@@ -81,3 +83,16 @@ func check_event(event):
 			return true
 
 	return false
+
+
+func _update_number_label() -> void:
+	$NumberLabel.text = _space_digits(str(mash_amount))
+
+
+func _space_digits(text: String) -> String:
+	var result := ""
+	for i in range(text.length()):
+		if i > 0:
+			result += " "
+		result += text[i]
+	return result

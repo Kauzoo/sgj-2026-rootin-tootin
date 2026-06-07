@@ -12,6 +12,7 @@ script = ExtResource("1_rkn7d")
 
 [node name="FakeSprite" type="Sprite2D" parent="." unique_id=1998570352]
 scale = Vector2(2, 2)
+z_index = 10
 script = ExtResource("2_55i0u")
 
 [node name="FailTimer" type="Timer" parent="." unique_id=577917659]

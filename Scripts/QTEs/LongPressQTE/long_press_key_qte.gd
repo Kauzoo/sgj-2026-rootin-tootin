@@ -13,6 +13,7 @@ var active_tween: Tween
 #var sample_hz: float = 44100.0
 
 func _ready():
+	super._ready()
 	original_sprite_pos = $KeySprite.position
 	original_sprite_scale = $KeySprite.scale
 	
