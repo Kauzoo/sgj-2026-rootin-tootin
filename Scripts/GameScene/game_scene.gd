@@ -12,6 +12,9 @@ var health_max: int
 var global_spawn_timer: Timer
 var game_is_over: bool = false
 
+@export var healthBar: ProgressBar
+@export var defaultFill: Color
+
 func add_key_qte(qte):
 	key_qtes.append(qte)
 
@@ -55,6 +58,13 @@ func _fail_first_active_qte():
 
 func _ready():
 	health_max = health
+	healthBar.max_value = health_max
+	healthBar.value = health
+	
+	var fill_style = healthBar.get_theme_stylebox("fill") as StyleBoxFlat
+	if fill_style:
+		fill_style.bg_color = defaultFill
+	
 	DifficultyDirector.reset()
 	DifficultyDirector.door_sprite = $DoorSprite
 	$DoorSprite.texture.region.position.x = 0
@@ -144,6 +154,11 @@ func _on_do_damage():
 		return
 
 	health -= 1
+	healthBar.value = health
+	var ratio = float(health) / float(health_max)
+	var fill_style = healthBar.get_theme_stylebox("fill") as StyleBoxFlat
+	if fill_style and health <= 2:
+		fill_style.bg_color = Color(1, 0, 0)
 	DifficultyDirector.update_door_health(health, health_max)
 	
 	_flash_damage()
