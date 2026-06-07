@@ -199,7 +199,10 @@ func _on_QTE_failed(_pos, _qte: QTEBase):
 	_clear_active_qtes()
 	do_damage.emit()
 	enemy_removed.emit()
-	_play_death_sound()
+	
+	#_play_death_sound()
+	SoundManager.play_failed_sound()
+	
 	$AnimatedSprite.die()
 	$AnimatedSprite.done_animation.connect(queue_free)
 

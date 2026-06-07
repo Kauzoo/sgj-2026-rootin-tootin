@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cvwlxtpxr4pf8" path="res://Scenes/Sound/SoundQueue.tscn" id="1_7aofj"]
 [ext_resource type="Script" uid="uid://dp8nm3xtaffba" path="res://Scripts/Sound/sound_manager.gd" id="1_wywao"]
-[ext_resource type="AudioStream" uid="uid://dqajx4ihy4rob" path="res://Audio/sountrack/GameOver.wav" id="3_2j71b"]
+[ext_resource type="AudioStream" uid="uid://0ap50m4fkmff" path="res://Audio/sountrack/GameOver.wav" id="3_2j71b"]
 [ext_resource type="AudioStream" uid="uid://c334ekq7bvohc" path="res://Audio/fail/fail.wav" id="3_7aofj"]
 [ext_resource type="AudioStream" uid="uid://crgekiabpwxxd" path="res://Audio/sountrack/MainLoopPart1.wav" id="4_0a8f6"]
 [ext_resource type="PackedScene" uid="uid://g30maaswpnct" path="res://Scenes/Sound/SoundPool.tscn" id="4_oenb2"]

@@ -20,6 +20,12 @@ func _ready() -> void:
 		_sound_pools_by_name["MySoundPool"] = my_pool
 	else:
 		push_error("MySoundPool node not found!")
+		
+	var failed_queue := $FailedSoundQueue as SoundQueue
+	if failed_queue:
+		_sound_queues_by_name["FailedSoundQueue"] = failed_queue
+	else:
+		push_error("FailedSoundQueue node not found!")
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -33,6 +39,10 @@ func play_fireball_sound() -> void:
 func play_random_pool_sound() -> void:
 	if _sound_pools_by_name.has("MySoundPool"):
 		_sound_pools_by_name["MySoundPool"].play_random_sound()
+		
+func play_failed_sound() -> void:
+	if _sound_queues_by_name.has("FailedSoundQueue"):
+		_sound_queues_by_name["FailedSoundQueue"].play_sound()
 		
 		
 func play_bgm() -> void:
