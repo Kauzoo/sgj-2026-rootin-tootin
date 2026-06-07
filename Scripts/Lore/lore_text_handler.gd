@@ -9,6 +9,10 @@ var lore_file
 
 signal go_to_game()
 
+func set_visible_characters(num : int):
+	label.visible_characters = num
+	_on_character_revealed(num)
+
 func _ready():
 	
 	lore_file_path = "res://Scripts/Lore/Lore_texts.txt"
@@ -39,14 +43,32 @@ func _input(event):
 			nextSaying()
 	pass
 
+#func nextSaying():
+#	label.visible_characters = 0
+#	
+#	var visibleCharactersDuration = label.get_total_character_count() * 0.02
+#	
+#	tween_text_scroll = create_tween()
+#	tween_text_scroll.tween_property(label, "visible_characters", 
+#	label.get_total_character_count(), visibleCharactersDuration)
+#	
+#	pass
+	
+	
 func nextSaying():
 	label.visible_characters = 0
-	
-	var visibleCharactersDuration = label.get_total_character_count() * 0.02
-	
+
+	var total = label.get_total_character_count()
+	var visibleCharactersDuration = total * 0.02
+
 	tween_text_scroll = create_tween()
-	tween_text_scroll.tween_property(label, "visible_characters", 
-	label.get_total_character_count(), visibleCharactersDuration)
+#	tween_text_scroll.tween_property(label, "visible_characters",
+#		total, visibleCharactersDuration)
 	
-	pass
+	tween_text_scroll.tween_method(set_visible_characters, 0, total, visibleCharactersDuration)
+
+func _on_character_revealed(char_index: int):
+	#if char_index % 2 == 0:
+	SoundManager.play_random_pool_sound()
+	
 	
