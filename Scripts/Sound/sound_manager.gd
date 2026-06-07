@@ -14,6 +14,12 @@ func _ready() -> void:
 	else:
 		push_error("FireballSoundQueue node not found!")
 		
+	var click5_queue := $Click5SoundQueue as SoundQueue
+	if click5_queue:
+		_sound_queues_by_name["Click5SoundQueue"] = click5_queue
+	else:
+		push_error("Click5SoundQueue node not found!")
+		
 	# I love soundPools. You will never know.
 	var my_pool := $MySoundPool as SoundPool
 	if my_pool:
@@ -33,6 +39,10 @@ func play_fireball_sound() -> void:
 func play_random_pool_sound() -> void:
 	if _sound_pools_by_name.has("MySoundPool"):
 		_sound_pools_by_name["MySoundPool"].play_random_sound()
+		
+func play_click5_sound() -> void:
+	if _sound_queues_by_name.has("Click5SoundQueue"):
+		_sound_queues_by_name["Click5SoundQueue"].play_sound()
 		
 		
 func play_bgm() -> void:

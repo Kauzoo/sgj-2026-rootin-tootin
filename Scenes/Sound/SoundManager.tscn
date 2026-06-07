@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://g30maaswpnct" path="res://Scenes/Sound/SoundPool.tscn" id="4_oenb2"]
 [ext_resource type="AudioStream" uid="uid://de6cqflsar44m" path="res://Audio/monsters/attack/actor3_attack.wav" id="5_0a8f6"]
 [ext_resource type="AudioStream" uid="uid://wgyt6oamk15h" path="res://Audio/monsters/crunch/crunch.wav" id="6_2j71b"]
+[ext_resource type="AudioStream" uid="uid://bvoko2g506fpy" path="res://Audio/clicks/click_sound_5.mp3" id="7_0a8f6"]
 
 [node name="SoundManager" type="Node" unique_id=1700541977]
 script = ExtResource("1_wywao")
@@ -33,3 +34,8 @@ stream = ExtResource("5_0a8f6")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MySoundPool/SoundQueue3" unique_id=2139208491]
 stream = ExtResource("6_2j71b")
+
+[node name="Click5SoundQueue" parent="." unique_id=190455488 instance=ExtResource("1_7aofj")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Click5SoundQueue" unique_id=2076641901]
+stream = ExtResource("7_0a8f6")
