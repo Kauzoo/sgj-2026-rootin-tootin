@@ -10,16 +10,16 @@ atlas = ExtResource("3_2fmhe")
 region = Rect2(0, 0, 78, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fiftr"]
-bg_color = Color(0.45490196, 0.45490196, 0.45490196, 1)
+bg_color = Color(0.8862745, 0.8862745, 0.8862745, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ixah"]
-bg_color = Color(0.8862745, 0.8862745, 0.8862745, 1)
+bg_color = Color(0.27058825, 0.45490196, 0.21176471, 1)
 
 [node name="GameScene" type="Node2D" unique_id=1966619011 node_paths=PackedStringArray("healthBar")]
 script = ExtResource("1_fiftr")
 health = 10
 healthBar = NodePath("HealthBar")
-defaultFill = Color(0.8862745, 0.8862745, 0.8862745, 1)
+defaultFill = Color(0.27058825, 0.45490196, 0.21176471, 1)
 
 [node name="BackgroundSprite" type="Sprite2D" parent="." unique_id=537088218]
 scale = Vector2(4, 4)
@@ -31,9 +31,9 @@ scale = Vector2(4, 4)
 texture = SubResource("AtlasTexture_7iton")
 
 [node name="HealthBar" type="ProgressBar" parent="." unique_id=2141759149]
-offset_left = -51.5
-offset_top = -162.0
-offset_right = 51.5
+offset_left = -100.0
+offset_top = -166.0
+offset_right = 94.0
 offset_bottom = -154.0
 theme_override_styles/background = SubResource("StyleBoxFlat_fiftr")
 theme_override_styles/fill = SubResource("StyleBoxFlat_1ixah")
