@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bs15kk50j75bk"
-path="res://.godot/imported/Ignacio_death_bitcrushed.wav-0166e6db3da81efb9e262dcd69b06235.sample"
+path="res://.godot/imported/Ignacio_death_bitcrushed.wav-e3dbe83c0457cd4d3cb0e8d1a9418f0f.sample"
 
 [deps]
 
-source_file="res://Audio/monsters/spawn/Ignacio_death_bitcrushed.wav"
-dest_files=["res://.godot/imported/Ignacio_death_bitcrushed.wav-0166e6db3da81efb9e262dcd69b06235.sample"]
+source_file="res://Audio/monsters/death/Ignacio_death_bitcrushed.wav"
+dest_files=["res://.godot/imported/Ignacio_death_bitcrushed.wav-e3dbe83c0457cd4d3cb0e8d1a9418f0f.sample"]
 
 [params]
 

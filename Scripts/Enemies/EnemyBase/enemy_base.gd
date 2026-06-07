@@ -17,6 +17,20 @@ class_name EnemyBase extends Node2D
 @export var qte_position_jitter: Vector2 = Vector2(28, 18)
 @export var qte_screen_margin: Vector2 = Vector2(56, 56)
 
+var spawn_audios: Array[AudioStream] = [
+	preload("res://Audio/monsters/spawn/Ignacio spawn.wav"),
+	preload("res://Audio/monsters/spawn/Meilun_spawn.wav"),
+	preload("res://Audio/monsters/spawn/actor3_spawn.wav")
+]
+
+var death_audios: Array[AudioStream] = [
+	preload("res://Audio/monsters/death/Ignacio_death_bitcrushed.wav"),
+	preload("res://Audio/monsters/death/Meilun_death.wav"),
+	preload("res://Audio/monsters/death/actor3_death1.wav"),
+	preload("res://Audio/monsters/death/actor3_death2.wav"),
+	preload("res://Audio/monsters/death/alex_death.wav")
+]
+
 var active_qtes: Array[QTEBase] = []
 var qtes_required: int = 1
 var qtes_completed: int = 0
@@ -33,6 +47,12 @@ func _ready():
 	_setup_qte_sequence()
 	_setup_progress_bar()
 	$AnimatedSprite.spawned.connect(_spawn_next_qte_wave)
+
+	var audio_player = AudioStreamPlayer2D.new()
+	add_child(audio_player)
+	audio_player.stream = spawn_audios.pick_random()
+	audio_player.finished.connect(audio_player.queue_free)
+	audio_player.play()
 
 func _setup_qte_sequence():
 	if qte_count_override > 0:
@@ -175,6 +195,7 @@ func _on_QTE_succeded(_pos, qte: QTEBase):
 		_clear_active_qtes()
 		enemy_killed.emit()
 		enemy_removed.emit()
+		_play_death_sound()
 		$AnimatedSprite.die()
 		$AnimatedSprite.done_animation.connect(queue_free)
 	elif active_qtes.size() == 0:
@@ -188,8 +209,17 @@ func _on_QTE_failed(_pos, _qte: QTEBase):
 	_clear_active_qtes()
 	do_damage.emit()
 	enemy_removed.emit()
+	_play_death_sound()
 	$AnimatedSprite.die()
 	$AnimatedSprite.done_animation.connect(queue_free)
+
+func _play_death_sound():
+	var audio_player = AudioStreamPlayer2D.new()
+	get_parent().add_child(audio_player)
+	audio_player.global_position = global_position
+	audio_player.stream = death_audios.pick_random()
+	audio_player.finished.connect(audio_player.queue_free)
+	audio_player.play()
 
 func _clear_active_qtes():
 	for qte in active_qtes:
