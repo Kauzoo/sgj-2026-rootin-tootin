@@ -1,7 +1,16 @@
 [gd_scene format=3 uid="uid://c1comboqte123"]
 
 [ext_resource type="Script" uid="uid://boq1fv0jjn7vi" path="res://Scripts/QTEs/CombinationQTE/combination_qte.gd" id="1_combo"]
+[ext_resource type="AudioStream" uid="uid://6yl67no8be5c" path="res://Audio/squish/impactsplat01.mp3" id="2_7bqv7"]
+[ext_resource type="AudioStream" uid="uid://ihdymhpj66uo" path="res://Audio/clicks/click_sound_6.mp3" id="2_fneuq"]
 [ext_resource type="Script" uid="uid://femew35nexgq" path="res://Scripts/QTEs/KeyQTE/key_sprite.gd" id="2_j638d"]
+[ext_resource type="AudioStream" uid="uid://dpwqn6vnklpd5" path="res://Audio/squish/impactsplat02.mp3" id="3_fneuq"]
+[ext_resource type="AudioStream" uid="uid://dv2ve84yi7fns" path="res://Audio/squish/impactsplat03.mp3" id="4_rhpn0"]
+[ext_resource type="AudioStream" uid="uid://se30tmrv58vm" path="res://Audio/squish/impactsplat04.mp3" id="5_lekf0"]
+[ext_resource type="AudioStream" uid="uid://clb40wv51inqu" path="res://Audio/squish/impactsplat05.mp3" id="6_67vfi"]
+[ext_resource type="AudioStream" uid="uid://l6pncfkx130u" path="res://Audio/squish/impactsplat06.mp3" id="7_jnv7j"]
+[ext_resource type="AudioStream" uid="uid://b3s0scjqi1hg5" path="res://Audio/squish/impactsplat07.mp3" id="8_8ifn3"]
+[ext_resource type="AudioStream" uid="uid://bsbbj0p471237" path="res://Audio/squish/impactsplat08.mp3" id="9_awd7g"]
 
 [sub_resource type="GDScript" id="GDScript_a2hfp"]
 script/source = "extends Timer
@@ -9,13 +18,17 @@ script/source = "extends Timer
 
 [node name="CombinationQte" type="Node2D" unique_id=732149149]
 script = ExtResource("1_combo")
+click_sound = ExtResource("2_fneuq")
+success_sounds = Array[AudioStream]([ExtResource("2_7bqv7"), ExtResource("3_fneuq"), ExtResource("4_rhpn0"), ExtResource("5_lekf0"), ExtResource("6_67vfi"), ExtResource("7_jnv7j"), ExtResource("8_8ifn3"), ExtResource("9_awd7g")])
 
 [node name="KeySprite" type="Sprite2D" parent="." unique_id=1105691960]
-scale = Vector2(2, 2)
 z_index = 10
+scale = Vector2(2, 2)
 script = ExtResource("2_j638d")
 
 [node name="FailTimer" type="Timer" parent="." unique_id=1752667381]
 wait_time = 7.0
 one_shot = true
 script = SubResource("GDScript_a2hfp")
+
+[node name="SuccessSound" type="AudioStreamPlayer2D" parent="." unique_id=616917395]
