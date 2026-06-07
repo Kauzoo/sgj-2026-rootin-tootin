@@ -46,6 +46,8 @@ func _on_game_over(achieved_score):
 	current_scene = instance
 	instance.go_to_lb.connect(_on_lb)
 	add_child(instance)
+	
+	#SoundManager.play_fireball_sound()
 
 func _on_lb():
 	remove_child(current_scene)
