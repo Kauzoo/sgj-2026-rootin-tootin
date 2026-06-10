@@ -17,6 +17,7 @@ script/source = "extends Timer
 "
 
 [node name="CombinationQte" type="Node2D" unique_id=732149149]
+z_index = 1
 script = ExtResource("1_combo")
 click_sound = ExtResource("2_fneuq")
 success_sounds = Array[AudioStream]([ExtResource("2_7bqv7"), ExtResource("3_fneuq"), ExtResource("4_rhpn0"), ExtResource("5_lekf0"), ExtResource("6_67vfi"), ExtResource("7_jnv7j"), ExtResource("8_8ifn3"), ExtResource("9_awd7g")])

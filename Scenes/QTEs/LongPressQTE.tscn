@@ -23,6 +23,7 @@ script/source = "extends Timer
 "
 
 [node name="LongPressQTE" type="Node2D" unique_id=65569346]
+z_index = 1
 script = ExtResource("1_l2y4t")
 success_sounds = Array[AudioStream]([ExtResource("2_7pkfr"), ExtResource("3_4ftpw"), ExtResource("4_so8xa"), ExtResource("5_wp5cl"), ExtResource("6_4ncls"), ExtResource("7_fd86m"), ExtResource("8_gx6ve"), ExtResource("9_01f8b")])
 

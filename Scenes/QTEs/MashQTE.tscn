@@ -24,6 +24,7 @@ script/source = "extends Timer
 "
 
 [node name="MashQte" type="Node2D" unique_id=623888431]
+z_index = 1
 script = ExtResource("1_pej63")
 click_sound = ExtResource("2_35tjj")
 success_sounds = Array[AudioStream]([ExtResource("2_exfd6"), ExtResource("3_35tjj"), ExtResource("4_yvcdv"), ExtResource("5_w5rvr"), ExtResource("6_x8477"), ExtResource("7_uv2lb"), ExtResource("8_p7ucl"), ExtResource("9_fgtow")])

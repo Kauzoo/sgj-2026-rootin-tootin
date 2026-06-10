@@ -16,12 +16,13 @@ script/source = "extends Timer
 "
 
 [node name="KeyQTE" type="Node2D" unique_id=65569346]
+z_index = 1
 script = ExtResource("1_2bpst")
 success_sounds = Array[AudioStream]([ExtResource("2_m33m8"), ExtResource("3_qfxxe"), ExtResource("4_imidx"), ExtResource("5_svtyw"), ExtResource("6_l1vla"), ExtResource("7_mnv6s"), ExtResource("8_lln2a"), ExtResource("9_viqwc")])
 
 [node name="KeySprite" type="Sprite2D" parent="." unique_id=1998570352]
-scale = Vector2(2, 2)
 z_index = 10
+scale = Vector2(2, 2)
 script = ExtResource("2_g8ugy")
 
 [node name="FailTimer" type="Timer" parent="." unique_id=577917659]

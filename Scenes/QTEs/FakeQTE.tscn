@@ -8,11 +8,12 @@ script/source = "extends Timer
 "
 
 [node name="FakeQTE" type="Node2D" unique_id=65569346]
+z_index = 1
 script = ExtResource("1_rkn7d")
 
 [node name="FakeSprite" type="Sprite2D" parent="." unique_id=1998570352]
-scale = Vector2(2, 2)
 z_index = 10
+scale = Vector2(2, 2)
 script = ExtResource("2_55i0u")
 
 [node name="FailTimer" type="Timer" parent="." unique_id=577917659]
